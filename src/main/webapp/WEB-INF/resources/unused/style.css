@@ -1,0 +1,129 @@
+/* ------------------
+ styling for the tables 
+   ------------------   */
+
+
+body
+{
+	line-height: 1.6em;
+	background: #E1F6D3
+}
+.ptag, .ctag
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 14px;
+	
+	text-align: left;
+/*	border-collapse: collapse;
+	border-bottom: 1px solid #fff;*/
+	color: #669;
+	border-top: 1px solid #fff;
+	background: #E1F6D3 repeat-x;
+}
+
+.scenario,.feature
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 16px;
+	padding-left:2cm;
+	padding-right:10cm;
+	text-align: left;
+   /* border-collapse: collapse;
+	border-bottom: 1px solid #fff;*/
+	color: #669;
+	border-top: 1px solid #fff;
+	background: #D2F6BA repeat-x;
+}
+.step
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 14px;
+	display: block;
+	padding-left:2cm;
+	margin:5px;
+	text-align: left;
+	color: #4141EE;
+	background: #E1F6D3
+}
+.step span:hover
+{
+	background: #b9c9fe repeat-x;
+	color: #339;
+}
+#gradient-style
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#gradient-style th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #BEF0A7 repeat-x;
+	border-top: 2px solid #d3ddff;
+	border-bottom: 1px solid #fff;
+	color: #039;
+}
+#gradient-style td
+{
+	padding: 8px; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid #fff;
+	background: #E1F6D3 repeat-x;
+}
+#gradient-style tfoot tr td
+{
+	background: #E1F6D3;
+	font-size: 12px;
+	color: #686874;
+}
+#gradient-style tbody tr:hover td
+{
+	background: #b9c9fe repeat-x;
+	color: #339;
+}
+
+#gradient2
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	margin: 45px;
+	width: 480px;
+	text-align: left;
+	border-collapse: collapse;
+}
+#gradient2 th
+{
+	font-size: 13px;
+	font-weight: normal;
+	padding: 8px;
+	background: #b9c9fe repeat-x;
+	border-top: 2px solid #d3ddff;
+	border-bottom: 1px solid #fff;
+	color: #039;
+}
+#gradient2 td
+{
+	padding: 8px; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid #fff;
+	background: #e8edff repeat-x;
+}
+#gradient2 tfoot tr td
+{
+	background: #e8edff;
+	font-size: 12px;
+	color: #99c;
+}
+#gradient2 tbody tr:hover td
+{
+	background: #d0dafd repeat-x;
+	color: #339;
+}

@@ -1,0 +1,11 @@
+/*[class*="scenario"]:before {
+	display: inline-block;
+	width: 32px;
+	height: 32px;
+	background-image: url(sprites.svg);
+	background-repeat: no-repeat;
+}*/
+/*.scenario {
+	background-position: 0 0;
+	width: 34px;
+}*/

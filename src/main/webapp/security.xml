@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:tx="http://www.springframework.org/schema/tx"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <debug />
+    <global-method-security pre-post-annotations="enabled" />
+
+    <!--  All static resources are kept outside the security screening -->
+    <http pattern="/bootstrap/**" security="none"/>
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/img/**" security="none"/>
+    <http pattern="/js/**" security="none"/>
+    <http pattern="/lib/**" security="none"/>
+
+    <http use-expressions="true" auto-config="true" access-denied-page="/denied.htm">
+        <!--  Allow all other requests. In a real application you should
+             adopt a whitelisting approach where access is not allowed by default
+          -->
+        <intercept-url pattern="/login**" access="permitAll" />
+        <intercept-url pattern="/timeout**" access="permitAll" />
+        <intercept-url pattern="/**" access="isAuthenticated()" />
+        <!-- Set default login success and failure actions -->
+        <form-login login-page="/login" authentication-failure-url="/login.htm?error=true" default-target-url="/dashboard.htm"/>
+        <http-basic/>
+        <logout delete-cookies="JSESSIONID" />
+        <remember-me />
+
+        <!-- Limits the number of sessions a user can have to 1-->
+        <session-management invalid-session-url="/login.htm?sessiontimedout=true" session-fixation-protection="newSession">
+            <concurrency-control max-sessions="1"/>
+        </session-management>
+
+    </http>
+
+    <beans:bean id="userService" class="com.cukesrepo.service.user.UserServiceImpl"/>
+
+    <!-- Custom UserDetailsService for fetching the user details by username -->
+    <authentication-manager>
+        <authentication-provider
+                user-service-ref="userDService">
+        </authentication-provider>
+    </authentication-manager>
+
+    <tx:annotation-driven transaction-manager="txManager"/>
+
+</beans:beans>

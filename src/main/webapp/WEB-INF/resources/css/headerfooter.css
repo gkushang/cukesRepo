@@ -1,0 +1,108 @@
+.cukes-logo
+{
+    text-align:center;
+    /*font-size:50px;*/
+    padding:20px;
+    color: #87e89a;
+    font-weight:bold;
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+
+    width: 100%;
+
+
+
+}
+
+/*.bgColorA
+{
+    padding:20px;
+    background-color:#5CBF69;
+    width:100%;
+    height:auto;
+
+        left: 0;
+        top:0;
+        margin-top: auto;
+        position: absolute;
+} */
+
+.pageTitle
+{
+
+    float:right;
+    height: auto;
+    width: auto;
+margin-top:-12px;
+
+}
+
+.navigation-pane
+{
+    width:100%;
+    /*background-color:#A7C942;*/
+    background-color:#47dc89;
+}
+
+.navigation-pane ul
+{
+  /*  display: inline-block;
+    list-style-type: none;*/
+
+    list-style-type:none;
+    margin:10px;
+    padding:0px;
+    overflow:hidden;
+    float:right;
+
+}
+
+a.full
+{
+    /*width:100%;
+    background-color:#47dc89;*/
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+    /*display:inline-block;*/
+
+    font-weight:bold;
+    font-size:0.80em;
+    color:#FFFFFF;
+
+
+
+    text-decoration:none;
+    text-transform:uppercase;
+    text-align:left;
+    width:125px;
+    display:inline;
+    list-style-type:none;
+    float:right;
+}
+
+/*4f5752*/
+
+.bgColorA {
+  position: relative;
+  background: #5CBF69;
+
+}
+.bgColorA:before, h2:after {
+  content: "";
+  position: absolute;
+  background: #5CBF69;
+
+  width: 100%;
+
+     margin:0;
+      padding:0;
+
+
+}
+.bgColorA:before {
+
+  right: 100%;
+}
+.bgColorA:after {
+
+  left: 100%;
+}
+
