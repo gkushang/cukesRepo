@@ -185,8 +185,6 @@ public class ScenariosPage extends HeaderFooter implements Renderable
         html.ul();
         for (Feature feature : _features)
         {
-
-
             html.li().a(href("/projects/" + _projectId + "/" + feature.getId() + "/").class_("full-h")).span().content(feature.getName())._a()._li();
             html.br();
         }

@@ -91,7 +91,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
                 else
                     html.tr();
 
-                html.td().a(href(feature.getId() + "/")).span().content(feature.getName())._a()._td()
+                html.td().a(class_("no_decoration").href(feature.getId() + "/")).span().content(feature.getName())._a()._td()
 
                         .td().span().content(Integer.toString(totalScenarios))._td()
                         .td().span().content(Integer.toString(_scenarioService.getTotalPercentageApprovedScenarios(_project.getId(), feature.getId())))._td()
