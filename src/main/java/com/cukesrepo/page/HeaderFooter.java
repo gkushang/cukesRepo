@@ -89,10 +89,6 @@ public class HeaderFooter
                 .content(projectName)
                 ._li()
 
-                .li()
-                .a(href("/dashboard/charts/").class_("full"))
-                .content("Dashboard")
-                ._li()
                 ._ul()
                 ._div()
                 ._div()
