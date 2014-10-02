@@ -1,5 +1,7 @@
 package com.cukesrepo.repository.scenario;
 
+import java.util.List;
+
 import com.cukesrepo.component.GitComponent;
 import com.cukesrepo.component.ScenarioComponent;
 import com.cukesrepo.domain.Project;
@@ -17,10 +19,10 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository
-public class ScenarioRepositoryImpl implements ScenarioRepository {
+public class ScenarioRepositoryImpl implements ScenarioRepository
+{
 
     private final MongoTemplate _mongoTemplate;
     private final GitComponent _gitComponent;
@@ -34,7 +36,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
                     GitComponent gitComponent,
                     ScenarioComponent scenarioComponent,
                     MongoTemplate mongoTemplate
-            ) {
+            )
+    {
 
         Validate.notNull(gitComponent, "gitComponent cannot be null");
         Validate.notNull(scenarioComponent, "scenarioComponent cannot be null");
@@ -46,7 +49,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
     }
 
     @Override
-    public void insertScenarios(String projectId, String featureId, List<Scenario> gitScenarios) {
+    public void insertScenarios(String projectId, String featureId, List<Scenario> gitScenarios)
+    {
 
         List<Scenario> approvedScenarios = _getApprovedAndOrWithCommentsScenariosFromDB(projectId, featureId);
 
@@ -56,7 +60,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
     }
 
     @Override
-    public void deleteScenarios(String projectId) {
+    public void deleteScenarios(String projectId)
+    {
 
         LOG.info("Delete all sceanrios for project '{}'", projectId);
 
@@ -64,7 +69,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
     }
 
     @Override
-    public float getTotalPercentageApprovedScenarios(String projectId, String featureId) {
+    public Integer getTotalPercentageApprovedScenarios(String projectId, String featureId)
+    {
 
         int totalApprovedScenarios = 0;
 
@@ -72,18 +78,20 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
             totalApprovedScenarios += scenario.getTotalScenariosFromExampleTable();
 
         LOG.info("Get total approved scenarios for project '{}' feature '{}' and they are '{}'",
-                projectId, featureId, totalApprovedScenarios);
+                 projectId, featureId, totalApprovedScenarios);
 
-        return Math.round(
-                _scenarioComponent.getTotalPercentageOfApprovedScenarios
-                        (
-                                totalApprovedScenarios,
-                                getTotalScenariosPerFeature(projectId, featureId)
-                        ));
+        return totalApprovedScenarios;
+//        return Math.round(
+//                _scenarioComponent.getTotalPercentageOfApprovedScenarios
+//                        (
+//                                totalApprovedScenarios,
+//                                getTotalScenariosPerFeature(projectId, featureId)
+//                        ));
     }
 
     @Override
-    public int getTotalScenariosPerFeature(String projectId, String featureId) {
+    public int getTotalScenariosPerFeature(String projectId, String featureId)
+    {
 
         LOG.info("Total Scenarios per feature '{}'", featureId);
 
@@ -91,7 +99,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
     }
 
 
-    public List<Scenario> getApprovedScenariosFromDB(String projectId, String featureId) {
+    public List<Scenario> getApprovedScenariosFromDB(String projectId, String featureId)
+    {
 
         Query query;
         query = new Query
@@ -106,7 +115,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
 
     }
 
-    public List<Scenario> fetchScenarios(Project project, String featureId) throws ProjectNotFoundException, ScenariosNotFoundException {
+    public List<Scenario> fetchScenarios(Project project, String featureId) throws ProjectNotFoundException, ScenariosNotFoundException
+    {
 
         LOG.info("Fetch scenarios for project '{}' feture '{}'", project.getName(), featureId);
 
@@ -119,19 +129,23 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
     }
 
     @Override
-    public void approveScenario(String projectId, String featureId, String scenarioNumber) throws ScenariosNotFoundException {
+    public void approveScenario(String projectId, String featureId, String scenarioNumber) throws ScenariosNotFoundException
+    {
 
         LOG.info("Approve Scenario '{}' for Project '{}' and Feature '{}'", scenarioNumber, projectId, featureId);
 
         Optional<Scenario> scenario = _findOneScenarioByNumber(projectId, featureId, scenarioNumber);
 
-        if (scenario.isPresent()) {
+        if (scenario.isPresent())
+        {
 
             scenario.get().setApproved(true);
 
             _mongoTemplate.save(scenario.get());
 
-        } else {
+        }
+        else
+        {
 
             throw new ScenariosNotFoundException("Sorry, we couldn't find a scenario");
         }
@@ -140,7 +154,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
     }
 
     @Override
-    public void addComment(String projectId, String featureId, String scenarioNumber, String comment) {
+    public void addComment(String projectId, String featureId, String scenarioNumber, String comment)
+    {
 
         LOG.info("Add comment '{}' to Scenario '{}' for Project '{}' and Feature '{}'", comment, scenarioNumber, projectId, featureId);
 
@@ -168,7 +183,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
     }
 
 
-    private Optional<Scenario> _findOneScenarioByNumber(String projectId, String featureId, String scenarioNumber) {
+    private Optional<Scenario> _findOneScenarioByNumber(String projectId, String featureId, String scenarioNumber)
+    {
 
         Optional<Scenario> scenarioOptional = Optional.fromNullable(_mongoTemplate.findOne
                 (
@@ -188,7 +204,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
 
     }
 
-    private Query _queryToFindOneScenarioByNumber(String projectId, String featureId, String scenarioNumber) {
+    private Query _queryToFindOneScenarioByNumber(String projectId, String featureId, String scenarioNumber)
+    {
 
         return new Query
                 (
@@ -204,7 +221,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
                 );
     }
 
-    private Query _queryToFindAllScenarios(String projectId, String featureId) {
+    private Query _queryToFindAllScenarios(String projectId, String featureId)
+    {
 
         return new Query
                 (
@@ -216,7 +234,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
                 );
     }
 
-    private List<Scenario> _getApprovedAndOrWithCommentsScenariosFromDB(String projectId, String featureId) {
+    private List<Scenario> _getApprovedAndOrWithCommentsScenariosFromDB(String projectId, String featureId)
+    {
 
         return _mongoTemplate.find
 
@@ -229,8 +248,8 @@ public class ScenarioRepositoryImpl implements ScenarioRepository {
                                                 andOperator(Criteria.where(Scenario.FEATUREID).
                                                         is(featureId).
                                                         orOperator(Criteria.where(Scenario.APPROVED).
-                                                                is(true),
-                                                                Criteria.where(Scenario.COMMENTS).not().size(-1)))
+                                                                           is(true),
+                                                                   Criteria.where(Scenario.COMMENTS).not().size(-1)))
                                 ),
 
                         Scenario.class

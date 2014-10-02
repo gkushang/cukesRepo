@@ -67,8 +67,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
                 .tr()
                 .th().content("Features")
                 .th().content("Total Scenarios")
-                .th().content("% Approved")
-                .th().content("Cuke Sniffer")
+                .th().content("Approved")
                 .th().content("Status")
                 .th().content("Review Request (PO)")
                 ._tr();
@@ -95,8 +94,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
                 html.td().a(href(feature.getId() + "/")).span().content(feature.getName())._a()._td()
 
                         .td().span().content(Integer.toString(totalScenarios))._td()
-                        .td().span().content(Float.toString(_scenarioService.getTotalPercentageApprovedScenarios(_project.getId(), feature.getId())) + "%")._td()
-                        .td().span().content("good/bad")._td()
+                        .td().span().content(Integer.toString(_scenarioService.getTotalPercentageApprovedScenarios(_project.getId(), feature.getId())))._td()
                         .td().span(id("status-" + feature.getId())).content(feature.getStatus())._td();
 
 
@@ -140,6 +138,10 @@ public class FeaturesPage extends HeaderFooter implements Renderable
         html._table();
 
         html._div();
+        html.br();
+        html.br();
+        html.br();
+        html.br();
         html._body();
 
     }

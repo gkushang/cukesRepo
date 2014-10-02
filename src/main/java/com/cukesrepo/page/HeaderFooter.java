@@ -45,29 +45,54 @@ public class HeaderFooter
                 .content(" ")
                 .span(class_("titlePart"))
                 .content(" ")
-//                ._div()
-//                ._div()
-//
-//                .div(class_("navigation-pane"))
-//                .div(class_("pageTitle"))
                 .ul()
                 .li()
                 .a(href("/projects/").class_("full"))
                 .content("Home")
                 ._li()
                 .li()
-
                 .a(href("/dashboard/charts/").class_("full"))
                 .content("Dashboard")
                 ._li()
-//                .li()
-//                .a(href("#settings").class_("full"))
-//                .content("Settings")
-//                ._li()
-//                .li()
-//                .a(href("#").class_("full"))
-//                .content("Logout")
-//                ._li()
+                ._ul()
+                ._div()
+                ._div()
+                .div()._div();
+        ;
+
+        html._body()
+                .html();
+
+
+    }
+
+    protected void renderScenarioHeader(HtmlCanvas html, String projectName) throws IOException
+    {
+
+        html.html()
+                .body(class_("background-color-cukes"))
+                .div(class_("cukes-logo bgColorA"))
+                .div(class_("pageTitle"))
+                .span(class_("title"))
+                .content(" ")
+                .span(class_("titlePart"))
+                .content(" ")
+                .ul()
+
+                .li()
+                .a(href("/projects/").class_("full"))
+                .content("Home")
+                ._li()
+
+                .li()
+                .a(href("/projects/" + projectName + "/").class_("full"))
+                .content(projectName)
+                ._li()
+
+                .li()
+                .a(href("/dashboard/charts/").class_("full"))
+                .content("Dashboard")
+                ._li()
                 ._ul()
                 ._div()
                 ._div()

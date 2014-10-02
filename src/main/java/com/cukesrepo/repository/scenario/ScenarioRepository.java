@@ -1,13 +1,15 @@
 package com.cukesrepo.repository.scenario;
 
+import java.util.List;
+
 import com.cukesrepo.domain.Project;
 import com.cukesrepo.domain.Scenario;
 import com.cukesrepo.exceptions.ProjectNotFoundException;
 import com.cukesrepo.exceptions.ScenariosNotFoundException;
 
-import java.util.List;
 
-public interface ScenarioRepository {
+public interface ScenarioRepository
+{
 
     public List<Scenario> fetchScenarios(Project project, String featureId) throws ProjectNotFoundException, ScenariosNotFoundException;
 
@@ -17,7 +19,7 @@ public interface ScenarioRepository {
 
     public void addComment(String projectId, String featureId, String scenarioNumber, String comment);
 
-    public float getTotalPercentageApprovedScenarios(String projectId, String featureId);
+    public Integer getTotalPercentageApprovedScenarios(String projectId, String featureId);
 
     public int getTotalScenariosPerFeature(String projectId, String featureId);
 

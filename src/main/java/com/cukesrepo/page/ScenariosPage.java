@@ -364,7 +364,7 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
             addScriptsAndStyleSheets(html);
 
-            renderHeader(html);
+            renderScenarioHeader(html, _project.getName());
 
             _addFeatureTitleHeader(html);
 
