@@ -16,8 +16,10 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
-public class ProjectRepositoryImpl implements ProjectRepository {
+public class ProjectRepositoryImpl implements ProjectRepository
+{
 
     private final MongoTemplate _mongoTemplate;
     private List<Project> _projects = new ArrayList<Project>();
@@ -25,14 +27,16 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     private static final Logger LOG = LoggerFactory.getLogger(ProjectRepository.class);
 
     @Autowired
-    public ProjectRepositoryImpl(MongoTemplate mongoTemplate) {
+    public ProjectRepositoryImpl(MongoTemplate mongoTemplate)
+    {
 
         Validate.notNull(mongoTemplate, "mongoTemplate cannot be null");
 
         _mongoTemplate = mongoTemplate;
     }
 
-    public List<Project> getProjects() {
+    public List<Project> getProjects()
+    {
 
         LOG.info("Querying db to get all the projects");
 
@@ -42,11 +46,14 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     }
 
     @Override
-    public void addProject(Map<String, String[]> parameterMap) {
+    public void addProject(Map<String, String[]> parameterMap)
+    {
 
         Project project = new Project();
         project.setName(parameterMap.get("projectname")[0]);
         project.setRepositoryPath(parameterMap.get("repositorypath")[0]);
+        project.setFeaturesPath(parameterMap.get("featurespath")[0]);
+        project.setEmailPo(parameterMap.get("emailofpo")[0]);
         project.setId((parameterMap.get("projectname")[0]).replaceAll("[^\\w]", ""));
 
         LOG.info("Adding project '{}'", project.getName());
@@ -57,7 +64,8 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     }
 
     @Override
-    public Optional<Project> getProjectById(String projectId) throws ProjectNotFoundException {
+    public Optional<Project> getProjectById(String projectId) throws ProjectNotFoundException
+    {
 
         Query query = new Query(Criteria.where(Project.ID).is(projectId));
 
@@ -74,13 +82,17 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     }
 
     @Override
-    public void updateProject(String projectId, Map<String, String[]> parameterMap) {
+    public void updateProject(String projectId, Map<String, String[]> parameterMap)
+    {
 
         LOG.info("Update project with '{}'", parameterMap);
 
         Project project = new Project();
         project.setName(parameterMap.get("projectname")[0]);
         project.setRepositoryPath(parameterMap.get("repositorypath")[0]);
+        project.setFeaturesPath(parameterMap.get("featurespath")[0]);
+        project.setEmailPo(parameterMap.get("emailofpo")[0]);
+
         project.setId(projectId);
 
         _mongoTemplate.findAndRemove(new Query(Criteria.where(Project.ID).is(projectId)), Project.class);
@@ -89,7 +101,8 @@ public class ProjectRepositoryImpl implements ProjectRepository {
     }
 
     @Override
-    public void deleteProject(String projectId) {
+    public void deleteProject(String projectId)
+    {
 
         LOG.info("Delete entire project '{}'", projectId);
 

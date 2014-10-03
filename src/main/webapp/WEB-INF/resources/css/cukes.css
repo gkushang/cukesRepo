@@ -747,7 +747,6 @@ line-height: 1.7;
     width:400px;
     height:35px;
     font-size:13px;
-
     /*float:center;
     /*align:left;*/
 }
@@ -759,16 +758,16 @@ line-height: 1.7;
     width:25em;
     height:18em;
     margin-left: -15em;
-    border: 1px solid #E1F6D3;
-    background-color: #E1F6D3;
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
 }
 
 .settings-icon-image
 {
     margin-right: 0.5em;
     margin-bottom: -0.3em;
-    border: 1px solid #E1F6D3;
-    background-color: #E1F6D3;
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
     visibility: hidden;
     content:url("/resources/images/settings-icon.png");
     background-repeat: no-repeat;
