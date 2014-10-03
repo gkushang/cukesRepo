@@ -104,12 +104,12 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
                 else if (feature.getStatus().equalsIgnoreCase(FeatureStatus.UNDER_REVIEW.get()))
                     html.td()
-                            .input(type("button").class_("cukes-button").id(EMAIL_ELEMENT).value("Resend email").content(feature.getId()))
+                            .input(type("button").class_("cukes-button").id(EMAIL_ELEMENT).value("resend for review").content(feature.getId()))
                             ._td();
 
                 else if (feature.getStatus().equalsIgnoreCase(FeatureStatus.NEED_REVIEW.get()))
                     html.td()
-                            .input(type("button").class_("cukes-button").id(EMAIL_ELEMENT).value("Send email").content(feature.getId()))
+                            .input(type("button").class_("cukes-button").id(EMAIL_ELEMENT).value("send for review").content(feature.getId()))
                             ._td();
 
                 html._tr();

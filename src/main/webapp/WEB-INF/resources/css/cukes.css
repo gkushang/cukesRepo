@@ -432,7 +432,7 @@ a:hover,a:active, a.full-h:hover, a.full-h.active
 .full-height
 {
  /*background-color:#26cd71;*/
- background-color:#5CBF69;
+ background-color:#86d090;
  height:2000px;
    position: absolute;
    left:0;
@@ -446,12 +446,13 @@ a:hover,a:active, a.full-h:hover, a.full-h.active
 a.full-h
 {
     width:100%;
-    background-color:#5CBF69;
+    background-color:#86d090;
     font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+
     display:inline-block;
     width:140px;
     font-size:0.94em;
-    color:#FFFFFF;
+    color:#ffffff;
     padding:20px;
     top:40;
     text-decoration:none;
