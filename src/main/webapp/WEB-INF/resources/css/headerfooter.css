@@ -84,6 +84,12 @@ a.full
   position: relative;
   background: #86d090;
 
+  		background:-o-linear-gradient(bottom, #86d090 5%, #e5e5e5 100%);
+  		background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #037f51), color-stop(1, #05ca81) );
+  	background:-moz-linear-gradient( center top, #56ff56 5%, #e5e5e5 100% );
+  	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#56ff56", endColorstr="#e5e5e5");	background: -o-linear-gradient(top,#86d090,e5e5e5);
+
+
 }
 .bgColorA:before, h2:after {
   content: "";

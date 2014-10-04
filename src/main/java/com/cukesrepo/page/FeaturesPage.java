@@ -62,13 +62,14 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
         html.h2().span(id("project-title")).content(_project.getName().toLowerCase())._h2();
 
-        html.div(id("feature-page"));
-        html.table(id("features"))
+//        html.div(id("feature-page"));
+        html.div(class_("CSSTableGenerator"));
+        html.table()
                 .tr()
                 .th().content("Features")
                 .th().content("Total Scenarios")
                 .th().content("Approved")
-                .th().content("Status")
+//                .th().content("Status")
                 .th().content("Review Request (PO)")
                 ._tr();
 
@@ -95,7 +96,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
                         .td().span().content(Integer.toString(totalScenarios))._td()
                         .td().span().content(Integer.toString(_scenarioService.getTotalPercentageApprovedScenarios(_project.getId(), feature.getId())))._td()
-                        .td().span(id("status-" + feature.getId())).content(feature.getStatus())._td();
+                ;//e.td().span(id("status-" + feature.getId())).content(feature.getStatus())._td();
 
 
                 if (feature.getStatus().equalsIgnoreCase(FeatureStatus.APPROVED.get()))
@@ -134,7 +135,8 @@ public class FeaturesPage extends HeaderFooter implements Renderable
             throw new RuntimeException("Scenario not found. Replace this with rendering error page: ", e);
         }
 
-        html.tfoot().tr().td().content("Total No of scenarios").td().content(Integer.toString(cumulativeScenarios)).td().content("").td().content("").td().content("").td().content("")._tr()._tfoot();
+//        html.tfoot().tr().td().content("Total No of scenarios").td().content(Integer.toString(cumulativeScenarios)).td().content("").td().content("").td().content("").td().content("")._tr()._tfoot();
+        html.tfoot().tr().td().content("Total No of scenarios").td().content(Integer.toString(cumulativeScenarios)).td().content("").td().content("")._tr()._tfoot();
         html._table();
 
         html._div();

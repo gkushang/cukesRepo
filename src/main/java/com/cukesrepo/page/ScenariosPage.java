@@ -180,18 +180,18 @@ public class ScenariosPage extends HeaderFooter implements Renderable
     private void _addLeftNavigationPane(HtmlCanvas html) throws Throwable
     {
 
-        html.table().tr().td();
+//        html.table().tr().td();
         html.div(class_("full-height"));
-        html.ul();
+//        html.ul();
         for (Feature feature : _features)
         {
             html.li().a(href("/projects/" + _projectId + "/" + feature.getId() + "/").class_("full-h")).span().content(feature.getName())._a()._li();
             html.br();
         }
-        html._ul();
+//        html._ul();
         html._div();
-        html._td();
-        html.td();
+//        html._td();
+//        html.td();
         html.div(id("main-low"));
         html.br();
     }
@@ -234,10 +234,10 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
         html.br();
         html.br();
-        html._div()
-                ._td()
-                ._tr()
-                ._table();
+        html._div();
+//                ._td()
+//                ._tr()
+//                ._table();
 
         html.html();
     }
