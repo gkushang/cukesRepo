@@ -56,6 +56,11 @@ margin-top:-12px;
 
 }
 
+a.full:hover
+{
+  color:#b2f0cd;
+}
+
 a.full
 {
     /*width:100%;
@@ -67,15 +72,14 @@ a.full
     font-size:0.80em;
     color:#FFFFFF;
 
-
-
     text-decoration:none;
     text-transform:uppercase;
     text-align:left;
-    width:125px;
+    width:auto;
     display:inline;
     list-style-type:none;
     float:right;
+    margin-left:40px;
 }
 
 /*4f5752*/
@@ -88,6 +92,8 @@ a.full
   		background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #037f51), color-stop(1, #05ca81) );
   	background:-moz-linear-gradient( center top, #56ff56 5%, #e5e5e5 100% );
   	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#56ff56", endColorstr="#e5e5e5");	background: -o-linear-gradient(top,#86d090,e5e5e5);
+
+  	width:auto;
 
 
 }

@@ -158,7 +158,6 @@ public class ScenariosPage extends HeaderFooter implements Renderable
                     .content(_feature.getDescription().trim());
 
         html.br();
-        html.br();
         html.div(class_("scenario_links").class_("background-color-cukes")).content("Scenarios");
         html.br();
 

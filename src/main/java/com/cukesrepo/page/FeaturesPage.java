@@ -95,8 +95,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
                 html.td().a(class_("no_decoration").href(feature.getId() + "/")).span().content(feature.getName())._a()._td()
 
                         .td().span().content(Integer.toString(totalScenarios))._td()
-                        .td().span().content(Integer.toString(_scenarioService.getTotalPercentageApprovedScenarios(_project.getId(), feature.getId())))._td()
-                ;//e.td().span(id("status-" + feature.getId())).content(feature.getStatus())._td();
+                        .td().span().content(Integer.toString(_scenarioService.getTotalPercentageApprovedScenarios(_project.getId(), feature.getId())))._td();
 
 
                 if (feature.getStatus().equalsIgnoreCase(FeatureStatus.APPROVED.get()))
@@ -136,7 +135,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
         }
 
 //        html.tfoot().tr().td().content("Total No of scenarios").td().content(Integer.toString(cumulativeScenarios)).td().content("").td().content("").td().content("").td().content("")._tr()._tfoot();
-        html.tfoot().tr().td().content("Total No of scenarios").td().content(Integer.toString(cumulativeScenarios)).td().content("").td().content("")._tr()._tfoot();
+        html.tfoot().tr().td().content("").td().content(Integer.toString(cumulativeScenarios)).td().content("").td().content("")._tr()._tfoot();
         html._table();
 
         html._div();

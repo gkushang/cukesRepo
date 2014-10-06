@@ -39,7 +39,7 @@ public class AddProjectPage extends HeaderFooter implements Renderable
         html.br();
         html.br();
         html.div(class_("addproject-div-title"));
-        html.h2().span(id("project-title")).content("add project").br().br();
+        html.h2().span(id("update-add-title")).content("add project").br().br();
 
 
         html.input(type("text").class_("add-project project-name").add("placeholder", "Project Name")).br().br();
@@ -49,7 +49,7 @@ public class AddProjectPage extends HeaderFooter implements Renderable
         html.input(type("text").class_("add-project project-owners").add("placeholder", "PO email address")).br().br();
 
         html.a(href("#").id("add-project-navigate"));
-        html.input(type("button").class_("cukes-button-add-p").id("add-project").style("float: left;")
+        html.input(type("button").class_("cukes-button").id("add-project").style("float: left;")
                            .value("Add"))._a();
 
         html._h2();
