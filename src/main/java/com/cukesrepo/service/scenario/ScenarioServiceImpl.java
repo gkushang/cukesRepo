@@ -50,7 +50,7 @@ public class ScenarioServiceImpl implements ScenarioService
     }
 
     @Override
-    public Integer getTotalPercentageApprovedScenarios(String projectId, String featureId)
+    public Integer getTotalApprovedScenarios(String projectId, String featureId)
     {
         return _scenarioRepository.getTotalApprovedScenarios(projectId, featureId);
     }

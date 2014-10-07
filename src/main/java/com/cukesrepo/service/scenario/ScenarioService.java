@@ -17,7 +17,7 @@ public interface ScenarioService {
 
     public void addComment(String projectId, String featureId, String scenarioNumber, String comment) throws ScenariosNotFoundException;
 
-    public Integer getTotalPercentageApprovedScenarios(String projectId, String featureId);
+    public Integer getTotalApprovedScenarios(String projectId, String featureId);
 
     public void deleteScenarios(String projectId);
 }
