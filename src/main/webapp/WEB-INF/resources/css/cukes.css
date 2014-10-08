@@ -244,11 +244,13 @@ font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 12px;
 	position:relative;
 	left:70px;
-	margin: 10px;
+	right: 70px;
+	margin: 10px 10px;
 	/*width: 480px;*/
 
 	text-align: left;
 	border-collapse: collapse;
+
 }
 .example_data
 {
@@ -271,7 +273,6 @@ font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	background: #caebd1 repeat-x;
 	border-top: 2px solid #caebd1;
 	border-bottom: 1px solid #fff;
-	color: #039;
 	width:70px;
 
 }
@@ -295,7 +296,7 @@ font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 
 .example_data tbody tr:hover td,.datatable tbody tr:hover td
 {
-	background: #9FF1CA repeat-x;
+	background: #cbf7e2 repeat-x;
 	color: #339;
 }
 
@@ -485,6 +486,7 @@ background-color:#ffffff;
      */
 
   box-shadow: 0 0 5px #09f9a0;
+  word-wrap: break-word;
 }
 a.full-h
 {
@@ -644,7 +646,7 @@ color:#2e774a;
    border-radius: 7px;*/
 
    background: -webkit-gradient(linear, left top, left bottom,
-   color-stop(0%, #DAF0CD), color-stop(15%, #ffffff), color-stop(100%, #ffffff ));
+   color-stop(0%, #FFFFFF), color-stop(15%, #ffffff), color-stop(100%, #ffffff ));
    background: -moz-linear-gradient(top, #e9f6e1 0%, #ffffff 55%, #ffffff 130%);
 
    /*width:1100px;*/
@@ -689,7 +691,7 @@ color:#2e774a;
 
 .comments-box
 {
-    width:1100px;
+    width:100%;
 
     background: #f7fcf5;
     border: 4px solid #e9f6e1;
@@ -885,7 +887,7 @@ line-height: 1.7;
    margin:30px;
    margin-left:90px;
    padding:1 0px;
-   width:80%;
+   width:94%;
    box-shadow: 1px 10px 10px 1px #cdcdcd;
    border:1px solid #ffffff;
 

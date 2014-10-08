@@ -61,18 +61,21 @@ public class GitComponent
 
             Feature feature = _convertFeatureFileToPOJO(file.getAbsolutePath());
 
-            feature.setProjectId(project.getId());
-
-            int totalScenariosPerFeature = 0;
-
-            for (Scenario scenario : feature.getScenarios())
+            if (feature != null)
             {
-                totalScenariosPerFeature += scenario.getTotalScenariosFromExampleTable();
+                feature.setProjectId(project.getId());
+
+                int totalScenariosPerFeature = 0;
+
+                for (Scenario scenario : feature.getScenarios())
+                {
+                    totalScenariosPerFeature += scenario.getTotalScenariosFromExampleTable();
+                }
+
+                feature.setTotalScenarios(totalScenariosPerFeature);
+
+                features.add(feature);
             }
-
-            feature.setTotalScenarios(totalScenariosPerFeature);
-
-            features.add(feature);
         }
 
         if (features.size() > 0) LOG.info("Fetched '{}' feature(s) from Git/Local repository", features.size());
@@ -95,7 +98,7 @@ public class GitComponent
         {
             Feature feature = _convertFeatureFileToPOJO(file.getAbsolutePath());
 
-            if (feature.getId().equals(featureId))
+            if (feature != null && feature.getId().equals(featureId))
             {
                 int scenarioId = 0;
 
@@ -153,7 +156,8 @@ public class GitComponent
         }
         catch (Exception e)
         {
-            throw new RuntimeException("Error in parsing feature file to Json : " + path, e);
+            LOG.error("Error in parsing feature file to Json : " + path, e);
+            return null;
         }
 
     }

@@ -86,6 +86,7 @@ public class ScenariosPage extends HeaderFooter implements Renderable
             if (rows.size() != 0)
             {
 
+                html.div(class_("scrollit"));
                 html.table(class_("datatable"));
                 html.tbody();
                 for (int j = 0; j < rows.size(); j++)
@@ -99,6 +100,7 @@ public class ScenariosPage extends HeaderFooter implements Renderable
                 }//row
                 html._tbody();
                 html._table();
+                html._div();
 
             }
         }
