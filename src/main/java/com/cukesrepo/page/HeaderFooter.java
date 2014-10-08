@@ -3,6 +3,7 @@ package com.cukesrepo.page;
 
 import java.io.IOException;
 
+import com.cukesrepo.domain.Project;
 import org.rendersnake.HtmlCanvas;
 
 import static org.rendersnake.HtmlAttributesFactory.class_;
@@ -50,10 +51,6 @@ public class HeaderFooter
                 .a(href("/projects/").class_("full"))
                 .content("Home")
                 ._li()
-//                .li()
-//                .a(href("/dashboard/charts/").class_("full"))
-//                .content("Dashboard")
-//                ._li()
                 ._ul()
                 ._div()
                 ._div()
@@ -66,7 +63,7 @@ public class HeaderFooter
 
     }
 
-    protected void renderScenarioHeader(HtmlCanvas html, String projectName) throws IOException
+    protected void renderScenarioHeader(HtmlCanvas html, Project project) throws IOException
     {
 
         html.html()
@@ -85,8 +82,8 @@ public class HeaderFooter
                 ._li()
 
                 .li()
-                .a(href("/projects/" + projectName + "/").class_("full"))
-                .content(projectName)
+                .a(href("/projects/" + project.getId() + "/").class_("full"))
+                .content(project.getName())
                 ._li()
 
                 ._ul()

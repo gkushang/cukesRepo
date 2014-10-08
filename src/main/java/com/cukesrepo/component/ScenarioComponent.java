@@ -21,7 +21,7 @@ public class ScenarioComponent {
 
                     gitScenario.setApproved(approvedScenario.getApproved());
 
-                    gitScenario.setComments(approvedScenario.getComments());
+                    gitScenario.setReviewComments(approvedScenario.getReviewComments());
                 }
             }
         }

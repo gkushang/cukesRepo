@@ -1,6 +1,8 @@
 package com.cukesrepo.controller;
 
 
+import java.io.IOException;
+
 import com.cukesrepo.exceptions.ProjectNotFoundException;
 import com.cukesrepo.page.FeaturesPage;
 import com.cukesrepo.service.feature.FeatureService;
@@ -13,8 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.io.IOException;
 
 @Controller
 public class FeaturesPageController {

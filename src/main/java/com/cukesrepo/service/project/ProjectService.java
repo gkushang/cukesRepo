@@ -15,6 +15,8 @@ public interface ProjectService {
 
     public Project getProjectById(String projectId) throws ProjectNotFoundException;
 
+    Project getProjectByName(String projectName) throws ProjectNotFoundException;
+
     public void updateProject(String projectId, Map<String, String[]> parameterMap);
 
     public void deleteProject(String projectId);

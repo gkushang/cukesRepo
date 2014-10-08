@@ -257,10 +257,10 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
         if (!(scenario.getApproved()))
         {
-            if (scenario.getComments().size() > 0)
+            if (scenario.getReviewComments().size() > 0)
             {
                 html.span(id("comment-shows-here" + scenario.getNumber()))._span();
-                for (String comment : scenario.getComments())
+                for (String comment : scenario.getReviewComments())
                 {
                     html.br();
 
@@ -372,7 +372,7 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
             addScriptsAndStyleSheets(html);
 
-            renderScenarioHeader(html, _project.getName());
+            renderScenarioHeader(html, _project);
 
             _addFeatureTitleHeader(html);
 
