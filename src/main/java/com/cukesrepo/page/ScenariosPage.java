@@ -166,10 +166,16 @@ public class ScenariosPage extends HeaderFooter implements Renderable
         {
 
             html.div();
+
             if (scenario.getKeyword().equalsIgnoreCase("background"))
+            {
                 html.a(class_("scenario" + scenario.getNumber()).id("no-decoration").href("")).content(scenario.getKeyword());
+            }
             else
+            {
                 html.a(class_("scenario" + scenario.getNumber()).id("no-decoration").href("")).content(scenario.getName());
+            }
+
             html._div();
         }
 
