@@ -56,7 +56,7 @@ public class ProjectsPage extends HeaderFooter implements Renderable
             html.div(class_("project-links-div"));
             html.h1()
                     .a(href("/projects/" + project.getId() + "/settings")).img(class_("settings-icon-image"))
-                    .a(href(project.getId() + "/").class_("projects-a-links")).content(project.getName())
+                    .a(href(project.getId() + "/").class_("projects-a-links")).content(project.getName().toLowerCase())
                     ._a()
                     ._h1();
             html._div();
