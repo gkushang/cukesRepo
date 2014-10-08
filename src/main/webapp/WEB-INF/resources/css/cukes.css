@@ -37,7 +37,25 @@ body
  font-weight: bold;
 	/*background: #E1F6D3 repeat-x;*/
 	text-align: left;
+	margin-bottom:10;
 
+
+
+}
+
+.scenario_title_links{
+ line-height: 200%;
+ font-family:"Helvetica Neue";
+ font-size:13px;
+
+}
+
+
+#no-decoration {
+text-decoration:none;
+color:darkblue;
+padding:20px;
+list-style-type: circle;
 
 }
 
@@ -59,6 +77,11 @@ body
 	padding: 4px;
 	background: #ffffff  repeat-x;
 }
+
+
+#no-decoration:hover {
+    text-decoration: underline;
+  }
 
 .no_decoration {
 text-decoration:none;
@@ -633,7 +656,7 @@ color:#2e774a;
 .comment-wrapper
 {
     /*width:1100px;*/
-    width:auto;
+    width:100%;
 }
 
 .feature-description-box

@@ -159,20 +159,23 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
         html.br();
         html.div(class_("scenario_links").class_("background-color-cukes")).content("Scenarios");
-        html.br();
+//        html.br();
 
+        html.div(class_("scenario_title_links"));
         for (Scenario scenario : _scenarios)
         {
 
             html.div();
             if (scenario.getKeyword().equalsIgnoreCase("background"))
-                html.a(class_("scenario" + scenario.getNumber()).href("")).content(scenario.getKeyword());
+                html.a(class_("scenario" + scenario.getNumber()).id("no-decoration").href("")).content(scenario.getKeyword());
             else
-                html.a(class_("scenario" + scenario.getNumber()).href("")).content(scenario.getName());
+                html.a(class_("scenario" + scenario.getNumber()).id("no-decoration").href("")).content(scenario.getName());
             html._div();
-            html.br();
         }
 
+        html._div();
+
+        html.br();
         html.br();
     }
 
