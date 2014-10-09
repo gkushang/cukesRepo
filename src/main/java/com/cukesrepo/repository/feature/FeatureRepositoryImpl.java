@@ -1,5 +1,9 @@
 package com.cukesrepo.repository.feature;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
 import com.cukesrepo.component.FeatureComponent;
 import com.cukesrepo.component.GitComponent;
 import com.cukesrepo.domain.Feature;
@@ -11,6 +15,9 @@ import com.cukesrepo.exceptions.ScenariosNotFoundException;
 import com.cukesrepo.repository.scenario.ScenarioRepository;
 import com.google.common.base.Optional;
 import org.apache.commons.lang.Validate;
+import org.eclipse.jgit.api.Git;
+import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +26,10 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 @Repository
-public class FeatureRepositoryImpl implements FeatureRepository {
+public class FeatureRepositoryImpl implements FeatureRepository
+{
 
     private final MongoTemplate _mongoTemplate;
     private final GitComponent _gitComponent;
@@ -38,7 +45,8 @@ public class FeatureRepositoryImpl implements FeatureRepository {
                     ScenarioRepository scenarioRepository,
                     FeatureComponent featureComponent,
                     MongoTemplate mongoTemplate
-            ) {
+            )
+    {
 
         Validate.notNull(gitComponent, "gitComponent cannot be null");
         Validate.notNull(scenarioRepository, "scenarioRepository cannot be null");
@@ -52,7 +60,8 @@ public class FeatureRepositoryImpl implements FeatureRepository {
 
     }
 
-    public List<Feature> fetchFeatures(Project project) throws FeatureNotFoundException, ProjectNotFoundException, ScenariosNotFoundException {
+    public List<Feature> fetchFeatures(Project project) throws FeatureNotFoundException, ProjectNotFoundException, ScenariosNotFoundException
+    {
 
         Validate.notNull(project, "project cannot be null");
 
@@ -60,16 +69,17 @@ public class FeatureRepositoryImpl implements FeatureRepository {
 
         LOG.info("Fetch '{}' features for Project '{}'", gitFeatures.size(), project.getId());
 
-        for (Feature gitFeature : gitFeatures) {
+        for (Feature gitFeature : gitFeatures)
+        {
 
-            if (getFeatureById(project.getId(), gitFeature.getId()).isPresent()) {
-
-
+            if (getFeatureById(project.getId(), gitFeature.getId()).isPresent())
+            {
                 _featureComponent.updateFeatureAttributes
                         (
                                 gitFeature,
                                 getFeatureById(project.getId(), gitFeature.getId()).get(),
-                                _scenarioRepository.getTotalPercentageApprovedScenarios(project.getId(), gitFeature.getId())
+                                _scenarioRepository.getTotalApprovedScenarios(project.getId(), gitFeature.getId()),
+                                gitFeature.getTotalScenarios()
 
                         );
             }
@@ -82,11 +92,11 @@ public class FeatureRepositoryImpl implements FeatureRepository {
 
                                 Query(Criteria.where(Feature.PROJECTID)
 
-                                .
+                                              .
 
-                                        is(project.getId()
+                                                      is(project.getId()
 
-                                        )),
+                                                      )),
                         Feature.class
                 );
 
@@ -99,7 +109,8 @@ public class FeatureRepositoryImpl implements FeatureRepository {
     }
 
 
-    public Optional<Feature> getFeatureById(String projectId, String featureId) throws FeatureNotFoundException {
+    public Optional<Feature> getFeatureById(String projectId, String featureId) throws FeatureNotFoundException
+    {
 
         Query query = new Query((Criteria.where(Feature.ID).is(featureId)).and(Feature.PROJECTID).is(projectId));
 
@@ -112,11 +123,13 @@ public class FeatureRepositoryImpl implements FeatureRepository {
     }
 
     @Override
-    public void setEmailSentAndStatus(String projectId, String featureId) throws FeatureNotFoundException, ProjectNotFoundException {
+    public void setEmailSentAndStatus(String projectId, String featureId) throws FeatureNotFoundException, ProjectNotFoundException
+    {
 
         Optional<Feature> featureOptional = getFeatureById(projectId, featureId);
 
-        if (featureOptional.isPresent()) {
+        if (featureOptional.isPresent())
+        {
 
             Feature feature = featureOptional.get();
             feature.setStatus(FeatureStatus.UNDER_REVIEW.get());
@@ -125,14 +138,45 @@ public class FeatureRepositoryImpl implements FeatureRepository {
             _mongoTemplate.insert(feature);
 
             LOG.info("Email status set to true for feature '{}'", featureId);
-        } else
+        }
+        else
             throw new FeatureNotFoundException("Feature " + featureId + " was not found");
 
     }
 
     @Override
-    public void deleteFeatures(String projectId) {
+    public void deleteFeatures(String projectId)
+    {
         _mongoTemplate.findAndRemove(new Query(Criteria.where(Feature.PROJECTID).is(projectId)), Feature.class);
+    }
+
+    @Override
+    public void cloneRepo() throws IOException, GitAPIException
+    {
+        File localPath = File.createTempFile("TestGitRepository", "aa", new File("/Users/kugajjar/Documents/gitRepos/"));
+        localPath.delete();
+
+        String REMOTE_URL = "https://github.com/kugajjar/nemo-grunt-cucumberjs.git";
+
+        // then clone
+        System.out.println("Cloning from " + REMOTE_URL + " to " + localPath);
+
+        Git.cloneRepository()
+                .setURI(REMOTE_URL)
+                .setDirectory(localPath)
+                .call();
+
+        // now open the created repository
+        FileRepositoryBuilder builder = new FileRepositoryBuilder();
+        org.eclipse.jgit.lib.Repository repository = builder.setGitDir(localPath)
+                .readEnvironment() // scan environment GIT_* variables
+                .findGitDir() // scan up the file system tree
+                .build();
+
+        System.out.println("Having repository: " + repository.getDirectory());
+
+        repository.close();
+
     }
 
 }

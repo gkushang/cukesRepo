@@ -1,5 +1,15 @@
 package com.cukesrepo.service.email;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+
 import com.cukesrepo.component.EmailComponent;
 import com.cukesrepo.domain.Email;
 import com.cukesrepo.domain.Feature;
@@ -10,24 +20,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.io.UnsupportedEncodingException;
-import java.util.Properties;
-
 
 @org.springframework.stereotype.Service
-public class EmailServiceImpl implements EmailService {
+public class EmailServiceImpl implements EmailService
+{
 
     private final EmailComponent _emailComponent;
-    private final String USERNAME = "cukes.repo@gmail.com";
-    private final String PASSWORD = "hackathon";
+//    private final String USERNAME = "cukes.repo@gmail.com";
+//    private final String PASSWORD = "hackathon";
+
+    private final String USERNAME = "kushang.ebay@gmail.com";
+    private final String PASSWORD = "payal1218";
 
     private static final Logger LOG = LoggerFactory.getLogger(EmailServiceImpl.class);
 
     @Autowired
-    public EmailServiceImpl(EmailComponent emailComponent) {
+    public EmailServiceImpl(EmailComponent emailComponent)
+    {
 
         Validate.notNull(emailComponent, "emailComponent cannot be null");
 
@@ -35,7 +44,8 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public String sendReviewRequest(Project project, Feature feature) throws EmailException {
+    public String sendReviewRequest(Project project, Feature feature) throws EmailException
+    {
 
         Email email = _emailComponent.getReviewEmailTemplateFor(project, feature);
 
@@ -43,17 +53,19 @@ public class EmailServiceImpl implements EmailService {
     }
 
 
-    private String _send(Email email) throws EmailException {
+    private String _send(Email email) throws EmailException
+    {
 
         LOG.info("Send email to '{}' with subject '{}'", email.getTo(), email.getSubject());
 
-        try {
+        try
+        {
 
             Message message = new MimeMessage(_getSession());
 
             message.setFrom(new InternetAddress("cuckes.repo@gmail.com", "kugajjar"));
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(email.getTo()));
+                                  InternetAddress.parse(email.getTo()));
             message.setSubject(email.getSubject());
             message.setContent(email.getBody(), "text/html");
 
@@ -64,17 +76,22 @@ public class EmailServiceImpl implements EmailService {
             return "Success";
 
 
-        } catch (MessagingException e) {
+        }
+        catch (MessagingException e)
+        {
 
-            throw new EmailException("Email sent fail");
+            throw new EmailException("Email sent fail", e);
 
-        } catch (UnsupportedEncodingException e) {
+        }
+        catch (UnsupportedEncodingException e)
+        {
 
-            throw new EmailException("Email sent fail");
+            throw new EmailException("Email sent fail", e);
         }
     }
 
-    private Session _getSession() {
+    private Session _getSession()
+    {
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -83,11 +100,13 @@ public class EmailServiceImpl implements EmailService {
         props.put("mail.smtp.port", "587");
 
         return Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(USERNAME, PASSWORD);
-                    }
-                });
+                                   new javax.mail.Authenticator()
+                                   {
+                                       protected PasswordAuthentication getPasswordAuthentication()
+                                       {
+                                           return new PasswordAuthentication(USERNAME, PASSWORD);
+                                       }
+                                   });
     }
 
 }

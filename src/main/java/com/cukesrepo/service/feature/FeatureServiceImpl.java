@@ -1,5 +1,8 @@
 package com.cukesrepo.service.feature;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.Project;
 import com.cukesrepo.exceptions.FeatureNotFoundException;
@@ -8,15 +11,16 @@ import com.cukesrepo.exceptions.ScenariosNotFoundException;
 import com.cukesrepo.repository.feature.FeatureRepository;
 import com.google.common.base.Optional;
 import org.apache.commons.lang.Validate;
+import org.eclipse.jgit.api.errors.GitAPIException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
-public class FeatureServiceImpl implements FeatureService {
+public class FeatureServiceImpl implements FeatureService
+{
 
     private final FeatureRepository _featureRepository;
 
@@ -26,33 +30,53 @@ public class FeatureServiceImpl implements FeatureService {
     public FeatureServiceImpl
             (
                     FeatureRepository featureRepository
-            ) {
+            )
+    {
 
         Validate.notNull(featureRepository, "featureRepository cannot be null");
 
         _featureRepository = featureRepository;
     }
 
-    public List<Feature> fetchFeatures(Project project) throws FeatureNotFoundException, ProjectNotFoundException, ScenariosNotFoundException {
+    public List<Feature> fetchFeatures(Project project) throws FeatureNotFoundException, ProjectNotFoundException, ScenariosNotFoundException
+    {
 
         Validate.notNull(project, "project cannot be null");
+
+        try
+        {
+            _featureRepository.cloneRepo();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        catch (GitAPIException e)
+        {
+            e.printStackTrace();
+        }
 
         return _featureRepository.fetchFeatures(project);
 
     }
 
-    public Optional<Feature> getFeatureId(String projectId, String featureId) throws FeatureNotFoundException {
+    public Optional<Feature> getFeatureId(String projectId, String featureId) throws FeatureNotFoundException
+    {
 
         Validate.notEmpty(featureId, "featureId cannot be empty or null");
 
         Optional<Feature> feature = _featureRepository.getFeatureById(projectId, featureId);
 
-        if (feature.isPresent()) {
+        if (feature.isPresent())
+        {
 
             LOG.error("Feature found by id '{}'", featureId);
             return feature;
 
-        } else {
+        }
+        else
+        {
 
             LOG.error("Feature not found by id '{}'", featureId);
             throw new FeatureNotFoundException("Feature '" + featureId + "' not found");
@@ -60,7 +84,8 @@ public class FeatureServiceImpl implements FeatureService {
     }
 
     @Override
-    public void setEmailSent(String projectId, String featureId) throws FeatureNotFoundException, ProjectNotFoundException {
+    public void setEmailSent(String projectId, String featureId) throws FeatureNotFoundException, ProjectNotFoundException
+    {
 
         LOG.info("Set feature file emailSent flag");
 
@@ -69,7 +94,8 @@ public class FeatureServiceImpl implements FeatureService {
     }
 
     @Override
-    public void deleteFeatures(String projectId) {
+    public void deleteFeatures(String projectId)
+    {
 
         LOG.info("Delete all the featues for project '{}'", projectId);
 

@@ -86,6 +86,7 @@ public class ScenariosPage extends HeaderFooter implements Renderable
             if (rows.size() != 0)
             {
 
+                html.div(class_("scrollit"));
                 html.table(class_("datatable"));
                 html.tbody();
                 for (int j = 0; j < rows.size(); j++)
@@ -99,6 +100,7 @@ public class ScenariosPage extends HeaderFooter implements Renderable
                 }//row
                 html._tbody();
                 html._table();
+                html._div();
 
             }
         }
@@ -158,42 +160,48 @@ public class ScenariosPage extends HeaderFooter implements Renderable
                     .content(_feature.getDescription().trim());
 
         html.br();
-        html.br();
         html.div(class_("scenario_links").class_("background-color-cukes")).content("Scenarios");
-        html.br();
+//        html.br();
 
+        html.div(class_("scenario_title_links"));
         for (Scenario scenario : _scenarios)
         {
 
             html.div();
+
             if (scenario.getKeyword().equalsIgnoreCase("background"))
-                html.a(class_("scenario" + scenario.getNumber()).href("")).content(scenario.getKeyword());
+            {
+                html.a(class_("scenario" + scenario.getNumber()).id("no-decoration").href("")).content(scenario.getKeyword());
+            }
             else
-                html.a(class_("scenario" + scenario.getNumber()).href("")).content(scenario.getName());
+            {
+                html.a(class_("scenario" + scenario.getNumber()).id("no-decoration").href("")).content(scenario.getName());
+            }
+
             html._div();
-            html.br();
         }
 
+        html._div();
+
+        html.br();
         html.br();
     }
 
     private void _addLeftNavigationPane(HtmlCanvas html) throws Throwable
     {
 
-        html.table().tr().td();
+//        html.table().tr().td();
         html.div(class_("full-height"));
-        html.ul();
+//        html.ul();
         for (Feature feature : _features)
         {
-
-
             html.li().a(href("/projects/" + _projectId + "/" + feature.getId() + "/").class_("full-h")).span().content(feature.getName())._a()._li();
             html.br();
         }
-        html._ul();
+//        html._ul();
         html._div();
-        html._td();
-        html.td();
+//        html._td();
+//        html.td();
         html.div(id("main-low"));
         html.br();
     }
@@ -236,10 +244,10 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
         html.br();
         html.br();
-        html._div()
-                ._td()
-                ._tr()
-                ._table();
+        html._div();
+//                ._td()
+//                ._tr()
+//                ._table();
 
         html.html();
     }

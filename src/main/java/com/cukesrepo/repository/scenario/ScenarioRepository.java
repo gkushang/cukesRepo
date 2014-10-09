@@ -19,7 +19,7 @@ public interface ScenarioRepository
 
     public void addComment(String projectId, String featureId, String scenarioNumber, String comment);
 
-    public Integer getTotalPercentageApprovedScenarios(String projectId, String featureId);
+    public Integer getTotalApprovedScenarios(String projectId, String featureId);
 
     public int getTotalScenariosPerFeature(String projectId, String featureId);
 

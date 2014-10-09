@@ -8,13 +8,13 @@ jQuery(document).ready(function() {
         var feature_id=me.attr('content');
         var project_id=$('#project-id').val();
 
-        me.val("Sending email...");
+        me.val("sending email...");
 
             $.ajax({
 
                 url: "/"+feature_id+"/"+project_id+"/email/review-request",
                     }).done(function(data) {
-                    me.val("Resend email");
+                    me.val("resend email");
                     $("#status-"+feature_id).html("Under Review");
                         });
 

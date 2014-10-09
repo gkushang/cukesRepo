@@ -69,7 +69,7 @@ public class ScenarioRepositoryImpl implements ScenarioRepository
     }
 
     @Override
-    public Integer getTotalPercentageApprovedScenarios(String projectId, String featureId)
+    public Integer getTotalApprovedScenarios(String projectId, String featureId)
     {
 
         int totalApprovedScenarios = 0;

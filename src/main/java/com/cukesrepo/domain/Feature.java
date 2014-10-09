@@ -1,31 +1,37 @@
 package com.cukesrepo.domain;
 
-import com.fasterxml.jackson.annotation.*;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Generated;
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("com.googlecode.jsonschema2pojo")
 @JsonPropertyOrder({
-        "id",
-        "description",
-        "name",
-        "keyword",
-        "line",
-        "elements",
-        "uri",
-        "tags"
-})
+                           "id",
+                           "description",
+                           "name",
+                           "keyword",
+                           "line",
+                           "elements",
+                           "uri",
+                           "tags"
+                   })
 
 @Document(collection = "feature")
-public class Feature {
+public class Feature
+{
 
     public static final String PROJECTID = "projectid";
     public static final String ID = "_id";
@@ -41,11 +47,13 @@ public class Feature {
     @Field("emailsent")
     private Boolean emailSent = false;
 
-    public int getTotalScenarios() {
+    public int getTotalScenarios()
+    {
         return totalScenarios;
     }
 
-    public void setTotalScenarios(int totalScenarios) {
+    public void setTotalScenarios(int totalScenarios)
+    {
         this.totalScenarios = totalScenarios;
     }
 
@@ -84,117 +92,141 @@ public class Feature {
     private List<Tag> tags = new ArrayList<Tag>();
 
     @JsonProperty("id")
-    public String getId() {
+    public String getId()
+    {
         return id;
     }
 
     @JsonProperty("id")
-    public void setId(String id) {
+    public void setId(String id)
+    {
         this.id = id;
     }
 
     @JsonProperty("description")
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
 
     @JsonProperty("description")
-    public void setDescription(String description) {
+    public void setDescription(String description)
+    {
         this.description = description;
     }
 
     @JsonProperty("name")
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
     @JsonProperty("name")
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
     @JsonProperty("keyword")
-    public String getKeyword() {
+    public String getKeyword()
+    {
         return keyword;
     }
 
     @JsonProperty("keyword")
-    public void setKeyword(String keyword) {
+    public void setKeyword(String keyword)
+    {
         this.keyword = keyword;
     }
 
     @JsonProperty("line")
-    public Integer getLine() {
+    public Integer getLine()
+    {
         return line;
     }
 
     @JsonProperty("line")
-    public void setLine(Integer line) {
+    public void setLine(Integer line)
+    {
         this.line = line;
     }
 
     @JsonProperty("elements")
-    public List<Scenario> getScenarios() {
+    public List<Scenario> getScenarios()
+    {
         return scenarios;
     }
 
     @JsonProperty("elements")
-    public void setScenarios(List<Scenario> scenarios) {
+    public void setScenarios(List<Scenario> scenarios)
+    {
         this.scenarios = scenarios;
     }
 
     @JsonProperty("uri")
-    public String getUri() {
+    public String getUri()
+    {
         return uri;
     }
 
     @JsonProperty("uri")
-    public void setUri(String uri) {
+    public void setUri(String uri)
+    {
         this.uri = uri;
     }
 
     @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
+    public Map<String, Object> getAdditionalProperties()
+    {
         return this.additionalProperties;
     }
 
     @JsonAnySetter
-    public void setAdditionalProperties(String name, Object value) {
+    public void setAdditionalProperties(String name, Object value)
+    {
         this.additionalProperties.put(name, value);
     }
 
 
     @JsonProperty("tags")
-    public List<Tag> getTags() {
+    public List<Tag> getTags()
+    {
         return tags;
     }
 
     @JsonProperty("tags")
-    public void setTags(List<Tag> tags) {
+    public void setTags(List<Tag> tags)
+    {
         this.tags = tags;
     }
 
-    public String getProjectId() {
+    public String getProjectId()
+    {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(String projectId)
+    {
         this.projectId = projectId;
     }
 
-    public Boolean getEmailSent() {
+    public Boolean getEmailSent()
+    {
         return emailSent;
     }
 
-    public void setEmailSent(Boolean emailSent) {
+    public void setEmailSent(Boolean emailSent)
+    {
         this.emailSent = emailSent;
     }
 
-    public String getStatus() {
+    public String getStatus()
+    {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(String status)
+    {
         this.status = status;
     }
 

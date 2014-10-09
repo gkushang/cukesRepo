@@ -54,6 +54,8 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
         int cumulativeScenarios = 0;
 
+        int cumulativeApprovedScenarios = 0;
+
         int alternate = 0;
 
         html.html()
@@ -62,13 +64,14 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
         html.h2().span(id("project-title")).content(_project.getName().toLowerCase())._h2();
 
-        html.div(id("feature-page"));
-        html.table(id("features"))
+//        html.div(id("feature-page"));
+        html.div(class_("CSSTableGenerator"));
+        html.table()
                 .tr()
                 .th().content("Features")
                 .th().content("Total Scenarios")
                 .th().content("Approved")
-                .th().content("Status")
+//                .th().content("Status")
                 .th().content("Review Request (PO)")
                 ._tr();
 
@@ -81,7 +84,11 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
                 int totalScenarios = feature.getTotalScenarios();
 
-                cumulativeScenarios = cumulativeScenarios + totalScenarios;
+                int approvedScenarios = _scenarioService.getTotalApprovedScenarios(_project.getId(), feature.getId());
+
+
+                cumulativeScenarios += totalScenarios;
+                cumulativeApprovedScenarios += approvedScenarios;
 
                 html.input(type("hidden").id("project-id").value(_project.getId()));
 
@@ -91,11 +98,10 @@ public class FeaturesPage extends HeaderFooter implements Renderable
                 else
                     html.tr();
 
-                html.td().a(href(feature.getId() + "/")).span().content(feature.getName())._a()._td()
+                html.td().a(class_("no_decoration").href(feature.getId() + "/")).span().content(feature.getName())._a()._td()
 
                         .td().span().content(Integer.toString(totalScenarios))._td()
-                        .td().span().content(Integer.toString(_scenarioService.getTotalPercentageApprovedScenarios(_project.getId(), feature.getId())))._td()
-                        .td().span(id("status-" + feature.getId())).content(feature.getStatus())._td();
+                        .td().span().content(Integer.toString(_scenarioService.getTotalApprovedScenarios(_project.getId(), feature.getId())))._td();
 
 
                 if (feature.getStatus().equalsIgnoreCase(FeatureStatus.APPROVED.get()))
@@ -104,12 +110,12 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
                 else if (feature.getStatus().equalsIgnoreCase(FeatureStatus.UNDER_REVIEW.get()))
                     html.td()
-                            .input(type("button").class_("cukes-button").id(EMAIL_ELEMENT).value("Resend email").content(feature.getId()))
+                            .input(type("button").class_("cukes-button").id(EMAIL_ELEMENT).value("resend for review").content(feature.getId()))
                             ._td();
 
                 else if (feature.getStatus().equalsIgnoreCase(FeatureStatus.NEED_REVIEW.get()))
                     html.td()
-                            .input(type("button").class_("cukes-button").id(EMAIL_ELEMENT).value("Send email").content(feature.getId()))
+                            .input(type("button").class_("cukes-button").id(EMAIL_ELEMENT).value("send for review").content(feature.getId()))
                             ._td();
 
                 html._tr();
@@ -134,7 +140,9 @@ public class FeaturesPage extends HeaderFooter implements Renderable
             throw new RuntimeException("Scenario not found. Replace this with rendering error page: ", e);
         }
 
-        html.tfoot().tr().td().content("Total No of scenarios").td().content(Integer.toString(cumulativeScenarios)).td().content("").td().content("").td().content("").td().content("")._tr()._tfoot();
+        html.tfoot().tr().td().content("").td().content(Integer.toString(cumulativeScenarios)).td()
+                .content(Integer.toString(cumulativeApprovedScenarios)).
+                td().content("")._tr()._tfoot();
         html._table();
 
         html._div();
