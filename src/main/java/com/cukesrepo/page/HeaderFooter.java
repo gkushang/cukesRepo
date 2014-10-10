@@ -35,7 +35,9 @@ public class HeaderFooter
                 .macros().stylesheet("/../../resources/css/headerfooter.css")
                 .macros().stylesheet("/../../resources/css/cukes.css")
                 .macros().stylesheet("/../../resources/css/discussion.css")
-                .macros().javascript("/../../resources/scripts/save_discussion.js")._head();
+                .macros().javascript("/../../resources/scripts/save_discussion.js")
+                .macros().javascript("/../../resources/scripts/cancel_discussion.js")
+                ._head();
     }
 
     protected void renderHeader(HtmlCanvas html) throws IOException
