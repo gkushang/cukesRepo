@@ -36,6 +36,7 @@ public class Feature
     public static final String PROJECTID = "projectid";
     public static final String ID = "_id";
     private static final String STATUS = "status";
+    public static final String DISCUSSION = "discussion";
 
 
     @Field(PROJECTID)
@@ -43,6 +44,9 @@ public class Feature
 
     @Field(STATUS)
     private String status = FeatureStatus.NEED_REVIEW.get();
+
+    @Field(DISCUSSION)
+    private String discussion;
 
     @Field("emailsent")
     private Boolean emailSent = false;
@@ -230,4 +234,13 @@ public class Feature
         this.status = status;
     }
 
+    public String getDiscussion()
+    {
+        return discussion;
+    }
+
+    public void setDiscussion(String discussion)
+    {
+        this.discussion = discussion;
+    }
 }

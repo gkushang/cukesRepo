@@ -3,6 +3,7 @@ package com.cukesrepo.component;
 
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.FeatureStatus;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 
@@ -27,6 +28,10 @@ public class FeatureComponent
             gitFeature.setStatus(FeatureStatus.UNDER_REVIEW.get());
             gitFeature.setEmailSent(true);
 
+        }
+        else if (StringUtils.isNotBlank(dbFeature.getDiscussion()))
+        {
+            gitFeature.setDiscussion(dbFeature.getDiscussion());
         }
         else
             gitFeature.setStatus((totalScenarios - totalApprovedScenarios) < totalScenarios

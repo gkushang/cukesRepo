@@ -81,9 +81,17 @@ public class FeatureServiceImpl implements FeatureService
     public void deleteFeatures(String projectId)
     {
 
-        LOG.info("Delete all the featues for project '{}'", projectId);
+        LOG.info("Delete all the features for project '{}'", projectId);
 
         _featureRepository.deleteFeatures(projectId);
+    }
+
+    @Override
+    public void addDiscussion(String projectId, String featureId, String discussions) throws FeatureNotFoundException
+    {
+        LOG.info("Add discussion to the feature '{}' for project '{}'", featureId, projectId);
+
+        _featureRepository.addDiscussion(projectId, featureId, discussions);
     }
 
 

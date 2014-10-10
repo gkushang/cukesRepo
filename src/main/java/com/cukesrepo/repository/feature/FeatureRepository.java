@@ -20,4 +20,6 @@ public interface FeatureRepository
     public void setEmailSentAndStatus(String projectId, String featureId) throws FeatureNotFoundException, ProjectNotFoundException;
 
     void deleteFeatures(String projectId);
+
+    void addDiscussion(String projectId, String featureId, String discussions) throws FeatureNotFoundException;
 }
