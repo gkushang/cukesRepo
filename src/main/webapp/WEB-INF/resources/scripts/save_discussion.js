@@ -8,6 +8,7 @@ jQuery(document).ready(function() {
                 var feature_id = $(".featureId").val();
                 var discussions = $("#discussions").val();
 
+
              $.ajax({
 
                 type: "POST",
@@ -17,6 +18,18 @@ jQuery(document).ready(function() {
 
                     }).done(function(data) {
 
+                          me.val("...");
+                          me.prop("disabled",true);
+
+                          setTimeout(
+                            function()
+                            {
+                             me.val("Save");
+                             me.prop("disabled",false);
+
+                          me.attr("background-image",
+                          "~/images/settings-icon.png");
+                            }, 1000);
                          });
             });
 });

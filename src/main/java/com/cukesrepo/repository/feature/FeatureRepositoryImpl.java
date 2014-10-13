@@ -14,6 +14,7 @@ import com.cukesrepo.exceptions.ScenariosNotFoundException;
 import com.cukesrepo.repository.scenario.ScenarioRepository;
 import com.google.common.base.Optional;
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,10 @@ public class FeatureRepositoryImpl implements FeatureRepository
                                 gitFeature.getTotalScenarios()
                         );
 
+                if (StringUtils.isNotBlank(getFeatureById(project.getId(), gitFeature.getId()).get().getDiscussion()))
+                {
+                    gitFeature.setDiscussion(getFeatureById(project.getId(), gitFeature.getId()).get().getDiscussion());
+                }
             }
 
         }

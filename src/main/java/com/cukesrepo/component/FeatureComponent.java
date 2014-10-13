@@ -29,14 +29,17 @@ public class FeatureComponent
             gitFeature.setEmailSent(true);
 
         }
-        else if (StringUtils.isNotBlank(dbFeature.getDiscussion()))
-        {
-            gitFeature.setDiscussion(dbFeature.getDiscussion());
-        }
         else
+        {
             gitFeature.setStatus((totalScenarios - totalApprovedScenarios) < totalScenarios
                                  ? FeatureStatus.UNDER_REVIEW.get()
                                  : FeatureStatus.NEED_REVIEW.get());
+        }
+
+        if (StringUtils.isNotBlank(dbFeature.getDiscussion()))
+        {
+            gitFeature.setDiscussion(dbFeature.getDiscussion());
+        }
 
     }
 }
