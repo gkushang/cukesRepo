@@ -1,6 +1,5 @@
 package com.cukesrepo.service.feature;
 
-import java.io.IOException;
 import java.util.List;
 
 import com.cukesrepo.domain.Feature;
@@ -11,7 +10,6 @@ import com.cukesrepo.exceptions.ScenariosNotFoundException;
 import com.cukesrepo.repository.feature.FeatureRepository;
 import com.google.common.base.Optional;
 import org.apache.commons.lang.Validate;
-import org.eclipse.jgit.api.errors.GitAPIException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,20 +40,6 @@ public class FeatureServiceImpl implements FeatureService
     {
 
         Validate.notNull(project, "project cannot be null");
-
-        try
-        {
-            _featureRepository.cloneRepo();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-
-        catch (GitAPIException e)
-        {
-            e.printStackTrace();
-        }
 
         return _featureRepository.fetchFeatures(project);
 

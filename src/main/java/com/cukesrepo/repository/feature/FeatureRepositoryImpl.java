@@ -1,7 +1,5 @@
 package com.cukesrepo.repository.feature;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import com.cukesrepo.component.FeatureComponent;
@@ -15,9 +13,6 @@ import com.cukesrepo.exceptions.ScenariosNotFoundException;
 import com.cukesrepo.repository.scenario.ScenarioRepository;
 import com.google.common.base.Optional;
 import org.apache.commons.lang.Validate;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -148,35 +143,6 @@ public class FeatureRepositoryImpl implements FeatureRepository
     public void deleteFeatures(String projectId)
     {
         _mongoTemplate.findAndRemove(new Query(Criteria.where(Feature.PROJECTID).is(projectId)), Feature.class);
-    }
-
-    @Override
-    public void cloneRepo() throws IOException, GitAPIException
-    {
-        File localPath = File.createTempFile("TestGitRepository", "aa", new File("/Users/kugajjar/Documents/gitRepos/"));
-        localPath.delete();
-
-        String REMOTE_URL = "https://github.com/kugajjar/nemo-grunt-cucumberjs.git";
-
-        // then clone
-        System.out.println("Cloning from " + REMOTE_URL + " to " + localPath);
-
-        Git.cloneRepository()
-                .setURI(REMOTE_URL)
-                .setDirectory(localPath)
-                .call();
-
-        // now open the created repository
-        FileRepositoryBuilder builder = new FileRepositoryBuilder();
-        org.eclipse.jgit.lib.Repository repository = builder.setGitDir(localPath)
-                .readEnvironment() // scan environment GIT_* variables
-                .findGitDir() // scan up the file system tree
-                .build();
-
-        System.out.println("Having repository: " + repository.getDirectory());
-
-        repository.close();
-
     }
 
 }
