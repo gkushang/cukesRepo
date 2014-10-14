@@ -8,15 +8,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+
 @Component
-public class EmailComponent {
+public class EmailComponent
+{
 
     private static final Logger LOG = LoggerFactory.getLogger(EmailComponent.class);
 
     private final String TO_EMAIL_ADDRESS = "kugajjar@paypal.com";
 
 
-    public Email getReviewEmailTemplateFor(Project project, Feature feature) {
+    public Email getReviewEmailTemplateFor(Project project, Feature feature)
+    {
 
         Email email = new Email();
 
@@ -26,7 +29,7 @@ public class EmailComponent {
                 + "http://localhost:8800/projects/" + project.getId() + "/" + feature.getId() + "/";
 
         email.setBody(body);
-        email.setTo(TO_EMAIL_ADDRESS);
+        email.setTo(project.getEmailPo());
 
         LOG.info("getReviewEmailTemplateFor Subject '{}' and send email to '{}'", email.getSubject(), email.getTo());
 
