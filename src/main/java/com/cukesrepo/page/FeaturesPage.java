@@ -62,7 +62,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
                 .body(class_("background-color-cukes"));
 
 
-        html.h2().div(id("feature-background-div")).span(id("project-title")).content(_project.getName().toLowerCase())._div()._h2();
+        html.h2().div(id("feature-background-div")).span(id("feature-project-name-title")).content(_project.getName().toLowerCase())._div()._h2();
 
         html.div(class_("CSSTableGenerator"));
         html.table()

@@ -680,9 +680,25 @@ color:#2e774a;
     /* float:left; */
     margin:0px 0px 0 0;
     margin: auto auto;
-    padding:15px 30px
+    padding:10px 20px
 }
 
+
+
+#feature-project-name-title
+{
+    text-align:center;
+    font-size:33px;
+    color: #697266  ;
+
+    font-weight: bold;
+    font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+    display: inline-block;
+    /* float:left; */
+    margin:0px 0px 0 0;
+    margin: auto auto;
+    padding:30px 30px
+}
 .projects-a-links
 {
     font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
