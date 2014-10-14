@@ -1,10 +1,8 @@
 package com.cukesrepo.service.email;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -63,7 +61,7 @@ public class EmailServiceImpl implements EmailService
 
             Message message = new MimeMessage(_getSession());
 
-            message.setFrom(new InternetAddress("cuckes.repo@gmail.com", "kugajjar"));
+            message.setFrom(new InternetAddress("do-not-reply@paypal.com"));
             message.setRecipients(Message.RecipientType.TO,
                                   InternetAddress.parse(email.getTo()));
             message.setSubject(email.getSubject());
@@ -83,30 +81,19 @@ public class EmailServiceImpl implements EmailService
             throw new EmailException("Email sent fail", e);
 
         }
-        catch (UnsupportedEncodingException e)
-        {
 
-            throw new EmailException("Email sent fail", e);
-        }
     }
 
     private Session _getSession()
     {
 
         Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
+
+        props.put("mail.debug", "true");
+        props.put("mail.smtp.host", "smtp.paypal.com");
 
         return Session.getInstance(props,
-                                   new javax.mail.Authenticator()
-                                   {
-                                       protected PasswordAuthentication getPasswordAuthentication()
-                                       {
-                                           return new PasswordAuthentication(USERNAME, PASSWORD);
-                                       }
-                                   });
+                                   null);
     }
 
 }
