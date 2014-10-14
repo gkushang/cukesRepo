@@ -9,22 +9,7 @@
 
     width: 100%;
 
-
-
 }
-
-/*.bgColorA
-{
-    padding:20px;
-    background-color:#5CBF69;
-    width:100%;
-    height:auto;
-
-        left: 0;
-        top:0;
-        margin-top: auto;
-        position: absolute;
-} */
 
 .pageTitle
 {
@@ -75,7 +60,7 @@ a.full
     text-decoration:none;
     text-transform:uppercase;
     text-align:left;
-    width:auto;
+    width:100%;
     display:inline;
     list-style-type:none;
     float:right;
@@ -94,6 +79,10 @@ a.full
   	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#56ff56", endColorstr="#e5e5e5");	background: -o-linear-gradient(top,#86d090,e5e5e5);
 
   	width:auto;
+  	position:fixed;
+  	width:100%;
+  	z-index:30;
+  	height:0%;
 
 
 }

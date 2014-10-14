@@ -10,8 +10,7 @@ import org.apache.commons.lang.Validate;
 import org.rendersnake.HtmlCanvas;
 import org.rendersnake.Renderable;
 
-import static org.rendersnake.HtmlAttributesFactory.class_;
-import static org.rendersnake.HtmlAttributesFactory.type;
+import static org.rendersnake.HtmlAttributesFactory.*;
 
 
 public class DiscussionPage extends HeaderFooter implements Renderable
@@ -60,6 +59,7 @@ public class DiscussionPage extends HeaderFooter implements Renderable
 
             html.br();
 
+            html.div(id("discussion-background-div"));
             html.div(class_("discussion-div")).div(class_("feature_title").class_("background-color-cukes")).
                     content("Feature: " + _featureService.getFeatureId(_projectId, _featureId).get().getName());
 
@@ -73,7 +73,7 @@ public class DiscussionPage extends HeaderFooter implements Renderable
                     .input(type("hidden").class_("featureId").value(_featureId));
 
             html.textarea(class_("discussion-text-area").id("discussions"))
-                    .content(feature.getDiscussion())._div();
+                    .content(feature.getDiscussion())._div()._div();
 
             html._body()
                     ._html();

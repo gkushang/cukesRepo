@@ -56,7 +56,7 @@ body
 text-decoration:none;
 color:darkblue;
 padding:10px;
-list-style-type: circle;
+
 
 }
 
@@ -212,6 +212,7 @@ font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	position:absolute;
 
 }
+
 
 #main-low
 {
@@ -453,6 +454,12 @@ li
     float:left;
 }
 
+#feature-background-div
+{
+	width:100%;
+ height:40px;
+ padding: 40px 0px;
+}
 
 a:hover,a:active, a.full-h:hover, a.full-h.active
 {
@@ -937,8 +944,6 @@ line-height: 1.7;
     width:300px;
     height:40px;
     font-size:15px;
-
-
 }
 
 .CSSTableGenerator
@@ -977,7 +982,7 @@ line-height: 1.7;
     border-collapse: collapse;
     border-spacing: 0;
     width:100%;
-    height:100%;
+    height:auto;
     margin:0px;
     padding:90px;
     font-family:Helvetica Neue;
