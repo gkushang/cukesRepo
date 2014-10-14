@@ -14,9 +14,14 @@ jQuery(document).ready(function() {
 
                 url: "/"+feature_id+"/"+project_id+"/email/review-request",
                     }).done(function(data) {
-                    me.val("resend email");
+
+                    me.val("resend for review");
                     $("#status-"+feature_id).html("Under Review");
+
+                        }).error(function(){
+                                             me.val("error sending email");
                         });
+
 
             });
 });

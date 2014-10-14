@@ -113,9 +113,11 @@ public class FeatureRepositoryImpl implements FeatureRepository
     public Optional<Feature> getFeatureById(String projectId, String featureId) throws FeatureNotFoundException
     {
 
-        Query query = new Query((Criteria.where(Feature.ID).is(featureId)).and(Feature.PROJECTID).is(projectId));
+        Query query = new Query((Criteria.where(Feature.ID).is(featureId)).and(Feature.PROJECTID).is(projectId.toLowerCase()));
 
         LOG.info("Get feature name for featureId '{}' and Project '{}'", featureId, projectId);
+
+        LOG.info("Get feature name by query '{}'", query);
 
         Optional<Feature> featureOptional = Optional.fromNullable(_mongoTemplate.findOne(query, Feature.class));
 
