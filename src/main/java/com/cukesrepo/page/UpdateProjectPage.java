@@ -54,7 +54,8 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
             html.h2().span(id("update-add-title")).content("update project").br().br();
 
 
-            html.input(type("text").class_("add-project project-name").value(project.getName()).add("placeholder", "Project Name")).br().br();
+            html.input(type("text").class_("add-project project-name").value(project.getId()).add("placeholder", "Git Project Name").disabled("")).br().br();
+            html.input(type("text").class_("add-project display-name").value(project.getName()).add("placeholder", "Display Project Name")).br().br();
             html.input(type("text").class_("add-project repository-path").value(project.getRepositoryPath()).add("placeholder", "Github SSH Clone URL")).br().br();
             html.input(type("text").class_("add-project git-branch").value(project.getFeaturesPath()).add("placeholder", "Path to Features folder (path/to/features)")).br().br();
 //            html.input(type("text").class_("add-project collaborators").value("").add("placeholder", "Add Collaborators")).br().br();
