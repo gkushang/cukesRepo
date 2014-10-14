@@ -24,11 +24,6 @@ public class EmailServiceImpl implements EmailService
 {
 
     private final EmailComponent _emailComponent;
-//    private final String USERNAME = "cukes.repo@gmail.com";
-//    private final String PASSWORD = "hackathon";
-
-    private final String USERNAME = "kushang.ebay@gmail.com";
-    private final String PASSWORD = "payal1218";
 
     private static final Logger LOG = LoggerFactory.getLogger(EmailServiceImpl.class);
 
@@ -44,6 +39,7 @@ public class EmailServiceImpl implements EmailService
     @Override
     public String sendReviewRequest(Project project, Feature feature) throws EmailException
     {
+
 
         Email email = _emailComponent.getReviewEmailTemplateFor(project, feature);
 
