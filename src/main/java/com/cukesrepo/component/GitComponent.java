@@ -120,7 +120,7 @@ public class GitComponent
     private String _getFeaturesAbsolutePath(Project project)
     {
 
-        return _featureFilePath + project.getName() + "/" + project.getFeaturesPath();
+        return _featureFilePath + project.getId() + "/" + project.getFeaturesPath();
     }
 
     private Feature _convertFeatureFileToPOJO(String path)

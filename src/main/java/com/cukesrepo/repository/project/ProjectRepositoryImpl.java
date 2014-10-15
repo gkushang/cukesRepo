@@ -50,11 +50,11 @@ public class ProjectRepositoryImpl implements ProjectRepository
     {
 
         Project project = new Project();
-        project.setName(parameterMap.get("projectname")[0]);
+        project.setName(parameterMap.get("displayprojectname")[0]);
         project.setRepositoryPath(parameterMap.get("repositorypath")[0]);
         project.setFeaturesPath(parameterMap.get("featurespath")[0]);
         project.setEmailPo(parameterMap.get("emailofpo")[0]);
-        project.setId((parameterMap.get("projectname")[0]).replaceAll("[^\\w]", ""));
+        project.setId((parameterMap.get("projectname")[0]).replaceAll("[^\\w]", "").toLowerCase());
 
         LOG.info("Adding project '{}'", project.getName());
 
