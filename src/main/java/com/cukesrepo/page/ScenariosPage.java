@@ -36,7 +36,8 @@ public class ScenariosPage extends HeaderFooter implements Renderable
     private Feature _feature;
     private List<Scenario> _scenarios;
 
-    public ScenariosPage(ProjectService projectService, FeatureService featureService, ScenarioService scenarioService, String projectId, String featureId)
+    public ScenariosPage(ProjectService projectService, FeatureService featureService,
+                         ScenarioService scenarioService, String projectId, String featureId)
     {
 
         Validate.notNull(projectService, "projectService cannot be null");
@@ -152,8 +153,12 @@ public class ScenariosPage extends HeaderFooter implements Renderable
     private void _addScenarioLinks(HtmlCanvas html) throws Throwable
     {
 
+        html.a(href("discuss/").id("discuss-navigate"));
+        html.input(type("button").class_("button-discuss").id("discuss")
+                           .value("Discuss"))._a();
+
         html.div(class_("feature_title").class_("background-color-cukes")).content("Feature: " + _feature.getName());
-        html.br();
+
 
         if (_feature.getDescription() != null && !_feature.getDescription().isEmpty())
             html.textarea(class_("feature-description-box").name("feature-description").id("description").cols("20").rows("1").disabled("disable"))
@@ -161,7 +166,6 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
         html.br();
         html.div(class_("scenario_links").class_("background-color-cukes")).content("Scenarios");
-//        html.br();
 
         html.div(class_("scenario_title_links"));
         for (Scenario scenario : _scenarios)
@@ -184,25 +188,6 @@ public class ScenariosPage extends HeaderFooter implements Renderable
         html._div();
 
         html.br();
-        html.br();
-    }
-
-    private void _addLeftNavigationPane(HtmlCanvas html) throws Throwable
-    {
-
-//        html.table().tr().td();
-        html.div(class_("full-height"));
-//        html.ul();
-        for (Feature feature : _features)
-        {
-            html.li().a(href("/projects/" + _projectId + "/" + feature.getId() + "/").class_("full-h")).span().content(feature.getName())._a()._li();
-            html.br();
-        }
-//        html._ul();
-        html._div();
-//        html._td();
-//        html.td();
-        html.div(id("main-low"));
         html.br();
     }
 
@@ -245,9 +230,6 @@ public class ScenariosPage extends HeaderFooter implements Renderable
         html.br();
         html.br();
         html._div();
-//                ._td()
-//                ._tr()
-//                ._table();
 
         html.html();
     }
@@ -257,10 +239,10 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
         if (!(scenario.getApproved()))
         {
-            if (scenario.getComments().size() > 0)
+            if (scenario.getReviewComments().size() > 0)
             {
                 html.span(id("comment-shows-here" + scenario.getNumber()))._span();
-                for (String comment : scenario.getComments())
+                for (String comment : scenario.getReviewComments())
                 {
                     html.br();
 
@@ -372,11 +354,11 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
             addScriptsAndStyleSheets(html);
 
-            renderScenarioHeader(html, _project.getName());
+            renderScenarioHeader(html, _project);
 
             _addFeatureTitleHeader(html);
 
-            _addLeftNavigationPane(html);
+            addLeftNavigationPane(html, _projectId, _features);
 
             _addScenarioLinks(html);
 

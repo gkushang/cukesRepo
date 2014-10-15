@@ -81,7 +81,7 @@ public class GitComponent
         if (features.size() > 0) LOG.info("Fetched '{}' feature(s) from Git/Local repository", features.size());
 
         else throw new FeatureNotFoundException("There are no Feature file available for '" +
-                                                        project.getName() + "' at path " + project.getRepositoryPath());
+                                                        project.getName() + "' at path " + featureFileAbsolutePath);
 
         return features;
     }
@@ -120,7 +120,7 @@ public class GitComponent
     private String _getFeaturesAbsolutePath(Project project)
     {
 
-        return _featureFilePath + "/" + project.getFeaturesPath();
+        return _featureFilePath + project.getName() + "/" + project.getFeaturesPath();
     }
 
     private Feature _convertFeatureFileToPOJO(String path)
@@ -145,6 +145,8 @@ public class GitComponent
             formatter.close();
 
             ObjectMapper mapper = new ObjectMapper();
+
+            LOG.info("Feature Json: " + json.toString());
 
             Feature feature = mapper.readValue(json.toString(), Feature[].class)[0];
 

@@ -21,4 +21,5 @@ public interface FeatureRepository
 
     void deleteFeatures(String projectId);
 
+    void addDiscussion(String projectId, String featureId, String discussions) throws FeatureNotFoundException;
 }

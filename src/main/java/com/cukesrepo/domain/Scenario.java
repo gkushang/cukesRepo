@@ -1,31 +1,37 @@
 package com.cukesrepo.domain;
 
-import com.fasterxml.jackson.annotation.*;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import javax.annotation.Generated;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.Generated;
+
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("com.googlecode.jsonschema2pojo")
 @JsonPropertyOrder({
-        "id",
-        "tags",
-        "description",
-        "name",
-        "keyword",
-        "line",
-        "steps",
-        "examples",
-        "type"
-})
+                           "id",
+                           "tags",
+                           "description",
+                           "name",
+                           "keyword",
+                           "line",
+                           "steps",
+                           "examples",
+                           "type"
+                   })
 
 @Document(collection = "scenario")
-public class Scenario {
+public class Scenario
+{
 
     public static final String PROJECTID = "projectid";
     public static final String FEATUREID = "featureid";
@@ -34,7 +40,7 @@ public class Scenario {
     public static final String ID = "_id";
     public static final String NAME = "name";
     public static final String NUMBER = "number";
-    public static final String COMMENTS = "comments";
+    public static final String REVIEWCOMMENTS = "reviewcomments";
 
     @JsonProperty("id")
     @Field(ID)
@@ -72,9 +78,13 @@ public class Scenario {
     @Field("type")
     private String type;
 
+    @JsonProperty("comments")
+    @Field("comments")
+    private List<Comment> comments = new ArrayList<Comment>();
 
-    @Field(COMMENTS)
-    private List<String> comments = new ArrayList<String>();
+
+    @Field(REVIEWCOMMENTS)
+    private List<String> reviewComments = new ArrayList<String>();
 
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -94,154 +104,197 @@ public class Scenario {
     private Integer number;
 
     @JsonProperty("id")
-    public String getId() {
+    public String getId()
+    {
         return id;
     }
 
     @JsonProperty("id")
-    public void setId(String id) {
+    public void setId(String id)
+    {
         this.id = id;
     }
 
     @JsonProperty("tags")
-    public List<Tag> getTags() {
+    public List<Tag> getTags()
+    {
         return tags;
     }
 
     @JsonProperty("tags")
-    public void setTags(List<Tag> tags) {
+    public void setTags(List<Tag> tags)
+    {
         this.tags = tags;
     }
 
-    public List<String> getComments() {
+    public List<String> getReviewComments()
+    {
+        return reviewComments;
+    }
+
+    public void setReviewComments(List<String> reviewComments)
+    {
+        this.reviewComments = reviewComments;
+    }
+
+    public List<Comment> getComments()
+    {
         return comments;
     }
 
-    public void setComments(List<String> comments) {
+    public void setComments(List<Comment> comments)
+    {
         this.comments = comments;
     }
 
     @JsonProperty("description")
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
 
     @JsonProperty("description")
-    public void setDescription(String description) {
+    public void setDescription(String description)
+    {
         this.description = description;
     }
 
     @JsonProperty("name")
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
     @JsonProperty("name")
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
     @JsonProperty("keyword")
-    public String getKeyword() {
+    public String getKeyword()
+    {
         return keyword;
     }
 
     @JsonProperty("keyword")
-    public void setKeyword(String keyword) {
+    public void setKeyword(String keyword)
+    {
         this.keyword = keyword;
     }
 
     @JsonProperty("line")
-    public Integer getLine() {
+    public Integer getLine()
+    {
         return line;
     }
 
     @JsonProperty("line")
-    public void setLine(Integer line) {
+    public void setLine(Integer line)
+    {
         this.line = line;
     }
 
     @JsonProperty("steps")
-    public List<Step> getSteps() {
+    public List<Step> getSteps()
+    {
         return steps;
     }
 
     @JsonProperty("steps")
-    public void setSteps(List<Step> steps) {
+    public void setSteps(List<Step> steps)
+    {
         this.steps = steps;
     }
 
     @JsonProperty("examples")
-    public List<Example> getExamples() {
+    public List<Example> getExamples()
+    {
         return examples;
     }
 
     @JsonProperty("examples")
-    public void setExamples(List<Example> examples) {
+    public void setExamples(List<Example> examples)
+    {
         this.examples = examples;
     }
 
     @JsonProperty("type")
-    public String getType() {
+    public String getType()
+    {
         return type;
     }
 
     @JsonProperty("type")
-    public void setType(String type) {
+    public void setType(String type)
+    {
         this.type = type;
     }
 
     @JsonAnyGetter
-    public Map<String, Object> getAdditionalProperties() {
+    public Map<String, Object> getAdditionalProperties()
+    {
         return this.additionalProperties;
     }
 
     @JsonAnySetter
-    public void setAdditionalProperties(String name, Object value) {
+    public void setAdditionalProperties(String name, Object value)
+    {
         this.additionalProperties.put(name, value);
     }
 
-    public Boolean getApproved() {
+    public Boolean getApproved()
+    {
         return approved;
     }
 
-    public void setApproved(Boolean _isApproved) {
+    public void setApproved(Boolean _isApproved)
+    {
         this.approved = _isApproved;
     }
 
-    public String getFeatureId() {
+    public String getFeatureId()
+    {
         return featureId;
     }
 
-    public void setFeatureId(String featureId) {
+    public void setFeatureId(String featureId)
+    {
         this.featureId = featureId;
     }
 
-    public String getProjectId() {
+    public String getProjectId()
+    {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(String projectId)
+    {
         this.projectId = projectId;
     }
 
-    public String getFeatureName() {
+    public String getFeatureName()
+    {
         return featureName;
     }
 
-    public void setFeatureName(String featureName) {
+    public void setFeatureName(String featureName)
+    {
         this.featureName = featureName;
     }
 
-    public Integer getNumber() {
+    public Integer getNumber()
+    {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(Integer number)
+    {
         this.number = number;
     }
 
-    public Boolean compareTo(Scenario scenario) {
+    public Boolean compareTo(Scenario scenario)
+    {
 
         if (this.steps.size() != scenario.steps.size())
             return false;
@@ -261,11 +314,13 @@ public class Scenario {
 
     }
 
-    public int getTotalScenariosFromExampleTable() {
+    public int getTotalScenariosFromExampleTable()
+    {
 
         int totalExamples = 0;
 
-        for (Example example : examples) {
+        for (Example example : examples)
+        {
             totalExamples += (example.getRows().size() - 1);
         }
 

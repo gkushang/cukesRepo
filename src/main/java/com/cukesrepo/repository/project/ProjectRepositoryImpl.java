@@ -82,6 +82,24 @@ public class ProjectRepositoryImpl implements ProjectRepository
     }
 
     @Override
+    public Optional<Project> getProjectByName(String projectName) throws ProjectNotFoundException
+    {
+
+        Query query = new Query(Criteria.where(Project.NAME).is(projectName));
+
+        Project project = _mongoTemplate.findOne(query, Project.class);
+
+        LOG.info("Project '{}' found from db", projectName);
+
+        Optional<Project> projectOptional = Optional.fromNullable(project);
+
+        if (projectOptional.isPresent())
+            return projectOptional;
+
+        throw new ProjectNotFoundException("Project '" + projectName + "' not found in db");
+    }
+
+    @Override
     public void updateProject(String projectId, Map<String, String[]> parameterMap)
     {
 

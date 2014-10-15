@@ -7,12 +7,14 @@ import com.cukesrepo.component.GitComponent;
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.FeatureStatus;
 import com.cukesrepo.domain.Project;
+import com.cukesrepo.domain.Scenario;
 import com.cukesrepo.exceptions.FeatureNotFoundException;
 import com.cukesrepo.exceptions.ProjectNotFoundException;
 import com.cukesrepo.exceptions.ScenariosNotFoundException;
 import com.cukesrepo.repository.scenario.ScenarioRepository;
 import com.google.common.base.Optional;
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,8 +77,12 @@ public class FeatureRepositoryImpl implements FeatureRepository
                                 getFeatureById(project.getId(), gitFeature.getId()).get(),
                                 _scenarioRepository.getTotalApprovedScenarios(project.getId(), gitFeature.getId()),
                                 gitFeature.getTotalScenarios()
-
                         );
+
+                if (StringUtils.isNotBlank(getFeatureById(project.getId(), gitFeature.getId()).get().getDiscussion()))
+                {
+                    gitFeature.setDiscussion(getFeatureById(project.getId(), gitFeature.getId()).get().getDiscussion());
+                }
             }
 
         }
@@ -145,4 +151,35 @@ public class FeatureRepositoryImpl implements FeatureRepository
         _mongoTemplate.findAndRemove(new Query(Criteria.where(Feature.PROJECTID).is(projectId)), Feature.class);
     }
 
+    @Override
+    public void addDiscussion(String projectId, String featureId, String discussions) throws FeatureNotFoundException
+    {
+        Optional<Feature> featureOptional = getFeatureById(projectId, featureId);
+
+        if (featureOptional.isPresent())
+        {
+            Feature feature = featureOptional.get();
+            feature.setDiscussion(discussions);
+            _mongoTemplate.remove(feature);
+            _mongoTemplate.insert(feature);
+
+            LOG.info("Discussion '{}' is updated for feature '{}'", discussions, featureId);
+        }
+        else
+            throw new FeatureNotFoundException("Feature " + featureId + " was not found");
+    }
+
+    private Query _queryToFindFeatureById(String projectId, String featureId)
+    {
+
+        return new Query
+                (
+                        Criteria.
+                                where(Scenario.PROJECTID).
+                                is(projectId).
+
+                                and(Scenario.FEATUREID).
+                                is(featureId)
+                );
+    }
 }

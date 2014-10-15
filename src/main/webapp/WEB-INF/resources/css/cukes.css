@@ -15,6 +15,7 @@ body
      padding:0;
 }
 
+
 .background-color-cukes
 {
  background: #ffffff repeat-x;
@@ -54,8 +55,8 @@ body
 #no-decoration {
 text-decoration:none;
 color:darkblue;
-padding:20px;
-list-style-type: circle;
+padding:10px;
+
 
 }
 
@@ -66,6 +67,9 @@ list-style-type: circle;
  font-weight: bold;
 	/*background: #E1F6D3 repeat-x;*/
 	text-align: left;
+	word-wrap: break-word;
+	margin-bottom:10px;
+
 }
 
 
@@ -208,6 +212,7 @@ font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	position:absolute;
 
 }
+
 
 #main-low
 {
@@ -449,6 +454,12 @@ li
     float:left;
 }
 
+#feature-background-div
+{
+	width:100%;
+ height:30px;
+ padding: 45px 0px;
+}
 
 a:hover,a:active, a.full-h:hover, a.full-h.active
 {
@@ -523,6 +534,65 @@ input[type="submit12"]
     vertical-align: baseline;
 }
 
+.button-discuss
+{
+    background-color: #FFFFFF;
+    border: medium none;
+    border-radius: 0;
+    box-shadow: none;
+/*    color: #41a74f; */
+color:#2e774a;
+    height:28px;
+    display: inline-block;
+    font-size: 13px;
+
+    letter-spacing: 0.04em;
+    line-height: 2.0;
+    min-width: 135px;
+    text-align: center;
+    text-shadow: none;
+    font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+    padding: 0px;
+
+     -webkit-box-shadow: 0 0 5px 1px #e9f6e1;
+        -moz-box-shadow: 0 0 5px 5px  #e9f6e1;
+        border: solid 1px transparent;
+
+        		background:-o-linear-gradient(bottom, #ffffff 5%, #e5e5e5 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #e5e5e5) );
+        	background:-moz-linear-gradient( center top, #ffffff 5%, #e5e5e5 100% );
+        	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#e5e5e5");	background: -o-linear-gradient(top,#ffffff,e5e5e5);
+  float:right;
+}
+
+.discussion-board-button {
+   background-color: #FFFFFF;
+      border: medium none;
+      border-radius: 0;
+      box-shadow: none;
+  /*    color: #41a74f; */
+  color:#2e774a;
+      height:28px;
+      display: inline-block;
+      font-size: 13px;
+
+      letter-spacing: 0.04em;
+      line-height: 2.0;
+      min-width: 70px;
+      text-align: center;
+      text-shadow: none;
+      font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+      padding: 0px;
+
+       -webkit-box-shadow: 0 0 5px 1px #e9f6e1;
+          -moz-box-shadow: 0 0 5px 5px  #e9f6e1;
+          border: solid 1px transparent;
+
+          		background:-o-linear-gradient(bottom, #ffffff 5%, #e5e5e5 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #e5e5e5) );
+          	background:-moz-linear-gradient( center top, #ffffff 5%, #e5e5e5 100% );
+          	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#e5e5e5");	background: -o-linear-gradient(top,#ffffff,e5e5e5);
+
+      float:right;
+}
 /*input[type="submit"]*/
 .cukes-button
 {
@@ -610,13 +680,29 @@ color:#2e774a;
     /* float:left; */
     margin:0px 0px 0 0;
     margin: auto auto;
-    padding:15px 30px
+    padding:10px 20px
 }
 
+
+
+#feature-project-name-title
+{
+    text-align:center;
+    font-size:33px;
+    color: #697266  ;
+
+    font-weight: bold;
+    font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+    display: inline-block;
+    /* float:left; */
+    margin:0px 0px 0 0;
+    margin: auto auto;
+    padding:30px 30px
+}
 .projects-a-links
 {
     font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
-    font-size:22px;
+    font-size:20px;
 }
 
 .projects-div-title
@@ -675,7 +761,7 @@ color:#2e774a;
     font-weight:bold;
 
 
-    	width:1092px;
+    	width:100%;
 
      padding-top: 0px;
      padding-bottom: 60px;
@@ -721,10 +807,10 @@ color:#2e774a;
 
 .comment-box-div
 {
-    width:1090px;
+    width:100%;
 
     height:auto;
-	background: #c5e7af repeat-x;
+	background: #d9f1de repeat-x;
 	background-position: 0 -491px;
 	vertical-align: bottom;
 	position: relative;
@@ -734,9 +820,9 @@ color:#2e774a;
 .display_p
 {
 
-    width:1098px;
+    width:100%;
 
-    background: #fcfdf9;
+    background: #fffffe;
     border: 1px solid #e0e9db;
 
     outline: none;
@@ -874,8 +960,6 @@ line-height: 1.7;
     width:300px;
     height:40px;
     font-size:15px;
-
-
 }
 
 .CSSTableGenerator
@@ -914,7 +998,7 @@ line-height: 1.7;
     border-collapse: collapse;
     border-spacing: 0;
     width:100%;
-    height:100%;
+    height:auto;
     margin:0px;
     padding:90px;
     font-family:Helvetica Neue;

@@ -161,7 +161,7 @@ public class ScenarioRepositoryImpl implements ScenarioRepository
 
         Optional<Scenario> scenario = _findOneScenarioByNumber(projectId, featureId, scenarioNumber);
 
-        scenario.get().getComments().add(comment);
+        scenario.get().getReviewComments().add(comment);
 
         _mongoTemplate.updateFirst
                 (
@@ -172,7 +172,7 @@ public class ScenarioRepositoryImpl implements ScenarioRepository
 
                         Update.update
                                 (
-                                        Scenario.COMMENTS, scenario.get().getComments()
+                                        Scenario.REVIEWCOMMENTS, scenario.get().getReviewComments()
                                 ),
 
                         Scenario.class
@@ -249,7 +249,7 @@ public class ScenarioRepositoryImpl implements ScenarioRepository
                                                         is(featureId).
                                                         orOperator(Criteria.where(Scenario.APPROVED).
                                                                            is(true),
-                                                                   Criteria.where(Scenario.COMMENTS).not().size(-1)))
+                                                                   Criteria.where(Scenario.REVIEWCOMMENTS).not().size(-1)))
                                 ),
 
                         Scenario.class

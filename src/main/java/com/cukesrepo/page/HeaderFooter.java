@@ -2,11 +2,13 @@ package com.cukesrepo.page;
 
 
 import java.io.IOException;
+import java.util.List;
 
+import com.cukesrepo.domain.Feature;
+import com.cukesrepo.domain.Project;
 import org.rendersnake.HtmlCanvas;
 
-import static org.rendersnake.HtmlAttributesFactory.class_;
-import static org.rendersnake.HtmlAttributesFactory.href;
+import static org.rendersnake.HtmlAttributesFactory.*;
 
 
 public class HeaderFooter
@@ -31,7 +33,11 @@ public class HeaderFooter
                 .macros().javascript("/../../resources/scripts/signup.js")
                 .macros().stylesheet("/../../resources/css/dashboard.css")
                 .macros().stylesheet("/../../resources/css/headerfooter.css")
-                .macros().stylesheet("/../../resources/css/cukes.css")._head();
+                .macros().stylesheet("/../../resources/css/cukes.css")
+                .macros().stylesheet("/../../resources/css/discussion.css")
+                .macros().javascript("/../../resources/scripts/save_discussion.js")
+                .macros().javascript("/../../resources/scripts/cancel_discussion.js")
+                ._head();
     }
 
     protected void renderHeader(HtmlCanvas html) throws IOException
@@ -50,10 +56,6 @@ public class HeaderFooter
                 .a(href("/projects/").class_("full"))
                 .content("Home")
                 ._li()
-//                .li()
-//                .a(href("/dashboard/charts/").class_("full"))
-//                .content("Dashboard")
-//                ._li()
                 ._ul()
                 ._div()
                 ._div()
@@ -66,7 +68,7 @@ public class HeaderFooter
 
     }
 
-    protected void renderScenarioHeader(HtmlCanvas html, String projectName) throws IOException
+    protected void renderScenarioHeader(HtmlCanvas html, Project project) throws IOException
     {
 
         html.html()
@@ -80,13 +82,14 @@ public class HeaderFooter
                 .ul()
 
                 .li()
-                .a(href("/projects/").class_("full"))
-                .content("Home")
+                .a(href("/projects/" + project.getId() + "/").class_("full"))
+                .content(project.getName())
                 ._li()
 
+
                 .li()
-                .a(href("/projects/" + projectName + "/").class_("full"))
-                .content(projectName)
+                .a(href("/projects/").class_("full"))
+                .content("Home")
                 ._li()
 
                 ._ul()
@@ -100,6 +103,50 @@ public class HeaderFooter
 
 
     }
+
+
+    protected void renderDiscussionHeader(HtmlCanvas html, Project project, Feature feature) throws IOException
+    {
+
+        html.html()
+                .body(class_("background-color-cukes"))
+                .div(class_("cukes-logo bgColorA"))
+                .div(class_("pageTitle"))
+                .span(class_("title"))
+                .content(" ")
+                .span(class_("titlePart"))
+                .content(" ")
+                .ul()
+
+                .li()
+                .a(href("/projects/" + project.getId() + "/" + feature.getId() + "/").class_("full"))
+                .content("Scenarios")
+                ._li()
+
+
+                .li()
+                .a(href("/projects/" + project.getId() + "/").class_("full"))
+                .content(project.getName())
+                ._li()
+
+
+                .li()
+                .a(href("/projects/").class_("full"))
+                .content("Home")
+                ._li()
+
+                ._ul()
+                ._div()
+                ._div()
+                .div()._div();
+        ;
+
+        html._body()
+                .html();
+
+
+    }
+
 
     protected void renderTitle(HtmlCanvas html) throws IOException
     {
@@ -119,6 +166,21 @@ public class HeaderFooter
                 .html();
 
 
+    }
+
+    public void addLeftNavigationPane(HtmlCanvas html, String projectId, List<Feature> features) throws Throwable
+    {
+
+        html.div(class_("full-height"));
+
+        for (Feature feature : features)
+        {
+            html.li().a(href("/projects/" + projectId + "/" + feature.getId() + "/").class_("full-h")).span().content(feature.getName())._a()._li();
+            html.br();
+        }
+        html._div();
+        html.div(id("main-low"));
+        html.br();
     }
 
 

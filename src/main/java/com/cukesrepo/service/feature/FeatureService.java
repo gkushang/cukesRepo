@@ -1,13 +1,13 @@
 package com.cukesrepo.service.feature;
 
+import java.util.List;
+
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.Project;
 import com.cukesrepo.exceptions.FeatureNotFoundException;
 import com.cukesrepo.exceptions.ProjectNotFoundException;
 import com.cukesrepo.exceptions.ScenariosNotFoundException;
 import com.google.common.base.Optional;
-
-import java.util.List;
 
 
 public interface FeatureService {
@@ -19,4 +19,6 @@ public interface FeatureService {
     public void setEmailSent(String projectId, String featureId) throws FeatureNotFoundException, ProjectNotFoundException;
 
     public void deleteFeatures(String projectId);
+
+    void addDiscussion(String projectId, String featureId, String discussions) throws FeatureNotFoundException;
 }
