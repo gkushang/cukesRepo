@@ -10,6 +10,7 @@ import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.project.ProjectService;
 import com.cukesrepo.service.scenario.ScenarioService;
 import org.apache.commons.lang.Validate;
+import org.eclipse.jetty.servlet.ErrorPageErrorHandler;
 import org.rendersnake.HtmlCanvas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-public class DiscussionController
+public class DiscussionController extends ErrorPageErrorHandler
 {
 
     private final FeatureService _featureService;

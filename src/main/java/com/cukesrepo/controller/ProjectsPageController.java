@@ -1,5 +1,7 @@
 package com.cukesrepo.controller;
 
+import java.io.IOException;
+
 import com.cukesrepo.page.AddProjectPage;
 import com.cukesrepo.page.ProjectsPage;
 import com.cukesrepo.page.UpdateProjectPage;
@@ -11,10 +13,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.IOException;
 
 @Controller
-public class ProjectsPageController {
+public class ProjectsPageController extends ErrorPageController
+{
 
     private final ProjectService _projectService;
 
@@ -22,7 +24,8 @@ public class ProjectsPageController {
     public ProjectsPageController
             (
                     ProjectService projectService
-            ) {
+            )
+    {
 
         _projectService = projectService;
     }
@@ -32,7 +35,8 @@ public class ProjectsPageController {
     public void renderProjectsPage
             (
                     HtmlCanvas html
-            ) throws IOException {
+            ) throws IOException
+    {
 
         html.render(new ProjectsPage(_projectService));
 
@@ -40,7 +44,8 @@ public class ProjectsPageController {
 
     @RequestMapping(value = {"/user/add-project"})
     @ResponseBody
-    public void renderAddProjectsPage(HtmlCanvas html) throws IOException {
+    public void renderAddProjectsPage(HtmlCanvas html) throws IOException
+    {
 
         html.render(new AddProjectPage(_projectService));
 
@@ -53,10 +58,15 @@ public class ProjectsPageController {
                     HtmlCanvas html,
                     @PathVariable String projectId
 
-            ) throws IOException {
+            ) throws IOException
+    {
 
         html.render(new UpdateProjectPage(_projectService, projectId));
 
     }
+
+
+
+
 }
 
