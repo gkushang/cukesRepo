@@ -280,7 +280,7 @@
 
     <build>
 
-        <finalName>CUKE</finalName>
+        <finalName>cukesit</finalName>
 
         <plugins>
 
