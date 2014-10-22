@@ -6,7 +6,7 @@ import java.io.IOException;
 import com.cukesrepo.exceptions.EmailException;
 import com.cukesrepo.exceptions.FeatureNotFoundException;
 import com.cukesrepo.exceptions.ProjectNotFoundException;
-import com.cukesrepo.service.email.EmailService;
+import com.cukesrepo.service.email.CukeEmailService;
 import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.project.ProjectService;
 import org.apache.commons.lang.Validate;
@@ -24,7 +24,7 @@ public class EmailController
 
     private final FeatureService _featureService;
     private final ProjectService _projectService;
-    private final EmailService _emailService;
+    private final CukeEmailService _emailService;
 
 
     @Autowired
@@ -32,7 +32,7 @@ public class EmailController
             (
                     FeatureService featureService,
                     ProjectService projectService,
-                    EmailService emailService
+                    CukeEmailService emailService
             )
     {
 

@@ -51,6 +51,8 @@ public class HeaderFooter
                 .content(" ")
                 .span(class_("titlePart"))
                 .content(" ")
+                .a(class_("logo_image").src("/resources/images/logo.png").alt("logo"))
+                ._a()
                 .ul()
                 .li()
                 .a(href("/projects/").class_("full"))

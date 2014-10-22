@@ -86,6 +86,11 @@ a.full
 
 
 }
+.logo_image{
+src:url("/resources/images/logo.png");
+position:fixed;
+margin-left:0;
+}
 .bgColorA:before, h2:after {
   content: "";
   position: absolute;
