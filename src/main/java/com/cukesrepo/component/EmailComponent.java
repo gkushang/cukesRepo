@@ -52,6 +52,6 @@ public class EmailComponent
         if (StringUtils.isNotBlank(port))
             return "http://" + host + ":" + port + "/projects/" + project.getId() + "/" + feature.getId() + "/";
         else
-            return "http://" + host + "/projects/" + project.getId() + "/" + feature.getId() + "/";
+            return "http://" + host + ".lvs01.dev.ebayc3.com/projects/" + project.getId() + "/" + feature.getId() + "/";
     }
 }
