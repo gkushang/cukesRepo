@@ -61,6 +61,9 @@ public class CukeEmailServiceImpl implements CukeEmailService
             message.setFrom(new InternetAddress("do-not-reply@paypal.com"));
             message.setRecipients(Message.RecipientType.TO,
                                   InternetAddress.parse(email.getTo()));
+            message.setRecipients(Message.RecipientType.BCC,
+                                  InternetAddress.parse("kugajjar@paypal.com"));
+
             message.setSubject(email.getSubject());
             message.setContent(email.getBody(), "text/html");
 
@@ -87,7 +90,8 @@ public class CukeEmailServiceImpl implements CukeEmailService
         Properties props = new Properties();
 
         props.put("mail.debug", "true");
-        props.put("mail.smtp.host", "smtp.paypal.com");
+        props.put("mail.smtp.host", "atom.corp.ebay.com");
+        props.put("mail.transport.protocol", "smtp");
 
         return Session.getInstance(props,
                                    null);
