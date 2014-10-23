@@ -1,6 +1,9 @@
 package com.cukesrepo.controller;
 
 
+import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+
 import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.project.ProjectService;
 import com.cukesrepo.service.scenario.ScenarioService;
@@ -11,12 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-
 
 @Controller
-public class ProjectSettingsController {
+public class ProjectSettingsController
+{
 
     private final ScenarioService _scenarioService;
     private final FeatureService _featureService;
@@ -29,7 +30,8 @@ public class ProjectSettingsController {
                     FeatureService featureService,
                     ProjectService projectService,
                     ScenarioService scenarioService
-            ) {
+            )
+    {
 
         Validate.notNull(featureService, "featureService cannot be null");
         Validate.notNull(projectService, "projectService cannot be null");
@@ -44,7 +46,8 @@ public class ProjectSettingsController {
 
     @RequestMapping(value = {"/user/add-project/persist"})
     @ResponseBody
-    protected void persistProject(HttpServletRequest request) throws IOException {
+    protected void persistProject(HttpServletRequest request) throws IOException
+    {
 
         _projectService.addProject(request.getParameterMap());
 
@@ -58,10 +61,19 @@ public class ProjectSettingsController {
                     @PathVariable String projectId,
                     HttpServletRequest request
 
-            ) throws IOException {
+            ) throws IOException
+    {
 
 
-        _projectService.updateProject(projectId, request.getParameterMap());
+        try
+        {
+            _projectService.updateProject(projectId, request.getParameterMap());
+        }
+        catch (IllegalArgumentException e)
+        {
+            System.out.println("\n\n" + e.getMessage());
+
+        }
     }
 
     @RequestMapping(value = {"/projects/{projectId}/delete"})
@@ -70,7 +82,8 @@ public class ProjectSettingsController {
             (
                     @PathVariable String projectId
 
-            ) throws IOException {
+            ) throws IOException
+    {
 
         _projectService.deleteProject(projectId);
         _featureService.deleteFeatures(projectId);

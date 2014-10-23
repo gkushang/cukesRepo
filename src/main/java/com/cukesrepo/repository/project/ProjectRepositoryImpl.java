@@ -105,11 +105,23 @@ public class ProjectRepositoryImpl implements ProjectRepository
 
         LOG.info("Update project with '{}'", parameterMap);
 
+        String projectName = parameterMap.get("projectname")[0];
+        String repositoryPath = parameterMap.get("repositorypath")[0];
+        String featuresPath = parameterMap.get("featurespath")[0];
+        String emailTo = parameterMap.get("emailofpo")[0];
+
+        Validate.notEmpty(projectName, "project name cannot be empty");
+        Validate.notEmpty(repositoryPath, "repositoryPath name cannot be empty");
+        Validate.notEmpty(featuresPath, "featuresPath name cannot be empty");
+        Validate.notEmpty(emailTo, "emailTo name cannot be empty");
+
+
         Project project = new Project();
-        project.setName(parameterMap.get("projectname")[0]);
-        project.setRepositoryPath(parameterMap.get("repositorypath")[0]);
-        project.setFeaturesPath(parameterMap.get("featurespath")[0]);
-        project.setEmailPo(parameterMap.get("emailofpo")[0]);
+        project.setName(projectName);
+        project.setRepositoryPath(repositoryPath);
+        project.setFeaturesPath(featuresPath);
+        project.setEmailPo(emailTo);
+
 
         project.setId(projectId);
 

@@ -4,6 +4,7 @@ jQuery(document).ready(function() {
 
 
         var me = $(this);
+        var update_error = $(".update-error");
         var project_id = $("#project-id").val();
         var project_name = $(".display-name").val();
         var repository_url = $(".repository-path").val();
@@ -19,9 +20,12 @@ jQuery(document).ready(function() {
 
                     }).done(function(data) {
 
-                    top.location.href = "/projects/";
+                       top.location.href = "/projects/";
 
-                                                          });
+                   }).error(function(err){
+
+
+                   });
 
             });
 });

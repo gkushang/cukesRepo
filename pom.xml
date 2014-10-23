@@ -72,6 +72,12 @@
             <artifactId>spring-webmvc</artifactId>
             <!--<version>${org.springframework.version}</version>-->
             <version>3.0.5.RELEASE</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-asm</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -268,6 +274,25 @@
             <version>1.7.3</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>javax.mail-api</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.5</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
     </dependencies>
 
     <repositories>
@@ -280,7 +305,7 @@
 
     <build>
 
-        <finalName>cukesit</finalName>
+        <finalName>cukesrepo</finalName>
 
         <plugins>
 

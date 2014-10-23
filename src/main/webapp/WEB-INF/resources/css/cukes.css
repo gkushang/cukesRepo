@@ -9,7 +9,8 @@ body
 {
 
 	line-height: 1.6em;
-	background: #F9FCF4
+	background: #FFFFFF;
+
 	width:auto;
 	   margin:0;
      padding:0;
@@ -19,6 +20,7 @@ body
 .background-color-cukes
 {
  background: #ffffff repeat-x;
+ /*background-image: url("/resources/images/background.jpg");*/
  }
 
 .ptag, .ctag{
@@ -39,8 +41,6 @@ body
 	/*background: #E1F6D3 repeat-x;*/
 	text-align: left;
 	margin-bottom:10;
-
-
 
 }
 
@@ -468,10 +468,11 @@ a:hover,a:active, a.full-h:hover, a.full-h.active
 
 .title
 {
-    text-align:center;
+    text-align:left;
     font-size:50px;
     color: #87e89a;
     font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+    margin-left:0;
 }
 
 .full-height
