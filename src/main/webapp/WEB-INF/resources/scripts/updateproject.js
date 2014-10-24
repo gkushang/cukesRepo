@@ -19,9 +19,7 @@ jQuery(document).ready(function() {
                 repositorypath: repository_url, featurespath: path_to_features, emailofpo: email_of_po},
 
                    error: function(jqXHR, tx, er){
-                      alert(JSON.stringify(jqXHR));
-                      alert(er);
-                      alert(tx);
+
                       $("#update-error").html(jqXHR.responseText);
 
                    }
