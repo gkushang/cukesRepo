@@ -110,10 +110,10 @@ public class ProjectRepositoryImpl implements ProjectRepository
         String featuresPath = parameterMap.get("featurespath")[0];
         String emailTo = parameterMap.get("emailofpo")[0];
 
-        Validate.notEmpty(projectName, "project name cannot be empty");
-        Validate.notEmpty(repositoryPath, "repositoryPath name cannot be empty");
-        Validate.notEmpty(featuresPath, "featuresPath name cannot be empty");
-        Validate.notEmpty(emailTo, "emailTo name cannot be empty");
+        Validate.notEmpty(projectName, "Enter Project Name");
+        Validate.notEmpty(repositoryPath, "Enter Github SSH Clone URL");
+        Validate.notEmpty(featuresPath, "Enter Path to Features folder");
+        Validate.notEmpty(emailTo, "Enter PO email address");
 
 
         Project project = new Project();

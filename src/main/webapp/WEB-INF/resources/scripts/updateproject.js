@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
 
 
         var me = $(this);
-        var update_error = $(".update-error");
+        var update_error = $("#update-error");
         var project_id = $("#project-id").val();
         var project_name = $(".display-name").val();
         var repository_url = $(".repository-path").val();
@@ -15,15 +15,27 @@ jQuery(document).ready(function() {
              $.ajax({
 
                 url: "/projects/" + project_id + "/update",
-                data:{projectname: project_name, displayprojectname: display_project_name, repositorypath: repository_url, featurespath: path_to_features, emailofpo: email_of_po},
+                data:{projectname: project_name, displayprojectname: display_project_name,
+                repositorypath: repository_url, featurespath: path_to_features, emailofpo: email_of_po},
 
+                   error: function(jqXHR, tx, er){
+                      alert(JSON.stringify(jqXHR));
+                      alert(er);
+                      alert(tx);
+                      $("#update-error").html(jqXHR.responseText);
 
+                   }
                     }).done(function(data) {
 
-                       top.location.href = "/projects/";
+
+                       if(data === '') {
+                        top.location.href = "/projects/";
+                        }
+                        else{
+                        $("#update-error").html(data);
+                        }
 
                    }).error(function(err){
-
 
                    });
 

@@ -3,6 +3,7 @@ package com.cukesrepo.controller;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.project.ProjectService;
@@ -59,7 +60,8 @@ public class ProjectSettingsController
     protected void updateProject
             (
                     @PathVariable String projectId,
-                    HttpServletRequest request
+                    HttpServletRequest request,
+                    HttpServletResponse response
 
             ) throws IOException
     {
@@ -71,8 +73,9 @@ public class ProjectSettingsController
         }
         catch (IllegalArgumentException e)
         {
-            System.out.println("\n\n" + e.getMessage());
-
+            response.reset();
+            response.setContentType("text/plain");
+            response.getWriter().write(e.getMessage());
         }
     }
 

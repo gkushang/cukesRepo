@@ -896,6 +896,7 @@ line-height: 1.7;
     background-color: #FFFFFF;
 }
 
+
 .settings-icon-image
 {
     margin-right: 0.5em;
@@ -1008,6 +1009,16 @@ line-height: 1.7;
     text-indent: 12px;
     color:#013c27;
  }
+
+#update-error{
+ font-size:11px;
+  color:red;
+ padding:11px 10px;
+ margin:0em -0.8em;
+ font-family:Arial, sans-serif;;
+ font-style:normal;
+
+}
 
 .CSSTableGenerator tr:last-child td:last-child
 {
