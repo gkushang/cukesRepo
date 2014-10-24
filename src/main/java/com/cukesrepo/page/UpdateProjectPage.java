@@ -51,7 +51,7 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
             html.br();
             html.br();
             html.div(class_("addproject-div-title"));
-            html.h2().span(id("update-add-title")).content("update project").br().br();
+            html.h2().span(id("update-add-title")).content("update project").br();
 
             html.span(id("update-error")).content("");
             html.input(type("text").class_("add-project project-name").value(project.getId()).add("placeholder", "Git Project Name").disabled("")).br().br();

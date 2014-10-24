@@ -663,8 +663,7 @@ color:#2e774a;
     font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
     display: inline-block;
     /* float:left; */
-    margin:0px 0px 0 0;
-    margin: auto auto;
+    margin:1px -1px;
     padding:15px 0px
 }
 
@@ -1010,14 +1009,13 @@ line-height: 1.7;
     color:#013c27;
  }
 
-#update-error{
- font-size:11px;
-  color:red;
- padding:11px 10px;
- margin:0em -0.8em;
- font-family:Arial, sans-serif;;
- font-style:normal;
-
+#update-error
+{
+    font-size:11px;
+    color:red;
+    padding:11px 10px;
+    margin:0em -0.8em;
+    font-family:Arial, sans-serif;;
 }
 
 .CSSTableGenerator tr:last-child td:last-child
