@@ -3,6 +3,7 @@ package com.cukesrepo.component;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +33,21 @@ public class GitComponent
     private final String _featureFilePath;
 
     private static final Logger LOG = LoggerFactory.getLogger(GitComponent.class);
+    private final String _gitShellScriptPath;
 
     @Autowired
     public GitComponent
             (
-                    @Value("${feature.file.path}") String featureFilePath
+                    @Value("${feature.file.path}") String featureFilePath,
+                    @Value("${git.shell.script.path}") String gitShellScriptPath
             )
     {
 
         Validate.notEmpty(featureFilePath, "featureFilePath cannot be null or empty");
+        Validate.notEmpty(gitShellScriptPath, "gitShellScriptPath cannot be null or empty");
 
         _featureFilePath = featureFilePath;
+        _gitShellScriptPath = gitShellScriptPath;
     }
 
     public List<Feature> fetchFeatures(Project project) throws FeatureNotFoundException
@@ -215,5 +220,15 @@ public class GitComponent
 
     }
 
+    public void pullCurrentBranch() throws InterruptedException, IOException
+    {
+        String shellScript = _gitShellScriptPath + "/g.sh";
+
+        LOG.info("executing Git Pull shell script '{}'", shellScript);
+        String[] cmd = new String[]{"/bin/sh", shellScript};
+
+        Process pr = Runtime.getRuntime().exec(cmd);
+        pr.waitFor();
+    }
 
 }
