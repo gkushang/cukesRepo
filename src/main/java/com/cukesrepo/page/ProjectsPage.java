@@ -51,13 +51,6 @@ public class ProjectsPage extends HeaderFooter implements Renderable
             html.input(type("button").class_("cukes-button").id("add-new-project")
                                .value("Add Project").style("float: right;"))._a();
         }
-        else
-        {
-            html.input(type("button").class_("cukes-button").id("add-new-project")
-                               .value("Add Project").style("float: right;").disabled(""))._a();
-
-        }
-
 
         html._h3();
 
