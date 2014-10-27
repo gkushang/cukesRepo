@@ -134,7 +134,7 @@ public class GitComponent
     {
         if (!parentFolder.equalsIgnoreCase("features"))
         {
-            return parentFolder + " / " + feature.getName();
+            return parentFolder + "/ " + feature.getName();
         }
         return feature.getName();
     }
