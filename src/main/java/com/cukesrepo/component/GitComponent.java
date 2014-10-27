@@ -1,6 +1,7 @@
 package com.cukesrepo.component;
 
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -227,8 +228,24 @@ public class GitComponent
         LOG.info("executing Git Pull shell script '{}'", shellScript);
         String[] cmd = new String[]{"/bin/sh", shellScript};
 
-        Process pr = Runtime.getRuntime().exec(cmd);
-        pr.waitFor();
+        Process proc = Runtime.getRuntime().exec(cmd);
+        proc.waitFor();
+
+        BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+
+        BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+
+        String s;
+        while ((s = stdInput.readLine()) != null)
+        {
+            LOG.info(s);
+        }
+
+
+        while ((s = stdError.readLine()) != null)
+        {
+            LOG.error(s);
+        }
     }
 
 }
