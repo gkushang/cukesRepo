@@ -223,28 +223,31 @@ public class GitComponent
 
     public void pullCurrentBranch() throws InterruptedException, IOException
     {
-        String shellScript = _gitShellScriptPath + "/g.sh";
+        List<File> files = Utils.search(new File(_gitShellScriptPath), ".sh");
 
-        LOG.info("executing Git Pull shell script '{}'", shellScript);
-        String[] cmd = new String[]{"/bin/sh", shellScript};
-
-        Process proc = Runtime.getRuntime().exec(cmd);
-        proc.waitFor();
-
-        BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-
-        BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-
-        String s;
-        while ((s = stdInput.readLine()) != null)
+        for (File file : files)
         {
-            LOG.info(s);
-        }
+            LOG.info("\nExecute Git Pull Script '{}'", file.getAbsolutePath());
 
+            String[] cmd = new String[]{"/bin/sh", file.getAbsolutePath()};
 
-        while ((s = stdError.readLine()) != null)
-        {
-            LOG.error(s);
+            Process process = Runtime.getRuntime().exec(cmd);
+            process.waitFor();
+
+            BufferedReader stdInput = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+            BufferedReader stdError = new BufferedReader(new InputStreamReader(process.getErrorStream()));
+
+            String s;
+            while ((s = stdInput.readLine()) != null)
+            {
+                LOG.info(s);
+            }
+
+            while ((s = stdError.readLine()) != null)
+            {
+                LOG.error(s);
+            }
         }
     }
 

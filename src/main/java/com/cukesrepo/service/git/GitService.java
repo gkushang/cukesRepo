@@ -33,8 +33,6 @@ public class GitService
     {
         System.out.println("The time is now " + dateFormat.format(new Date()));
         _gitComponent.pullCurrentBranch();
-        LOG.info("pulled git branch successfully");
-
     }
 }
 
