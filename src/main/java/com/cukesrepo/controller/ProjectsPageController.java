@@ -9,6 +9,7 @@ import com.cukesrepo.page.UpdateProjectPage;
 import com.cukesrepo.service.project.ProjectService;
 import org.rendersnake.HtmlCanvas;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,15 +21,18 @@ public class ProjectsPageController
 {
 
     private final ProjectService _projectService;
+    private final String _isAddProjectEnabled;
 
     @Autowired
     public ProjectsPageController
             (
-                    ProjectService projectService
+                    ProjectService projectService,
+                    @Value("${add.project.enable}") String isAddProjectEnabled
             )
     {
 
         _projectService = projectService;
+        _isAddProjectEnabled = isAddProjectEnabled;
     }
 
     @RequestMapping(value = {"/"})
@@ -49,7 +53,7 @@ public class ProjectsPageController
             ) throws IOException
     {
 
-        html.render(new ProjectsPage(_projectService));
+        html.render(new ProjectsPage(_projectService, _isAddProjectEnabled));
 
     }
 
