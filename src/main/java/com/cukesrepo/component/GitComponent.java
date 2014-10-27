@@ -71,6 +71,8 @@ public class GitComponent
             {
                 feature.setProjectId(project.getId());
 
+                feature.setId(_buildFeatureId(project, feature));
+
                 int totalScenariosPerFeature = 0;
 
                 for (Scenario scenario : feature.getScenarios())
@@ -100,11 +102,14 @@ public class GitComponent
 
         String featureFileAbsolutePath = _getFeaturesAbsolutePath(project);
 
+
         for (File file : _findAllFeatureFiles(featureFileAbsolutePath))
         {
             Feature feature = _convertFeatureFileToPOJO(file.getAbsolutePath());
 
-            if (feature != null && feature.getId().equals(featureId))
+            String feature_id = _buildFeatureId(project, feature);
+
+            if (feature != null && feature_id.equals(featureId))
             {
                 int scenarioId = 0;
 
@@ -121,6 +126,11 @@ public class GitComponent
         }
 
         throw new ScenariosNotFoundException("There are no scenarios found for Project '" + project.getName() + "' and Feature Id '" + featureId + "'");
+    }
+
+    private String _buildFeatureId(Project project, Feature feature)
+    {
+        return feature.getId() + "-" + project.getId();
     }
 
     private String _getFeaturesAbsolutePath(Project project)
