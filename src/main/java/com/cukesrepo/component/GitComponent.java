@@ -67,11 +67,14 @@ public class GitComponent
 
             Feature feature = _convertFeatureFileToPOJO(file.getAbsolutePath());
 
+            String parentFolder = file.getParentFile().getName();
             if (feature != null)
             {
                 feature.setProjectId(project.getId());
 
-                feature.setId(_buildFeatureId(project, feature));
+                feature.setId(_buildFeatureId(project, feature, parentFolder));
+
+                feature.setName(_buildFeatureName(feature, parentFolder));
 
                 int totalScenariosPerFeature = 0;
 
@@ -94,7 +97,6 @@ public class GitComponent
         return features;
     }
 
-
     public List<Scenario> fetchScenarios(Project project, String featureId) throws ScenariosNotFoundException
     {
 
@@ -107,7 +109,7 @@ public class GitComponent
         {
             Feature feature = _convertFeatureFileToPOJO(file.getAbsolutePath());
 
-            String feature_id = _buildFeatureId(project, feature);
+            String feature_id = _buildFeatureId(project, feature, file.getParentFile().getName());
 
             if (feature != null && feature_id.equals(featureId))
             {
@@ -128,8 +130,22 @@ public class GitComponent
         throw new ScenariosNotFoundException("There are no scenarios found for Project '" + project.getName() + "' and Feature Id '" + featureId + "'");
     }
 
-    private String _buildFeatureId(Project project, Feature feature)
+    private String _buildFeatureName(Feature feature, String parentFolder)
     {
+        if (!parentFolder.equalsIgnoreCase("features"))
+        {
+            return parentFolder + " / " + feature.getName();
+        }
+        return feature.getName();
+    }
+
+
+    private String _buildFeatureId(Project project, Feature feature, String parentFolder)
+    {
+        if (!parentFolder.equalsIgnoreCase("features"))
+        {
+            return parentFolder + "-" + feature.getId() + "-" + project.getId();
+        }
         return feature.getId() + "-" + project.getId();
     }
 

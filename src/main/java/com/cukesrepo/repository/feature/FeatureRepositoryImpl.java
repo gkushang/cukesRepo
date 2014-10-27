@@ -1,5 +1,6 @@
 package com.cukesrepo.repository.feature;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.cukesrepo.component.FeatureComponent;
@@ -101,9 +102,46 @@ public class FeatureRepositoryImpl implements FeatureRepository
                         Feature.class
                 );
 
+        _mongoTemplate.remove
+                (
+                        new
+
+                                Query(Criteria.where(Feature.PROJECTID)
+
+                                              .
+
+                                                      is(project.getId()
+
+                                                      )),
+                        Scenario.class
+                );
+
         LOG.info("Insert '{}' features to DB for Project '{}'", gitFeatures.size(), project.getId());
 
+        List<Feature> gitFeatures_1 = new ArrayList<Feature>();
+        List<Feature> gitFeatures_2 = new ArrayList<Feature>();
+
+        for (int i = 0; i < 20; i++)
+        {
+            gitFeatures_1.add(gitFeatures.get(i));
+        }
+
+        for (int i = 21; i < 40; i++)
+        {
+            gitFeatures_2.add(gitFeatures.get(i));
+
+        }
+
         _mongoTemplate.insertAll(gitFeatures);
+
+//        for (Feature feature : gitFeatures_1)
+//        {
+//            _mongoTemplate.insert(feature);
+//        }
+//        _mongoTemplate.insertAll(gitFeatures_1);
+
+//        _mongoTemplate.insertAll(gitFeatures);
+
 
         return gitFeatures;
 
