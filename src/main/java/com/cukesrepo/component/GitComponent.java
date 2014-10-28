@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import gherkin.formatter.JSONFormatter;
 import gherkin.parser.Parser;
 import gherkin.util.FixJava;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +73,7 @@ public class GitComponent
             {
                 feature.setProjectId(project.getId());
 
-                feature.setId(_buildFeatureId(project, feature, parentFolder));
+                feature.setId(_buildFeatureId(project, file.getName(), parentFolder));
 
                 feature.setName(_buildFeatureName(feature, parentFolder));
 
@@ -109,7 +110,7 @@ public class GitComponent
         {
             Feature feature = _convertFeatureFileToPOJO(file.getAbsolutePath());
 
-            String feature_id = _buildFeatureId(project, feature, file.getParentFile().getName());
+            String feature_id = _buildFeatureId(project, file.getName(), file.getParentFile().getName());
 
             if (feature != null && feature_id.equals(featureId))
             {
@@ -140,13 +141,14 @@ public class GitComponent
     }
 
 
-    private String _buildFeatureId(Project project, Feature feature, String parentFolder)
+    private String _buildFeatureId(Project project, String fileName, String parentFolder)
     {
         if (!parentFolder.equalsIgnoreCase("features"))
         {
-            return parentFolder + "-" + feature.getId() + "-" + project.getId();
+            return parentFolder + "-" + fileName.replaceAll(FEATURE_FILE_EXTENSION, StringUtils.EMPTY)
+                    .replaceAll("[^\\w]", StringUtils.EMPTY) + "-" + project.getId();
         }
-        return feature.getId() + "-" + project.getId();
+        return fileName + "-" + project.getId();
     }
 
     private String _getFeaturesAbsolutePath(Project project)

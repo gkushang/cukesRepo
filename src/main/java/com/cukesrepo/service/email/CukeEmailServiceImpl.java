@@ -1,5 +1,6 @@
 package com.cukesrepo.service.email;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -58,7 +59,7 @@ public class CukeEmailServiceImpl implements CukeEmailService
 
             Message message = new MimeMessage(_getSession());
 
-            message.setFrom(new InternetAddress("do-not-reply@paypal.com"));
+            message.setFrom(new InternetAddress("do-not-reply@paypal.com", "Cukes"));
             message.setRecipients(Message.RecipientType.TO,
                                   InternetAddress.parse(email.getTo()));
             message.setRecipients(Message.RecipientType.BCC,
@@ -80,6 +81,10 @@ public class CukeEmailServiceImpl implements CukeEmailService
 
             throw new EmailException("Email sent fail", e);
 
+        }
+        catch (UnsupportedEncodingException e)
+        {
+            throw new EmailException("Email sent fail", e);
         }
 
     }

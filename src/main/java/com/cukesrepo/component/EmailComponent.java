@@ -22,7 +22,7 @@ public class EmailComponent
 
         Email email = new Email();
 
-        email.setSubject("" + project.getName() + ":" + " Review request for " + feature.getName() + " feature");
+        email.setSubject("Review request for " + feature.getName() + " feature: " + project.getName());
 
         String body = "<BODY style=font-size:10.5pt;font-family:Calibri>";
 
