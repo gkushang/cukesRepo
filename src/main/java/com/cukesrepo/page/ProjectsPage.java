@@ -15,15 +15,16 @@ import static org.rendersnake.HtmlAttributesFactory.*;
 public class ProjectsPage extends HeaderFooter implements Renderable
 {
 
+    private final String _isAddProjectEnabled;
     public ProjectService _projectService;
 
-    public ProjectsPage(ProjectService projectService)
+    public ProjectsPage(ProjectService projectService, String isAddProjectEnabled)
     {
 
         Validate.notNull(projectService, "projectService cannot be null");
 
         _projectService = projectService;
-
+        _isAddProjectEnabled = isAddProjectEnabled;
     }
 
     @Override
@@ -43,12 +44,15 @@ public class ProjectsPage extends HeaderFooter implements Renderable
         html.div(class_("projects-div-title").class_("background-color-cukes"));
         html.h3().span(id("project-title")).content("projects");
 
+
         html.a(href("/user/add-project"));
-        html.input(type("button").class_("cukes-button").id("add-new-project")
-                           .value("Add Project").style("float: right;"))._a();
+        if (_isAddProjectEnabled.equals("true"))
+        {
+            html.input(type("button").class_("cukes-button").id("add-new-project")
+                               .value("Add Project").style("float: right;"));
+        }
 
-
-        html._h3();
+        html._a()._h3();
 
 
         for (Project project : _projectService.getProjects())

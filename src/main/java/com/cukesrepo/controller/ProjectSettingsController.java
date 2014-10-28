@@ -3,7 +3,9 @@ package com.cukesrepo.controller;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import com.cukesrepo.exceptions.EmailException;
 import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.project.ProjectService;
 import com.cukesrepo.service.scenario.ScenarioService;
@@ -59,7 +61,8 @@ public class ProjectSettingsController
     protected void updateProject
             (
                     @PathVariable String projectId,
-                    HttpServletRequest request
+                    HttpServletRequest request,
+                    HttpServletResponse response
 
             ) throws IOException
     {
@@ -71,9 +74,17 @@ public class ProjectSettingsController
         }
         catch (IllegalArgumentException e)
         {
-            System.out.println("\n\n" + e.getMessage());
-
+            response.reset();
+            response.setContentType("text/plain");
+            response.getWriter().write(e.getMessage());
         }
+        catch (EmailException e)
+        {
+            response.reset();
+            response.setContentType("text/plain");
+            response.getWriter().write("Email address is invalid");
+        }
+
     }
 
     @RequestMapping(value = {"/projects/{projectId}/delete"})

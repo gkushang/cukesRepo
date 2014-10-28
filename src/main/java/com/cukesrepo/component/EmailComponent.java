@@ -26,7 +26,7 @@ public class EmailComponent
 
         String body = "<BODY style=font-size:10.5pt;font-family:Calibri>";
 
-        body += "Can you review, comment or approve scenario(s) for <b><a href=\"" +
+        body += "Can you review, comment or approve scenarios for <b><a href=\"" +
                 _getFeatureFileUrl(project, feature) + "\">" +
                 feature.getName() + "</a></b> feature?<br><br>";
         body += "You can view acceptance-scenarios at:<br><br>&#x09;" + _getFeatureFileUrl(project, feature) + "<br><br>";

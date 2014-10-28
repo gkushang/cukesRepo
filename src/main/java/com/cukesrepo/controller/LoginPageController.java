@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
-/**
- * Created by maduraisamy on 12/20/13.
- */
 @Controller
 public class LoginPageController
 {

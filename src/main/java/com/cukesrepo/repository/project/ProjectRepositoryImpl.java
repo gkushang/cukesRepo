@@ -3,8 +3,11 @@ package com.cukesrepo.repository.project;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 
 import com.cukesrepo.domain.Project;
+import com.cukesrepo.exceptions.EmailException;
 import com.cukesrepo.exceptions.ProjectNotFoundException;
 import com.google.common.base.Optional;
 import org.apache.commons.lang.Validate;
@@ -54,7 +57,7 @@ public class ProjectRepositoryImpl implements ProjectRepository
         project.setRepositoryPath(parameterMap.get("repositorypath")[0]);
         project.setFeaturesPath(parameterMap.get("featurespath")[0]);
         project.setEmailPo(parameterMap.get("emailofpo")[0]);
-        project.setId((parameterMap.get("projectname")[0]).toLowerCase());
+        project.setId((parameterMap.get("projectname")[0]));
 
         LOG.info("Adding project '{}'", project.getName());
 
@@ -110,11 +113,12 @@ public class ProjectRepositoryImpl implements ProjectRepository
         String featuresPath = parameterMap.get("featurespath")[0];
         String emailTo = parameterMap.get("emailofpo")[0];
 
-        Validate.notEmpty(projectName, "project name cannot be empty");
-        Validate.notEmpty(repositoryPath, "repositoryPath name cannot be empty");
-        Validate.notEmpty(featuresPath, "featuresPath name cannot be empty");
-        Validate.notEmpty(emailTo, "emailTo name cannot be empty");
+        Validate.notEmpty(projectName, "Enter Project Name");
+        Validate.notEmpty(repositoryPath, "Enter Github SSH Clone URL");
+        Validate.notEmpty(featuresPath, "Enter Path to Features folder");
+        Validate.notEmpty(emailTo, "Enter PO email address");
 
+        _validateEmail(emailTo);
 
         Project project = new Project();
         project.setName(projectName);
@@ -128,6 +132,19 @@ public class ProjectRepositoryImpl implements ProjectRepository
         _mongoTemplate.findAndRemove(new Query(Criteria.where(Project.ID).is(projectId)), Project.class);
 
         _mongoTemplate.insert(project);
+    }
+
+    private void _validateEmail(String email)
+    {
+        try
+        {
+            InternetAddress internetAddress = new InternetAddress(email);
+            internetAddress.validate();
+        }
+        catch (AddressException e)
+        {
+            throw new EmailException(e.getMessage(), e);
+        }
     }
 
     @Override
