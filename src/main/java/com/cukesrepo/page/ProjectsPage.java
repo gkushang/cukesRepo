@@ -49,10 +49,10 @@ public class ProjectsPage extends HeaderFooter implements Renderable
         if (_isAddProjectEnabled.equals("true"))
         {
             html.input(type("button").class_("cukes-button").id("add-new-project")
-                               .value("Add Project").style("float: right;"))._a();
+                               .value("Add Project").style("float: right;"));
         }
 
-        html._h3();
+        html._a()._h3();
 
 
         for (Project project : _projectService.getProjects())

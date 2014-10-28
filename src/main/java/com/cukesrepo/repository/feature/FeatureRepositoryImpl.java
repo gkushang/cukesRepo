@@ -101,20 +101,6 @@ public class FeatureRepositoryImpl implements FeatureRepository
                         Feature.class
                 );
 
-        _mongoTemplate.remove
-                (
-                        new
-
-                                Query(Criteria.where(Feature.PROJECTID)
-
-                                              .
-
-                                                      is(project.getId()
-
-                                                      )),
-                        Scenario.class
-                );
-
         LOG.info("Insert '{}' features to DB for Project '{}'", gitFeatures.size(), project.getId());
 
         _mongoTemplate.insertAll(gitFeatures);
