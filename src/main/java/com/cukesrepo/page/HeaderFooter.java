@@ -37,6 +37,7 @@ public class HeaderFooter
                 .macros().stylesheet("/../../resources/css/discussion.css")
                 .macros().javascript("/../../resources/scripts/save_discussion.js")
                 .macros().javascript("/../../resources/scripts/cancel_discussion.js")
+                .head().title().content("Cukes Repo")._head()
                 ._head();
     }
 
