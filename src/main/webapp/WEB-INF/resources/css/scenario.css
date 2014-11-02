@@ -1,0 +1,174 @@
+.scenario_links {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 15px;
+  color: #2C2CB4;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 10;
+}
+
+.scenario_title_links {
+  line-height: 200%;
+  font-family: "Helvetica Neue";
+  font-size: 13px;
+}
+
+.top {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  float: right;
+  padding: 4px;
+  background: white repeat-x;
+}
+
+#no-decoration:hover {
+  text-decoration: underline;
+}
+
+.no_decoration {
+  text-decoration: none;
+  color: blue;
+}
+
+.no_decoration:hover {
+  text-decoration: underline;
+}
+
+.top:hover {
+  color: #27D36C;
+}
+
+.keyword {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  display: block;
+  text-align: left;
+  color: #2C2CB4;
+  background: #daf0cd repeat-x;
+}
+
+div[class^=sclinks] {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  display: block;
+  text-align: left;
+  color: #669;
+  background: #daf0cd repeat-x;
+}
+
+.example {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 3px 20px;
+  width: 1092px;
+  text-align: left;
+  display: block;
+  color: #2C2CB4;
+  background: #b6e19c repeat-x;
+  background-position: 0 -491px;
+}
+
+.scenario, .scenario_description {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 15px;
+  padding: 8px;
+  width: 100%;
+  text-align: left;
+  display: block;
+  color: #2C2CB4;
+  background: #caebd1 repeat-x;
+  background-position: 0 -491px;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+.example {
+  background: #eff9f1;
+  width: 100%;
+}
+
+.no-of-scenarios {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  font-weight: normal;
+  padding-left: 0.3cm;
+  padding-right: 1cm;
+  text-align: left;
+  display: block;
+  color: #2C2CB4;
+  border-top: 1px solid white;
+  background: #a8db88 repeat-x;
+  float: right;
+}
+
+.step {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  display: block;
+  padding-left: 2cm;
+  margin: 5px;
+  text-align: left;
+  color: #4141EE;
+  background: #ffffff;
+  width: 1000px;
+  padding: 1px 30px;
+}
+
+.step:hover {
+  background: #e2faef repeat-x;
+  color: #339;
+}
+
+.datatable {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 12px;
+  position: relative;
+  left: 70px;
+  right: 70px;
+  margin: 10px 10px;
+  /*width: 480px;*/
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.example_data {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 12px;
+  position: relative;
+  left: 30px;
+  margin: 10px;
+  /*width: 480px;*/
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.example_data th, .datatable th {
+  font-size: 13px;
+  font-weight: normal;
+  padding: 8px;
+  background: #caebd1 repeat-x;
+  border-top: 2px solid #caebd1;
+  border-bottom: 1px solid white;
+  width: 70px;
+}
+
+.example_data td, .datatable td {
+  padding: 8px;
+  border-bottom: 1px solid white;
+  color: #669;
+  border-top: 1px solid white;
+  background: #eff9f1 repeat-x;
+  width: 70px;
+}
+
+.example_data tfoot tr td, .datatable tfoot tr td {
+  background: #E1F6D3;
+  font-size: 12px;
+  color: #eff9f1;
+}
+
+.example_data tbody tr:hover td, .datatable tbody tr:hover td {
+  background: #cbf7e2 repeat-x;
+  color: #339;
+}
