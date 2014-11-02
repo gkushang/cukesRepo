@@ -38,7 +38,7 @@ public class AddProjectPage extends HeaderFooter implements Renderable
 
         html.br();
         html.br();
-        html.div(class_("addproject-div-title"));
+        html.div(class_("add-project-div-title"));
         html.h2().span(id("update-add-title")).content("add project").br().br();
 
 
@@ -46,7 +46,6 @@ public class AddProjectPage extends HeaderFooter implements Renderable
         html.input(type("text").class_("add-project display-name").value("").add("placeholder", "Display Project Name")).br().br();
         html.input(type("text").class_("add-project repository-path").add("placeholder", "Github SSH Clone URL")).br().br();
         html.input(type("text").class_("add-project git-branch").add("placeholder", "Path to Features folder (path/to/features)")).br().br();
-//        html.input(type("text").class_("add-project collaborators").add("placeholder", "Add Collaborators")).br().br();
         html.input(type("text").class_("add-project project-owners").add("placeholder", "PO email address")).br().br();
 
         html.a(href("#").id("add-project-navigate"));

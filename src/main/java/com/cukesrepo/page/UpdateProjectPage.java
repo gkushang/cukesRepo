@@ -50,7 +50,7 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
 
             html.br();
             html.br();
-            html.div(class_("addproject-div-title"));
+            html.div(class_("add-project-div-title"));
             html.h2().span(id("update-add-title")).content("update project").br();
 
             html.span(id("update-error")).content("");

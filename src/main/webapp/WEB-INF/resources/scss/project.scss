@@ -1,0 +1,72 @@
+@import "common";
+
+#project-title
+{
+    text-align:center;
+
+    font-size:$title-font-size;
+    color: $main-color;
+    font-family: $main-font;
+
+    font-weight: bold;
+    display: inline-block;
+    margin:0px 0px 0 0;
+    margin: auto auto;
+    padding:10px 20px
+}
+
+.projects-a-links
+{
+    font-family: $main-font;
+    font-size:20px;
+}
+
+.projects-div-title
+{
+    width:1300px;
+    outline: none;
+    overflow: auto;
+    display: block;
+    padding:8px;
+    text-align: left;
+}
+
+.project-links-div
+{
+    width:500px;
+
+    height:auto;
+
+    background-position: 0 -491px;
+    vertical-align: bottom;
+    position: relative;
+    display: table;
+
+}
+
+.project-links-div:hover .settings-icon-image
+{
+   visibility: visible;
+}
+
+.add-project
+{
+    width:400px;
+    height:35px;
+    font-size:13px;
+}
+
+.add-project-div-title
+{
+    position:absolute;
+    left: 50%;
+    width:25em;
+    height:18em;
+    margin-left: -15em;
+    border: 1px solid $white-background-color;
+    background-color: $white-background-color;
+}
+
+
+
+
