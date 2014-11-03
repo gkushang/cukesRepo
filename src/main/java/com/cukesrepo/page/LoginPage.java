@@ -62,10 +62,7 @@ public class LoginPage extends HeaderFooter implements Renderable
 
         html.a(class_("sign-up-link").id("no-decoration").href("/login/sign-up")).content("Sign up now");
 
-//        html._h2();
         html._div();
-
-
         html._body()
                 ._html();
     }
