@@ -11,20 +11,10 @@ import static org.rendersnake.HtmlAttributesFactory.class_;
 import static org.rendersnake.HtmlAttributesFactory.type;
 
 
-/**
- * Created by maduraisamy on 12/20/13.
- */
 public class LoginPage extends HeaderFooter implements Renderable
 {
 
     public LoginService _loginService;
-    private static final String ERROR_LOGIN_PASSWORD = "error.LoginForm.password";
-    private static final String ERROR_LOGIN_USERNAME = "error.LoginForm.username";
-    static final String ID_USERNAME = "username";
-    static final String ID_PASSWORD = "password";
-
-    static final String VAR_USERNAME = "username";
-    static final String VAR_PASSWORD = "password";
 
     public String username;
     public String password;
