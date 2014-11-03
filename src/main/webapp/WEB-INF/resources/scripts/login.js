@@ -7,7 +7,7 @@ jQuery(document).ready(function() {
         var username = $(".username").val();
         var password = $(".password").val();
 
-
+             alert('here');
              $.ajax({
 
                 url: "/login/verify/"+ username +"/"+ password,

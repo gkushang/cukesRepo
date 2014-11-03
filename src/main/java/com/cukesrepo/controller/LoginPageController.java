@@ -31,7 +31,7 @@ public class LoginPageController
         _loginService = loginService;
     }
 
-    @RequestMapping(value = {"/login/"})
+    @RequestMapping(value = {"/login"})
     @ResponseBody
     public void renderLoginPage
             (
@@ -80,7 +80,7 @@ public class LoginPageController
 //
 //        // Add an error message to the model if login is unsuccessful
 //        // The 'error' parameter is set to true based on the when the authentication has failed.
-//        // We declared this under the defaultFailureUrl attribute inside the spring-security.xml
+//        // We declared this under the defaultFailureUrl attribute inside the cuke-security.xml
 //
 ////        if (error == true) {
 ////            model.put("error", "You have entered an invalid username or password!");
