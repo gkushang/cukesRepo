@@ -69,7 +69,6 @@ public class HeaderFooter
                 ._div()
                 ._div()
                 .div()._div();
-        ;
 
         html._body()
                 .html();

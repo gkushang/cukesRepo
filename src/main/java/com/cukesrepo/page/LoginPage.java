@@ -7,7 +7,8 @@ import org.apache.commons.lang.Validate;
 import org.rendersnake.HtmlCanvas;
 import org.rendersnake.Renderable;
 
-import static org.rendersnake.HtmlAttributesFactory.*;
+import static org.rendersnake.HtmlAttributesFactory.class_;
+import static org.rendersnake.HtmlAttributesFactory.type;
 
 
 /**
@@ -44,7 +45,7 @@ public class LoginPage extends HeaderFooter implements Renderable
 
         addScriptsAndStyleSheets(html);
 
-        renderTitle(html);
+        renderHeader(html);
 
         html.html()
                 .body();
@@ -52,28 +53,22 @@ public class LoginPage extends HeaderFooter implements Renderable
         html.br();
         html.br();
         html.div(class_("loginpage-div-title"));
-        html.h2().span(id("login-title")).content("Loginnnn").br().br();
 
 
-        html.input(type("text").class_("login-page username").add("placeholder", "User Nameeeee")).br().br();
-        html.input(type("password").class_("login-page password").add("placeholder", "Password")).br().br();
-//        html.a(href("#"));
-        html.input(type("button").class_("cukes-button-add-p").id("login").style("float: left;")
+        html.input(type("text").class_("login-input-box username").add("placeholder", "Username")).br().br();
+        html.input(type("password").class_("login-input-box password").add("placeholder", "Password")).br().br();
+        html.input(type("submit").class_("cukes-button").id("login-button").style("float: center;")
                            .value("Login")).br().br();
 
-        html.a(href("/login/sign-up"));
+        html.a(class_("sign-up-link").id("no-decoration").href("/login/sign-up")).content("Sign up now");
 
-        html.input(type("button").class_("cukes-button-add-p").id("signup").style("float: left;")
-                           .value("SignUp"))._a();
-
-        html._h2();
+//        html._h2();
         html._div();
+
+
         html._body()
                 ._html();
-
     }
-
-
 }
 
 

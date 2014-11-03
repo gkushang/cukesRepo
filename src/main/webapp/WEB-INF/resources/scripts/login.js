@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
 
-        $("input[id^='login']").on('click',function() {
+        $("input[id^='login-button']").on('click',function() {
 
 
         var me = $(this);
