@@ -32,12 +32,13 @@ public class EmailComponent
                 feature.getName() + "</a></b> feature?<br><br>";
         body += "You can view acceptance-scenarios at:<br><br>&#x09;" + _getFeatureFileUrl(project, feature) + "<br><br>";
 
-        body += "<br>_<br><a href=\"http://go/cukes\" style=font-size:9pt>go/cukes</a>";
+        body = _getEmailFooter(body);
 
         body += "</BODY>";
 
         email.setBody(body);
         email.setTo(project.getEmailPo());
+        email.setCc(project.getCollaborators());
 
         LOG.info("getReviewEmailTemplateFor Subject '{}' and send email to '{}'", email.getSubject(), email.getTo());
 
@@ -66,19 +67,26 @@ public class EmailComponent
         body += "<b>Review Comment</b> for <b><a href=\"" +
                 _getFeatureFileUrl(project, feature) + "\">" +
                 feature.getName() + "</a></b><br><br>";
-        body += "<div style=color:#00008b;font-size:9.5pt;font-family:Calibri>>>Scenario: " + scenarioName + "</div><br><br>";
+        body += "<div style=color:#00008b;font-size:9.5pt;font-family:Calibri>>>Scenario: " + scenarioName + "</div><br>";
         body += "<div style=font-size:10.5pt;font-family:Calibri>\"" + comment + "\"</div><br><br>";
 
-        body += "_<br><a href=\"http://go/cukes\" style=font-size:9pt>go/cukes</a>";
+        body = _getEmailFooter(body);
 
         body += "</BODY>";
 
         email.setBody(body);
         email.setTo(project.getCollaborators());
+        email.setCc(project.getEmailPo());
 
         LOG.info("getReviewEmailTemplateFor Subject '{}' and send email to '{}'", email.getSubject(), email.getTo());
 
         return email;
 
+    }
+
+    private String _getEmailFooter(String body)
+    {
+        body += "_<br><a href=\"http://go/cukes\" style=font-size:9pt>go/cukes</a>";
+        return body;
     }
 }
