@@ -2,6 +2,7 @@ package com.cukesrepo.controller;
 
 
 import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
 
 import com.cukesrepo.exceptions.EmailException;
 import com.cukesrepo.exceptions.FeatureNotFoundException;
@@ -10,6 +11,7 @@ import com.cukesrepo.service.email.CukeEmailService;
 import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.project.ProjectService;
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,5 +82,37 @@ public class EmailController
         }
     }
 
+    @RequestMapping(value = {"/{projectId}/{featureId}/{scenario_name}/send-email-comment"}, method = RequestMethod.POST)
+    @ResponseBody
+    public void sendReviewComment
+            (
+                    HttpServletRequest request,
+                    @PathVariable String projectId,
+                    @PathVariable String featureId,
+                    @PathVariable String scenario_name
+            ) throws IOException
 
+    {
+        String comments = request.getParameter("comments");
+
+        if (StringUtils.isNotEmpty(comments))
+        {
+            try
+            {
+                _emailService.sendReviewComment(_projectService.getProjectById(projectId),
+                                                _featureService.getFeatureId(projectId, featureId).get(),
+                                                scenario_name,
+                                                comments);
+            }
+            catch (ProjectNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+            catch (FeatureNotFoundException e)
+            {
+                e.printStackTrace();
+            }
+
+        }
+    }
 }

@@ -1,0 +1,49 @@
+/*Green*/
+/*Dark-Green*/
+body {
+  line-height: 1.6em;
+  background: #FFFFFF;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.cukes-button {
+  background-color: white;
+  border: medium none;
+  border-radius: 0;
+  box-shadow: none;
+  color: #2e774a;
+  height: 28px;
+  display: inline-block;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  line-height: 2.0;
+  min-width: 135px;
+  text-align: center;
+  text-shadow: none;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  padding: 0px;
+  -webkit-box-shadow: 0 0 5px 1px #e9f6e1;
+  -moz-box-shadow: 0 0 5px 5px #e9f6e1;
+  border: solid 1px transparent;
+  background: -o-linear-gradient(bottom, white 5%, #e5e5e5 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, white), color-stop(1, #e5e5e5));
+  background: -moz-linear-gradient(center top, white 5%, #e5e5e5 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#e5e5e5");
+  background: -o-linear-gradient(top, white, e5e5e5);
+}
+
+.cukes-button:hover {
+  color: #43ae6c;
+}
+
+.background-color-cukes {
+  background: white;
+}
+
+#no-decoration {
+  color: darkblue;
+  text-decoration: none;
+  padding: 10px;
+}

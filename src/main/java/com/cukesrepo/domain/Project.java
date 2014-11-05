@@ -24,8 +24,12 @@ public class Project
     @Field("email_of_po")
     private String emailPo;
 
+    @Field("collaborators")
+    private String collaborators;
+
     @Id
     private String id;
+
 
     public String getName()
     {
@@ -77,4 +81,13 @@ public class Project
         this.emailPo = emailPo;
     }
 
+    public void setCollaborators(String collaborators)
+    {
+        this.collaborators = collaborators;
+    }
+
+    public String getCollaborators()
+    {
+        return collaborators;
+    }
 }
