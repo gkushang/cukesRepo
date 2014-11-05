@@ -57,7 +57,8 @@ public class ProjectRepositoryImpl implements ProjectRepository
         project.setRepositoryPath(parameterMap.get("repositorypath")[0]);
         project.setFeaturesPath(parameterMap.get("featurespath")[0]);
         project.setEmailPo(parameterMap.get("emailofpo")[0]);
-        project.setId((parameterMap.get("projectname")[0]));
+        project.setCollaborators(parameterMap.get("collaborators")[0]);
+        project.setId((parameterMap.get("projectname")[0]).toLowerCase());
 
         LOG.info("Adding project '{}'", project.getName());
 
