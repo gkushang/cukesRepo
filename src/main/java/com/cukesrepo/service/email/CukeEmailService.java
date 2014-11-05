@@ -9,6 +9,8 @@ public interface CukeEmailService
 {
 
     public String sendReviewRequest(Project project, Feature feature) throws EmailException;
+
+    String sendReviewComment(Project project, Feature feature, String scenarioDescription, String comment) throws EmailException;
 }
 
 

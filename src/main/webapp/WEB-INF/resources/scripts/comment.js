@@ -12,6 +12,8 @@ jQuery(document).ready(function() {
 
         var feature_id=$('#feature-id').val();
 
+        var scenario_description = $('#scenario-description').val();
+
         if(!$('#comments' + scenario_number).is(':visible'))
         {
                 $('#comments' + scenario_number).val('');
@@ -33,21 +35,53 @@ jQuery(document).ready(function() {
         }
             $.ajax({
 
-              type: "POST",
-                url: "/" + project_id + "/"+ feature_id + "/"+ scenario_number + "/add-comment",
-                  data:{comments: comments},
-                }).done(function(data) {
+                    type: "POST",
+                    url: "/" + project_id + "/"+ feature_id + "/"+ scenario_number + "/add-comment",
+                    data:{comments: comments},
+                    success: function(data) {
 
-                        if((comments.length > 0))
-                        {
-                           $('#comment-shows-here' + scenario_number).append
-                           (
-                           '<div class=comment-box-div> <p class=username-comment> ' + "" +'</p><textarea disabled class=display_p id=display-comment-p'+ scenario_number + '>' + comments + '</textarea></div>'
-                           );
-                        }
+                                             function write(data) {
+                                                   if((comments.length > 0))
+                                                   {
+                                                      $('#comment-shows-here' + scenario_number).append
+                                                      (
+                                                      '<div class=comment-box-div> <p class=username-comment> ' + "" +'</p><textarea disabled class=display_p id=display-comment-p'+ scenario_number + '>' + comments + '</textarea></div>'
+                                                      );
+                                                   }
+                                              }
 
-                    });
+                                              write(data);
+
+                                              send(data);
+
+
+                                              function send(data){
+
+                                                   $.ajax({
+
+                                                              type: "POST",
+                                                              url: "/" + project_id + "/"+ feature_id + "/"+ scenario_description +"/send-email-comment",
+                                                              data:{comments: comments},
+                                                              success: function(data) {
+
+                                                              },
+
+                                                              error: function(err) {
+
+                                                              }
+
+                                                   })};
+
+                                            }
+                    })
 
             });
 
 });
+
+
+
+
+
+
+

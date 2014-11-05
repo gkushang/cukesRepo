@@ -1,7 +1,11 @@
 package com.cukesrepo.controller;
 
+import java.io.IOException;
+import javax.servlet.http.HttpServletRequest;
+
 import com.cukesrepo.exceptions.ScenariosNotFoundException;
 import com.cukesrepo.page.ScenariosPage;
+import com.cukesrepo.service.email.CukeEmailService;
 import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.project.ProjectService;
 import com.cukesrepo.service.scenario.ScenarioService;
@@ -14,24 +18,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 
 @Controller
-public class ScenariosPageController {
+public class ScenariosPageController
+{
 
 
     private final ScenarioService _scenarioService;
     private final FeatureService _featureService;
     private final ProjectService _projectService;
+    private final CukeEmailService _cukeEmailService;
 
     @Autowired
     public ScenariosPageController
             (
                     ProjectService projectService,
                     FeatureService featureService,
-                    ScenarioService scenarioService
-            ) {
+                    ScenarioService scenarioService,
+                    CukeEmailService cukeEmailService
+            )
+    {
 
         Validate.notNull(projectService, "projectService cannot be null");
         Validate.notNull(featureService, "featureService cannot be null");
@@ -40,6 +46,7 @@ public class ScenariosPageController {
         _projectService = projectService;
         _featureService = featureService;
         _scenarioService = scenarioService;
+        _cukeEmailService = cukeEmailService;
     }
 
     @RequestMapping(value = "projects/{projectId}/{featureId}/")
@@ -49,7 +56,8 @@ public class ScenariosPageController {
                     HtmlCanvas html,
                     @PathVariable String projectId,
                     @PathVariable String featureId
-            ) throws IOException {
+            ) throws IOException
+    {
 
 
         html.render
@@ -75,13 +83,17 @@ public class ScenariosPageController {
                     @PathVariable String projectId,
                     @PathVariable String featureId,
                     @PathVariable String scenarioNumber
-            ) {
+            )
+    {
 
-        try {
+        try
+        {
 
             _scenarioService.approveScenario(projectId, featureId, scenarioNumber);
 
-        } catch (ScenariosNotFoundException e) {
+        }
+        catch (ScenariosNotFoundException e)
+        {
             throw new RuntimeException("Scenario not found. Replace this with rendering error page: ", e);
         }
     }
@@ -94,20 +106,37 @@ public class ScenariosPageController {
                     @PathVariable String projectId,
                     @PathVariable String featureId,
                     @PathVariable String scenarioNumber
-            ) {
+            )
+    {
 
 
-        try {
+        try
+        {
 
             String comments = request.getParameter("comments");
 
             if (comments != null && !comments.isEmpty())
+            {
                 _scenarioService.addComment(projectId, featureId, scenarioNumber, comments);
 
+//                _cukeEmailService.sendReviewComment(_projectService.getProjectById(projectId),
+//                                                    _featureService.getFeatureId(projectId, featureId).get(), comments);
+            }
 
-        } catch (ScenariosNotFoundException e) {
+
+        }
+        catch (ScenariosNotFoundException e)
+        {
             throw new RuntimeException("Scenario not found. Replace this with rendering error page: ", e);
         }
+//        catch (ProjectNotFoundException e)
+//        {
+//            e.printStackTrace();
+//        }
+//        catch (FeatureNotFoundException e)
+//        {
+//            e.printStackTrace();
+//        }
 
     }
 
