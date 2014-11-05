@@ -19,6 +19,7 @@ jQuery(document).ready(function() {
                 $('#comments' + scenario_number).val('');
                 $('#comments' + scenario_number).attr('placeholder','Enter comment');
                 $('#comments' + scenario_number).show();
+                $('#comments' + scenario_number).focus();
                 me.val("Submit Comment");
 
         }  else
