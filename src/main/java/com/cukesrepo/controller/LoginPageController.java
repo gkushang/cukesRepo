@@ -4,8 +4,6 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.cukesrepo.exceptions.UserNotFoundException;
-import com.cukesrepo.page.LoginPage;
-import com.cukesrepo.page.SignUpPage;
 import com.cukesrepo.service.login.LoginService;
 import org.rendersnake.HtmlCanvas;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +37,7 @@ public class LoginPageController
             ) throws IOException
     {
 
-        html.render(new LoginPage(_loginService));
+//        html.render(new LoginPage(_loginService));
 
     }
 
@@ -48,7 +46,7 @@ public class LoginPageController
     protected void persistProject(@PathVariable String username, @PathVariable String password) throws UserNotFoundException
     {
 
-        _loginService.login(username, password);
+//        _loginService.login(username, password);
 
     }
 
@@ -57,7 +55,7 @@ public class LoginPageController
     public void renderAddProjectsPage(HtmlCanvas html) throws IOException
     {
 
-        html.render(new SignUpPage(_loginService));
+//        html.render(new SignUpPage(_loginService));
 
     }
 
@@ -66,7 +64,7 @@ public class LoginPageController
     protected void persistUser(HttpServletRequest request) throws IOException
     {
 
-        _loginService.addUser(request.getParameterMap());
+//        _loginService.addUser(request.getParameterMap());
 
     }
 
