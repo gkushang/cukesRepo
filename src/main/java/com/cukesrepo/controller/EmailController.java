@@ -82,15 +82,14 @@ public class EmailController
         }
     }
 
-    @RequestMapping(value = {"/{projectId}/{featureId}/{scenario_description}/send-email-comment"}, method = RequestMethod.POST)
-//    @RequestMapping(value = {"/email/review-request"}, method = RequestMethod.POST)
+    @RequestMapping(value = {"/{projectId}/{featureId}/{scenario_name}/send-email-comment"}, method = RequestMethod.POST)
     @ResponseBody
     public void sendReviewComment
             (
                     HttpServletRequest request,
                     @PathVariable String projectId,
                     @PathVariable String featureId,
-                    @PathVariable String scenario_description
+                    @PathVariable String scenario_name
             ) throws IOException
 
     {
@@ -102,7 +101,7 @@ public class EmailController
             {
                 _emailService.sendReviewComment(_projectService.getProjectById(projectId),
                                                 _featureService.getFeatureId(projectId, featureId).get(),
-                                                scenario_description,
+                                                scenario_name,
                                                 comments);
             }
             catch (ProjectNotFoundException e)

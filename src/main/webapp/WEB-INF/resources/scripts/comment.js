@@ -12,7 +12,7 @@ jQuery(document).ready(function() {
 
         var feature_id=$('#feature-id').val();
 
-        var scenario_description = $('#scenario-description').val();
+        var scenario_name = $('#scenario-name').val();
 
         if(!$('#comments' + scenario_number).is(':visible'))
         {
@@ -60,7 +60,7 @@ jQuery(document).ready(function() {
                                                    $.ajax({
 
                                                               type: "POST",
-                                                              url: "/" + project_id + "/"+ feature_id + "/"+ scenario_description +"/send-email-comment",
+                                                              url: "/" + project_id + "/"+ feature_id + "/"+ scenario_name +"/send-email-comment",
                                                               data:{comments: comments},
                                                               success: function(data) {
 

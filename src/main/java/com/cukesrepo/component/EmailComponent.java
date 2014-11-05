@@ -55,7 +55,7 @@ public class EmailComponent
             return "http://" + host + ".lvs01.dev.ebayc3.com/projects/" + project.getId() + "/" + feature.getId() + "/";
     }
 
-    public Email getReviewCommentEmailTemplateFor(Project project, Feature feature, String scenarioDescription, String comment)
+    public Email getReviewCommentEmailTemplateFor(Project project, Feature feature, String scenarioName, String comment)
     {
         Email email = new Email();
 
@@ -66,7 +66,7 @@ public class EmailComponent
         body += "<b>Review Comment</b> for <b><a href=\"" +
                 _getFeatureFileUrl(project, feature) + "\">" +
                 feature.getName() + "</a></b><br><br>";
-        body += "<div style=color:#00008b;font-size:9.5pt;font-family:Calibri>>>Scenario: " + scenarioDescription + "</div><br><br>";
+        body += "<div style=color:#00008b;font-size:9.5pt;font-family:Calibri>>>Scenario: " + scenarioName + "</div><br><br>";
         body += "<div style=font-size:10.5pt;font-family:Calibri>\"" + comment + "\"</div><br><br>";
 
         body += "_<br><a href=\"http://go/cukes\" style=font-size:9pt>go/cukes</a>";

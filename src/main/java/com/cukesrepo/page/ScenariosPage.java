@@ -287,7 +287,7 @@ public class ScenariosPage extends HeaderFooter implements Renderable
             html.input(type("button").class_("cukes-button").id("add-comment" + scenario.getNumber()).content(Integer.toString(scenario.getNumber())).value("Comment"))
                     .input(type("hidden").id("projectId").value(_projectId))
                     .input(type("hidden").id("featureId").value(_feature.getId()))
-                    .input(type("hidden").id("scenario-description").value(scenario.getName()));
+                    .input(type("hidden").id("scenario-name").value(scenario.getName()));
 
             int totalScenarios = scenario.getTotalScenariosFromExampleTable();
 

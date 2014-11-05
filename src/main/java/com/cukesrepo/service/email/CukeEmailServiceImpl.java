@@ -50,10 +50,10 @@ public class CukeEmailServiceImpl implements CukeEmailService
 
 
     @Override
-    public String sendReviewComment(Project project, Feature feature, String scenarioDescription, String comment) throws EmailException
+    public String sendReviewComment(Project project, Feature feature, String scenarioName, String comment) throws EmailException
     {
 
-        Email email = _emailComponent.getReviewCommentEmailTemplateFor(project, feature, scenarioDescription, comment);
+        Email email = _emailComponent.getReviewCommentEmailTemplateFor(project, feature, scenarioName, comment);
 
         return _send(email);
     }
