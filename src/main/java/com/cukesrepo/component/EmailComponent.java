@@ -1,19 +1,9 @@
 package com.cukesrepo.component;
 
 
-import java.io.UnsupportedEncodingException;
-import java.util.Properties;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-
 import com.cukesrepo.domain.Email;
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.Project;
-import com.cukesrepo.exceptions.EmailException;
 import com.cukesrepo.utils.Utils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -22,11 +12,11 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class EmailComponent implements Runnable
+public class EmailComponent
 {
 
     private static final Logger LOG = LoggerFactory.getLogger(EmailComponent.class);
-    private Email _email;
+
 
     public Email getReviewEmailTemplateFor(Project project, Feature feature)
     {
@@ -84,91 +74,11 @@ public class EmailComponent implements Runnable
         body += "</BODY>";
 
         email.setBody(body);
-        email.setTo(project.getEmailPo());
+        email.setTo(project.getCollaborators());
 
         LOG.info("getReviewEmailTemplateFor Subject '{}' and send email to '{}'", email.getSubject(), email.getTo());
 
         return email;
 
     }
-
-    public EmailComponent()
-    {
-
-    }
-
-    public EmailComponent(Email email)
-    {
-        _email = email;
-    }
-
-    @Override
-    public void run()
-    {
-        try
-        {
-            Thread.sleep(5000);
-            _send(_email);
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
-    }
-
-    private String _send(Email email) throws EmailException
-    {
-
-        LOG.info("Send email to '{}' with subject '{}'", email.getTo(), email.getSubject());
-
-        try
-        {
-
-            Message message = new MimeMessage(_getSession());
-
-            message.setFrom(new InternetAddress("do-not-reply@paypal.com", "Cukes"));
-            message.setRecipients(Message.RecipientType.TO,
-                                  InternetAddress.parse(email.getTo()));
-
-            message.setRecipients(Message.RecipientType.BCC,
-                                  InternetAddress.parse("kugajjar@paypal.com"));
-
-            message.setSubject(email.getSubject());
-            message.setContent(email.getBody(), "text/html");
-
-            Transport.send(message);
-
-            LOG.info("Email sent successfully to '{}' with subject '{}'", email.getTo(), email.getSubject());
-
-            return "Success";
-
-
-        }
-        catch (MessagingException e)
-        {
-
-            throw new EmailException("Email sent fail", e);
-
-        }
-        catch (UnsupportedEncodingException e)
-        {
-            throw new EmailException("Email sent fail", e);
-        }
-
-    }
-
-    private Session _getSession()
-    {
-
-        Properties props = new Properties();
-
-        props.put("mail.debug", "true");
-        props.put("mail.smtp.host", "atom.corp.ebay.com");
-        props.put("mail.transport.protocol", "smtp");
-
-        return Session.getInstance(props,
-                                   null);
-    }
-
 }

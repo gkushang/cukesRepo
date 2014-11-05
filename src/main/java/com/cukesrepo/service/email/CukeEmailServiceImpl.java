@@ -55,11 +55,7 @@ public class CukeEmailServiceImpl implements CukeEmailService
 
         Email email = _emailComponent.getReviewCommentEmailTemplateFor(project, feature, scenarioDescription, comment);
 
-        System.out.println("aadfasfas dsfasdfsa ");
-        new EmailComponent(email).run();
-        System.out.println("done");
-//        return _send(email);
-        return "";
+        return _send(email);
     }
 
     private String _send(Email email) throws EmailException

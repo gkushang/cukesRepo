@@ -113,11 +113,13 @@ public class ProjectRepositoryImpl implements ProjectRepository
         String repositoryPath = parameterMap.get("repositorypath")[0];
         String featuresPath = parameterMap.get("featurespath")[0];
         String emailTo = parameterMap.get("emailofpo")[0];
+        String collaborators = parameterMap.get("collaborators")[0];
 
         Validate.notEmpty(projectName, "Enter Project Name");
         Validate.notEmpty(repositoryPath, "Enter Github SSH Clone URL");
         Validate.notEmpty(featuresPath, "Enter Path to Features folder");
         Validate.notEmpty(emailTo, "Enter PO email address");
+        Validate.notEmpty(collaborators, "Enter collaborators email address");
 
         _validateEmail(emailTo);
 
@@ -126,6 +128,7 @@ public class ProjectRepositoryImpl implements ProjectRepository
         project.setRepositoryPath(repositoryPath);
         project.setFeaturesPath(featuresPath);
         project.setEmailPo(emailTo);
+        project.setCollaborators(collaborators);
 
 
         project.setId(projectId);

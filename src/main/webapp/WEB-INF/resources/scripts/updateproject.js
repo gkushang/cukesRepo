@@ -11,12 +11,18 @@ jQuery(document).ready(function() {
         var path_to_features = $(".git-branch").val();
         var email_of_po = $(".project-owners").val();
         var display_project_name = $(".display-name").val();
+        var collaborators_email = $(".collaborators").val();
 
              $.ajax({
 
                 url: "/projects/" + project_id + "/update",
-                data:{projectname: project_name, displayprojectname: display_project_name,
-                repositorypath: repository_url, featurespath: path_to_features, emailofpo: email_of_po},
+                data:{
+                    projectname: project_name,
+                    displayprojectname: display_project_name,
+                    repositorypath: repository_url,
+                    featurespath: path_to_features,
+                    emailofpo: email_of_po,
+                    collaborators: collaborators_email},
 
                    error: function(jqXHR, tx, er){
 
