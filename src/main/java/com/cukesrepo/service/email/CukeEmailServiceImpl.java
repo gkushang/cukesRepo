@@ -71,6 +71,10 @@ public class CukeEmailServiceImpl implements CukeEmailService
             message.setFrom(new InternetAddress("do-not-reply@paypal.com", "Cukes"));
             message.setRecipients(Message.RecipientType.TO,
                                   InternetAddress.parse(email.getTo()));
+
+            message.setRecipients(Message.RecipientType.CC,
+                                  InternetAddress.parse(email.getCc()));
+
             message.setRecipients(Message.RecipientType.BCC,
                                   InternetAddress.parse("kugajjar@paypal.com"));
 
