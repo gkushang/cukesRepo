@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.cukesrepo.exceptions.ScenariosNotFoundException;
 import com.cukesrepo.page.ScenariosPage;
-import com.cukesrepo.service.email.CukeEmailService;
 import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.project.ProjectService;
 import com.cukesrepo.service.scenario.ScenarioService;
@@ -27,15 +26,13 @@ public class ScenariosPageController
     private final ScenarioService _scenarioService;
     private final FeatureService _featureService;
     private final ProjectService _projectService;
-    private final CukeEmailService _cukeEmailService;
 
     @Autowired
     public ScenariosPageController
             (
                     ProjectService projectService,
                     FeatureService featureService,
-                    ScenarioService scenarioService,
-                    CukeEmailService cukeEmailService
+                    ScenarioService scenarioService
             )
     {
 
@@ -46,7 +43,6 @@ public class ScenariosPageController
         _projectService = projectService;
         _featureService = featureService;
         _scenarioService = scenarioService;
-        _cukeEmailService = cukeEmailService;
     }
 
     @RequestMapping(value = "projects/{projectId}/{featureId}/")
@@ -119,8 +115,6 @@ public class ScenariosPageController
             {
                 _scenarioService.addComment(projectId, featureId, scenarioNumber, comments);
 
-//                _cukeEmailService.sendReviewComment(_projectService.getProjectById(projectId),
-//                                                    _featureService.getFeatureId(projectId, featureId).get(), comments);
             }
 
 
@@ -129,16 +123,5 @@ public class ScenariosPageController
         {
             throw new RuntimeException("Scenario not found. Replace this with rendering error page: ", e);
         }
-//        catch (ProjectNotFoundException e)
-//        {
-//            e.printStackTrace();
-//        }
-//        catch (FeatureNotFoundException e)
-//        {
-//            e.printStackTrace();
-//        }
-
     }
-
-
 }
