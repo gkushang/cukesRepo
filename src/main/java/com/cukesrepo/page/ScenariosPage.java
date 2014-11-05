@@ -278,7 +278,8 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
             html.span(id("display-comment-box" + scenario.getNumber()))._span();
 
-            html.textarea(class_("comments-box").name("comments").id("comments" + scenario.getNumber()).cols("20").rows("3").style("display:none;"))
+            html.textarea(class_("comments-box")
+                                  .name("comments").id("comments" + scenario.getNumber()).cols("20").rows("3").style("display:none;"))
                     .content("").br()
             ;
 
