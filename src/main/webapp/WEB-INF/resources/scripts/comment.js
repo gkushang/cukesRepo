@@ -55,7 +55,6 @@ jQuery(document).ready(function() {
 
                                               send(data);
 
-
                                               function send(data){
 
                                                    $.ajax({
@@ -73,7 +72,7 @@ jQuery(document).ready(function() {
 
                                                    })};
 
-                                            }
+                          }
                     })
 
             });

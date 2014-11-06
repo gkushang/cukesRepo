@@ -72,7 +72,7 @@ public class ScenariosPageController
     }
 
 
-    @RequestMapping(value = {"/{projectId}/{featureId}/{scenarioNumber}/approve"})
+    @RequestMapping(value = {"/{projectId}/{featureId}/{scenarioNumber}/approve"}, method = RequestMethod.POST)
     @ResponseBody
     protected void approveScenario
             (
