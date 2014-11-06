@@ -115,4 +115,34 @@ public class EmailController
 
         }
     }
+
+
+    @RequestMapping(value = {"/{projectId}/{featureId}/{scenario_name}/send-email-approved"}, method = RequestMethod.POST)
+    @ResponseBody
+    public void sendApproved
+            (
+                    HttpServletRequest request,
+                    @PathVariable String projectId,
+                    @PathVariable String featureId,
+                    @PathVariable String scenario_name
+            ) throws IOException
+
+    {
+
+        try
+        {
+            _emailService.sendApproved(_projectService.getProjectById(projectId),
+                                       _featureService.getFeatureId(projectId, featureId).get(),
+                                       scenario_name);
+        }
+        catch (ProjectNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (FeatureNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+
+    }
 }

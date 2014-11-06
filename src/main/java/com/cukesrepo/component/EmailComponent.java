@@ -78,7 +78,7 @@ public class EmailComponent
         email.setTo(project.getCollaborators());
         email.setCc(project.getEmailPo());
 
-        LOG.info("getReviewEmailTemplateFor Subject '{}' and send email to '{}'", email.getSubject(), email.getTo());
+        LOG.info("getReviewComment TemplateFor Subject '{}' and send email to '{}'", email.getSubject(), email.getTo());
 
         return email;
 
@@ -88,5 +88,36 @@ public class EmailComponent
     {
         body += "_<br><a href=\"http://go/cukes\" style=font-size:9pt>go/cukes</a>";
         return body;
+    }
+
+    public Email getApprovedEmailTemplateFor(Project project, Feature feature, String scenarioName)
+    {
+        Email email = new Email();
+
+        email.setSubject("Re: Review request for " + feature.getName() + " feature: " + project.getName());
+
+        String body = "<BODY style=font-size:10.5pt;font-family:Calibri>";
+
+        body += "<div style=color:#1a894b,padding=10px 10px><b>Scenario is Approved!</b></div><br>";
+
+        String linkToFeature = "<b><a href=\"" +
+                _getFeatureFileUrl(project, feature) + "\">" +
+                feature.getName() + "</a></b><br><br>";
+
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>Scenario: " + scenarioName + "</div><br>";
+        body += "<div style=font-size:10.5pt;font-family:Calibri>Feature: " + linkToFeature + "</div><br>";
+
+        body = _getEmailFooter(body);
+
+        body += "</BODY>";
+
+        email.setBody(body);
+        email.setTo(project.getCollaborators());
+        email.setCc(project.getEmailPo());
+
+        LOG.info("getApprovedEmailTemplateFor Subject '{}' and send email to '{}'", email.getSubject(), email.getTo());
+
+        return email;
+
     }
 }

@@ -58,6 +58,15 @@ public class CukeEmailServiceImpl implements CukeEmailService
         return _send(email);
     }
 
+    @Override
+    public String sendApproved(Project project, Feature feature, String scenarioName)
+    {
+        Email email = _emailComponent.getApprovedEmailTemplateFor(project, feature, scenarioName);
+
+        return _send(email);
+
+    }
+
     private String _send(Email email) throws EmailException
     {
 
