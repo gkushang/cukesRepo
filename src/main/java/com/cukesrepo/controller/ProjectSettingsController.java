@@ -25,7 +25,6 @@ public class ProjectSettingsController
     private final FeatureService _featureService;
     private final ProjectService _projectService;
 
-
     @Autowired
     public ProjectSettingsController
             (
@@ -42,7 +41,6 @@ public class ProjectSettingsController
         _featureService = featureService;
         _projectService = projectService;
         _scenarioService = scenarioService;
-
     }
 
 

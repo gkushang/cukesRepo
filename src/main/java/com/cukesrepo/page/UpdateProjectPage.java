@@ -18,8 +18,11 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
 
     private final String _projectId;
     private final ProjectService _projectService;
+    private final String _isAddProjectEnabled;
 
-    public UpdateProjectPage(ProjectService projectService, String projectId)
+    public UpdateProjectPage(ProjectService projectService, String projectId,
+                             String isAddProjectEnabled)
+
     {
 
         Validate.notNull(projectService, "projectService cannot be null");
@@ -27,6 +30,7 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
 
         _projectService = projectService;
         _projectId = projectId;
+        _isAddProjectEnabled = isAddProjectEnabled;
 
     }
 
@@ -65,9 +69,16 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
             html.input(type("button").class_("cukes-button").id("update-project").style("float: left;")
                                .value("Save changes"))
                     .input(type("hidden").id("project-id").value(_projectId))
-                    .input(type("button").class_("cukes-button").id("delete-project").style("float: right;")
-                                   .value("Delete"))
-                    ._a();
+                    .a(class_("").href("/projects/")).input(type("button").class_("cukes-button").id("cancel-update").style("float: right;")
+                                                                    .value("Cancel"))._a()
+                    .br().br();
+            if (_isAddProjectEnabled.equals("true"))
+            {
+                html.input(type("button").class_("project-delete-button").id("delete-project").style("float: center;")
+                                   .value("Delete Project"));
+            }
+
+            html._a();
 
             html._h2();
             html._div();

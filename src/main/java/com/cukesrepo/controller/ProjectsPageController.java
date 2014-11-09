@@ -76,7 +76,7 @@ public class ProjectsPageController
             ) throws IOException
     {
 
-        html.render(new UpdateProjectPage(_projectService, projectId));
+        html.render(new UpdateProjectPage(_projectService, projectId, _isAddProjectEnabled));
 
     }
 }

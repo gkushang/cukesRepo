@@ -69,7 +69,5 @@ public class ProjectsPage extends HeaderFooter implements Renderable
         html._div();
         html._body()
                 ._html();
-
-
     }
 }
