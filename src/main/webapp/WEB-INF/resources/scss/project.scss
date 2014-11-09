@@ -67,6 +67,27 @@
     background-color: $white-background-color;
 }
 
+.project-delete-button
+{
+    background-color: #90d499;
+    border: medium none;
+    border-radius: 0;
+    box-shadow: none;
+    color: #eff9f1;
+    height:28px;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 0.07em;
+    line-height: 2.0;
+    min-width: 125px;
+    text-align: center;
+    text-shadow: none;
+    font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+    padding: 1px;
+    width: 100px;
+    align:center;
+}
 
 
 
