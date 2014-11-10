@@ -6,6 +6,8 @@ import java.net.UnknownHostException;
 public class Utils
 {
 
+    public final static String EMAIL_ELEMENT = "email-request";
+
     public static String getHostName()
     {
         java.net.InetAddress address = null;

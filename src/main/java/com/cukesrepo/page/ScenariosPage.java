@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.cukesrepo.domain.Example;
 import com.cukesrepo.domain.Feature;
+import com.cukesrepo.domain.FeatureStatus;
 import com.cukesrepo.domain.Project;
 import com.cukesrepo.domain.Row;
 import com.cukesrepo.domain.Scenario;
@@ -15,6 +16,7 @@ import com.cukesrepo.exceptions.ProjectNotFoundException;
 import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.project.ProjectService;
 import com.cukesrepo.service.scenario.ScenarioService;
+import com.cukesrepo.utils.Utils;
 import com.google.common.base.Joiner;
 import org.apache.commons.lang.Validate;
 import org.rendersnake.HtmlCanvas;
@@ -152,17 +154,38 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
     private void _addScenarioLinks(HtmlCanvas html) throws Throwable
     {
+        boolean isDiscussDisplay = false;
 
-        html.a(href("discuss/").id("discuss-navigate"));
-        html.input(type("button").class_("button-discuss").id("discuss")
-                           .value("Discuss"))._a();
+        if (_feature.getStatus().equalsIgnoreCase(FeatureStatus.UNDER_REVIEW.get()))
+        {
+            html.input(type("button").class_("button-discuss").id(Utils.EMAIL_ELEMENT).value("resend for review")
+                               .content(_feature.getId()));
+        }
+        else if (_feature.getStatus().equalsIgnoreCase(FeatureStatus.NEED_REVIEW.get()))
+        {
+            html.input(type("button").class_("button-discuss").id(Utils.EMAIL_ELEMENT).value("send for review")
+                               .content(_feature.getId()));
+
+        }
+        else
+        {
+            isDiscussDisplay = true;
+            html.a(class_("discuss-this-link").id("no-decoration").href("discuss/")).content("Discuss this feature");
+        }
 
         html.div(class_("feature_title").class_("background-color-cukes")).content("Feature: " + _feature.getName());
 
 
         if (_feature.getDescription() != null && !_feature.getDescription().isEmpty())
+        {
             html.textarea(class_("feature-description-box").name("feature-description").id("description").cols("20").rows("1").disabled("disable"))
                     .content(_feature.getDescription().trim());
+        }
+
+        if (!isDiscussDisplay)
+        {
+            html.a(class_("discuss-this-link").id("no-decoration").href("discuss/")).content("Discuss this feature");
+        }
 
         html.br();
         html.div(class_("scenario_links").class_("background-color-cukes")).content("Scenarios");
@@ -338,12 +361,6 @@ public class ScenariosPage extends HeaderFooter implements Renderable
                     scenario.getName());
     }
 
-    private void _addFeatureTitleHeader(HtmlCanvas html) throws IOException
-    {
-
-
-    }
-
     @Override
     public void renderOn(HtmlCanvas html)
     {
@@ -359,8 +376,6 @@ public class ScenariosPage extends HeaderFooter implements Renderable
             addScriptsAndStyleSheets(html);
 
             renderScenarioHeader(html, _project);
-
-            _addFeatureTitleHeader(html);
 
             addLeftNavigationPane(html, _projectId, _features);
 

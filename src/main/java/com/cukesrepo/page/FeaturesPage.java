@@ -10,6 +10,7 @@ import com.cukesrepo.exceptions.ProjectNotFoundException;
 import com.cukesrepo.exceptions.ScenariosNotFoundException;
 import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.scenario.ScenarioService;
+import com.cukesrepo.utils.Utils;
 import org.apache.commons.lang.Validate;
 import org.rendersnake.HtmlCanvas;
 import org.rendersnake.Renderable;
@@ -22,7 +23,6 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
     private final Project _project;
     private final FeatureService _featureService;
-    private final String EMAIL_ELEMENT = "email-request";
     private final ScenarioService _scenarioService;
 
 
@@ -108,12 +108,12 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
                 else if (feature.getStatus().equalsIgnoreCase(FeatureStatus.UNDER_REVIEW.get()))
                     html.td()
-                            .input(type("button").class_("cukes-button").id(EMAIL_ELEMENT).value("resend for review").content(feature.getId()))
+                            .input(type("button").class_("cukes-button").id(Utils.EMAIL_ELEMENT).value("resend for review").content(feature.getId()))
                             ._td();
 
                 else if (feature.getStatus().equalsIgnoreCase(FeatureStatus.NEED_REVIEW.get()))
                     html.td()
-                            .input(type("button").class_("cukes-button").id(EMAIL_ELEMENT).value("send for review").content(feature.getId()))
+                            .input(type("button").class_("cukes-button").id(Utils.EMAIL_ELEMENT).value("send for review").content(feature.getId()))
                             ._td();
 
                 html._tr();

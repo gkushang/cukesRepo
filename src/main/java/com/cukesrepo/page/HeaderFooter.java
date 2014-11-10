@@ -44,6 +44,7 @@ public class HeaderFooter
                 .macros().stylesheet("/../../resources/css/scenario.css")
 
                 .head().title().content("Cukes Repo")._head()
+//                .link(rel("icon").type("image/png").href("/resources/images/favicon.png"))
                 ._head();
     }
 
