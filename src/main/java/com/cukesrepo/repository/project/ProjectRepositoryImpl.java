@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 
@@ -158,6 +159,33 @@ public class ProjectRepositoryImpl implements ProjectRepository
         LOG.info("Delete entire project '{}'", projectId);
 
         _mongoTemplate.findAndRemove(new Query(Criteria.where(Project.ID).is(projectId)), Project.class);
+    }
+
+    @Override
+    public void updateLastUpdatedTime(String projectName, String lastUpdated) throws ProjectNotFoundException
+    {
+        _mongoTemplate.updateFirst
+                (
+                        _getQueryToFindProjectByName
+                                (
+                                        projectName
+                                ),
+
+                        Update.update
+                                (
+                                        Project.LAST_UPDATED, lastUpdated
+                                ),
+
+                        Project.class
+                );
+
+        LOG.info("Project '{}' updated at '{}'", projectName, lastUpdated);
+
+    }
+
+    private Query _getQueryToFindProjectByName(String projectName)
+    {
+        return new Query(Criteria.where(Project.NAME).is(projectName));
     }
 
 }

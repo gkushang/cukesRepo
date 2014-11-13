@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.cukesrepo.component.GitComponent;
+import com.cukesrepo.exceptions.ProjectNotFoundException;
 import org.apache.commons.lang.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,9 +30,9 @@ public class GitService
     }
 
     @Scheduled(fixedDelay = 30000)
-    public void reportCurrentTime() throws IOException, InterruptedException
+    public void reportCurrentTime() throws IOException, InterruptedException, ProjectNotFoundException
     {
-        System.out.println("The time is now " + dateFormat.format(new Date()));
+        LOG.info("The time is now " + dateFormat.format(new Date()));
         _gitComponent.pullCurrentBranch();
     }
 }

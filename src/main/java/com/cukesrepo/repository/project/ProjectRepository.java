@@ -8,7 +8,9 @@ import com.cukesrepo.domain.Project;
 import com.cukesrepo.exceptions.ProjectNotFoundException;
 import com.google.common.base.Optional;
 
-public interface ProjectRepository {
+
+public interface ProjectRepository
+{
 
     public List<Project> getProjects();
 
@@ -21,6 +23,8 @@ public interface ProjectRepository {
     public void updateProject(String projectId, Map<String, String[]> parameterMap);
 
     public void deleteProject(String projectId);
+
+    void updateLastUpdatedTime(String projectName, String time) throws ProjectNotFoundException;
 }
 
 

@@ -12,6 +12,7 @@ import com.cukesrepo.service.feature.FeatureService;
 import com.cukesrepo.service.scenario.ScenarioService;
 import com.cukesrepo.utils.Utils;
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
 import org.rendersnake.HtmlCanvas;
 import org.rendersnake.Renderable;
 
@@ -58,11 +59,22 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
         int alternate = 0;
 
+        String lastUpdated = _project.getLastUpdated();
+
+        if (StringUtils.isBlank(lastUpdated))
+        {
+            lastUpdated = StringUtils.EMPTY;
+        }
+
         html.html()
                 .body(class_("background-color-cukes"));
 
 
-        html.h2().div(id("feature-background-div")).span(id("feature-project-name-title")).content(_project.getName().toLowerCase())._div()._h2();
+        html.h2().div(id("feature-background-div")).
+                span(id("feature-project-name-title")).content(_project.getName().toLowerCase())
+
+                .h3().span(id("last-updated-time")).
+                content(lastUpdated)._h3()._div()._h2();
 
         html.div(class_("CSSTableGenerator"));
         html.table()

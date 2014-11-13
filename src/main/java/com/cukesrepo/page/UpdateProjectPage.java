@@ -66,10 +66,12 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
             html.input(type("text").class_("add-project project-owners").value(project.getEmailPo()).add("placeholder", "PO email address")).br().br();
 
             html.a(href("#").id("add-project-navigate"));
-            html.input(type("button").class_("cukes-button").id("update-project").style("float: left;")
-                               .value("Save changes"))
+            html
+                    .input(type("button").class_("cukes-button").id("update-project").style("float: right;")
+                                   .value("Save"))
                     .input(type("hidden").id("project-id").value(_projectId))
-                    .a(class_("").href("/projects/")).input(type("button").class_("cukes-button").id("cancel-update").style("float: right;")
+
+                    .a(class_("").href("/projects/")).input(type("button").class_("cukes-button").id("cancel-update").style("float: left;")
                                                                     .value("Cancel"))._a()
                     .br().br();
             if (_isAddProjectEnabled.equals("true"))

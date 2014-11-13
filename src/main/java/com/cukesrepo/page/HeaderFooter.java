@@ -54,11 +54,13 @@ public class HeaderFooter
         html.html()
                 .body(class_("background-color-cukes"))
                 .div(class_("cukes-logo bgColorA"))
-                .div(class_("pageTitle"))
+                .div(class_("cukesTitle"))
                 .span(class_("title"))
-                .content(" ")
+                .content("")
                 .span(class_("titlePart"))
-                .content(" ")
+                .content("")
+                ._div()
+                .div(class_("pageTitle"))
                 .a(class_("logo_image").src("/resources/images/logo.png").alt("logo"))
                 ._a()
                 .ul()
@@ -70,7 +72,6 @@ public class HeaderFooter
                 ._div()
                 ._div()
                 .div()._div();
-        ;
 
         html._body()
                 .html();

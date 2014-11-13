@@ -11,15 +11,44 @@
 
 }
 
+.cukesTitle
+{
+    float:left;
+    height: auto;
+    width: auto;
+    margin-top:-12px;
+}
+
 .pageTitle
 {
-
     float:right;
     height: auto;
     width: auto;
     margin-top:-12px;
 
 }
+
+.titlePart
+{
+    text-align:left;
+    font-size:15px;
+    color: #FFFFFF;
+    font-family: "Lucida Sans Unicode";
+    float:left;
+    margin-top:5%
+
+
+}
+.title
+{
+    text-align:left;
+    font-size:25px;
+    color: #AAAAAE;
+    font-family: "Lucida Sans Unicode";
+    font-weight:bold;
+    float:left;
+}
+
 
 .navigation-pane
 {

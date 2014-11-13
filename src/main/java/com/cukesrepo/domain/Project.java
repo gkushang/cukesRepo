@@ -10,6 +10,7 @@ public class Project
 {
 
     public static final String NAME = "name";
+    public static final String LAST_UPDATED = "last_updated";
     public static String ID = "_id";
 
     @Field(NAME)
@@ -29,6 +30,9 @@ public class Project
 
     @Id
     private String id;
+
+    @Field(LAST_UPDATED)
+    private String lastUpdated;
 
 
     public String getName()
@@ -89,5 +93,15 @@ public class Project
     public String getCollaborators()
     {
         return collaborators;
+    }
+
+    public void setLastUpdated(String lastUpdated)
+    {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public String getLastUpdated()
+    {
+        return lastUpdated;
     }
 }
