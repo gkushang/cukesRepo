@@ -32,18 +32,21 @@
 {
     text-align:left;
     font-size:15px;
-    color: #FFFFFF;
+    color: lightgray;
     font-family: "Lucida Sans Unicode";
     float:left;
-    margin-top:5%
+    margin-top:-15%;
+    margin-left:37%;
+    width: 100%;
 
 
 }
 .title
 {
     text-align:left;
-    font-size:25px;
-    color: #AAAAAE;
+    font-size:19px;
+    color: white;
+/*    color: #AAAAAE;*/
     font-family: "Lucida Sans Unicode";
     font-weight:bold;
     float:left;

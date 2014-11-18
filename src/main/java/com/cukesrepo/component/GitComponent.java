@@ -24,6 +24,9 @@ import gherkin.parser.Parser;
 import gherkin.util.FixJava;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
+import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -279,8 +282,9 @@ public class GitComponent
             while ((s = stdInput.readLine()) != null)
             {
                 LOG.info(s);
+                LOG.info("Current Time: " + _getCurrentTime());
 
-                _projectRepository.updateLastUpdatedTime(file.getName().split("\\.sh")[0], "last updated today at " + dateFormat.format(new Date()));
+                _projectRepository.updateLastUpdatedTime(file.getName().split("\\.sh")[0], "last updated today at " + _getCurrentTime());
             }
 
             while ((s = stdError.readLine()) != null)
@@ -288,6 +292,16 @@ public class GitComponent
                 LOG.error(s);
             }
         }
+    }
+
+    private String _getCurrentTime()
+    {
+        DateTimeZone dateTimeZone = DateTimeZone.forID("America/New_York");
+        DateTime dateTime = new DateTime(new Date());
+
+        return dateTime.
+                withZone(dateTimeZone).
+                toString(DateTimeFormat.forPattern("HH:mm:ss"));
     }
 
 }

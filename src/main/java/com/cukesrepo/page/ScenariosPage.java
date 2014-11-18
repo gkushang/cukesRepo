@@ -379,6 +379,8 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
             addLeftNavigationPane(html, _projectId, _features);
 
+            _addFeatureNavigators(html);
+
             _addScenarioLinks(html);
 
             _addTags(html, _feature.getTags());
@@ -402,5 +404,12 @@ public class ScenariosPage extends HeaderFooter implements Renderable
         }
 
 
+    }
+
+    private void _addFeatureNavigators(HtmlCanvas html) throws IOException
+    {
+//        html.div(class_("scenario-navigation")).p(class_("left-navigation").style("float: left;")).content("<")
+//                .p(class_("left-navigation").style("float: right;")).content(">")
+//                ._div();
     }
 }

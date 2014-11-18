@@ -256,4 +256,38 @@ div[class^=sclinks] {
   float:right;
 }
 
+.feature_title {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 18px;
+  color: #2C2CB4;
+  font-weight: bold;
+  text-align: left;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+  width:85%;
+      display:block;
+}
+
+
+.scenario-navigation
+{
+     width:107.3%;
+     text-align: left;
+     display: inline-block;
+     position: absolute;
+     margin-top:-2.75em;
+     margin-left:-1.4em;
+
+}
+
+.left-navigation
+{
+color: lightgray;
+}
+
+.right-navigation
+{
+color: red;
+}
+
 

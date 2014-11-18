@@ -98,7 +98,7 @@ public class EmailComponent
 
         String body = "<BODY style=font-size:10.5pt;font-family:Calibri>";
 
-        body += "<div style=color:#1a894b,padding=10px 10px><b>Scenario is Approved!</b></div><br>";
+        body += "<div style=color:#1a894b,padding=10px 10px><b>Approved!</b></div><br>";
 
         String linkToFeature = "<b><a href=\"" +
                 _getFeatureFileUrl(project, feature) + "\">" +
