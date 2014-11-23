@@ -170,7 +170,7 @@ public class ScenariosPage extends HeaderFooter implements Renderable
         else
         {
             isDiscussDisplay = true;
-            html.a(class_("discuss-this-link").id("no-decoration").href("discuss/")).content("Discuss this feature");
+            html.a(class_("discuss-this-link").id("no-decoration").href("discuss/")).content("Discuss");
         }
 
         html.div(class_("feature_title").class_("background-color-cukes")).content("Feature: " + _feature.getName());
@@ -184,7 +184,7 @@ public class ScenariosPage extends HeaderFooter implements Renderable
 
         if (!isDiscussDisplay)
         {
-            html.a(class_("discuss-this-link").id("no-decoration").href("discuss/")).content("Discuss this feature");
+            html.a(class_("discuss-this-link").id("no-decoration").href("discuss/")).content("Discuss");
         }
 
         html.br();

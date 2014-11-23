@@ -6,14 +6,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.Project;
 import com.cukesrepo.domain.Scenario;
 import com.cukesrepo.exceptions.FeatureNotFoundException;
+import com.cukesrepo.exceptions.ProjectNotFoundException;
 import com.cukesrepo.exceptions.ScenariosNotFoundException;
+import com.cukesrepo.repository.project.ProjectRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import gherkin.formatter.JSONFormatter;
 import gherkin.parser.Parser;
@@ -36,12 +40,14 @@ public class GitComponent
 
     private static final Logger LOG = LoggerFactory.getLogger(GitComponent.class);
     private final String _gitShellScriptPath;
+    private final ProjectRepository _projectRepository;
 
     @Autowired
     public GitComponent
             (
                     @Value("${feature.file.path}") String featureFilePath,
-                    @Value("${git.shell.script.path}") String gitShellScriptPath
+                    @Value("${git.shell.script.path}") String gitShellScriptPath,
+                    ProjectRepository projectRepository
             )
     {
 
@@ -50,6 +56,7 @@ public class GitComponent
 
         _featureFilePath = featureFilePath;
         _gitShellScriptPath = gitShellScriptPath;
+        _projectRepository = projectRepository;
     }
 
     public List<Feature> fetchFeatures(Project project) throws FeatureNotFoundException
@@ -249,9 +256,11 @@ public class GitComponent
 
     }
 
-    public void pullCurrentBranch() throws InterruptedException, IOException
+    public void pullCurrentBranch() throws InterruptedException, IOException, ProjectNotFoundException
     {
         List<File> files = Utils.search(new File(_gitShellScriptPath), ".sh");
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
         for (File file : files)
         {
@@ -270,6 +279,8 @@ public class GitComponent
             while ((s = stdInput.readLine()) != null)
             {
                 LOG.info(s);
+
+                _projectRepository.updateLastUpdatedTime(file.getName().split("\\.sh")[0], "last updated today at " + dateFormat.format(new Date()));
             }
 
             while ((s = stdError.readLine()) != null)
