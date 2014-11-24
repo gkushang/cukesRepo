@@ -510,12 +510,3 @@ line-height: 1.7;
     height:40px;
     font-size:15px;
 }
-
-#update-error
-{
-    font-size:11px;
-    color:red;
-    padding:11px 10px;
-    margin:0em -0.8em;
-    font-family:Arial, sans-serif;;
-}

@@ -291,3 +291,16 @@ color: red;
 }
 
 
+a.full-abch
+{
+   background-color: #ffffff;
+   border-bottom: 1px solid #aaaaaa;
+   font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+   width: 1px;
+   font-size: 0.34em;
+   color: blue;
+   padding: -20px;
+   text-decoration: none;
+}
+
+

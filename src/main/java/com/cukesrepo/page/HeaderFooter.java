@@ -184,6 +184,9 @@ public class HeaderFooter
 
         html.div(class_("full-height"));
 
+//        html.li().a(href("/projects/").class_("full-abch")).span().content("<")._a()._li();
+//        html.li().a(href("/projects/").class_("full-abch")).span().content(">")._a()._li();
+//
         for (Feature feature : features)
         {
             html.li().a(href("/projects/" + projectId + "/" + feature.getId() + "/").class_("full-h")).span().content(feature.getName())._a()._li();

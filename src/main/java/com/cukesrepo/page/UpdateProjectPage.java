@@ -57,12 +57,24 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
             html.div(class_("add-project-div-title"));
             html.h2().span(id("update-add-title")).content("update project").br();
 
-            html.span(id("update-error")).content("");
-            html.input(type("text").class_("add-project project-name").value(project.getId()).add("placeholder", "Git Project Name").disabled("")).br().br();
-            html.input(type("text").class_("add-project display-name").value(project.getName()).add("placeholder", "Display Project Name")).br().br();
-            html.input(type("text").class_("add-project repository-path").value(project.getRepositoryPath()).add("placeholder", "Github SSH Clone URL")).br().br();
-            html.input(type("text").class_("add-project git-branch").value(project.getFeaturesPath()).add("placeholder", "Path to Features folder (path/to/features)")).br().br();
-            html.input(type("text").class_("add-project collaborators").value(project.getCollaborators()).add("placeholder", "Add Collaborators")).br().br();
+            html.span(id("update-error")).content("").br();
+
+            html.span(id("update-elements-name")).content("Project");
+            html.input(type("text").class_("add-project project-name").value(project.getId()).add("placeholder", "Git Project Name").disabled("")).br();
+
+            html.span(id("update-elements-name")).content("Project Name");
+            html.input(type("text").class_("add-project display-name").value(project.getName()).add("placeholder", "Display Project Name")).br();
+
+            html.span(id("update-elements-name")).content("Git Repository");
+            html.input(type("text").class_("add-project repository-path").value(project.getRepositoryPath()).add("placeholder", "Github SSH Clone URL")).br();
+
+            html.span(id("update-elements-name")).content("Path To Features");
+            html.input(type("text").class_("add-project git-branch").value(project.getFeaturesPath()).add("placeholder", "Path to Features folder (path/to/features)")).br();
+
+            html.span(id("update-elements-name")).content("Collaborators");
+            html.input(type("text").class_("add-project collaborators").value(project.getCollaborators()).add("placeholder", "Add Collaborators")).br();
+
+            html.span(id("update-elements-name")).content("PO");
             html.input(type("text").class_("add-project project-owners").value(project.getEmailPo()).add("placeholder", "PO email address")).br().br();
 
             html.a(href("#").id("add-project-navigate"));
