@@ -6,7 +6,7 @@ cukesRepo
 
 ### Important
 
-The prefered IDE is IntelliJ IDEA 12. Dependency and project setup sections are written for IDEA.
+The prefered IDE is IntelliJ IDEA 13. Dependency and project setup sections are written for IDEA.
 
 <br/>
 
@@ -81,35 +81,9 @@ The prefered IDE is IntelliJ IDEA 12. Dependency and project setup sections are 
     
         mongod
 
-3. RabbitMQ
-
-    3.1. Installation
-    
-        brew install rabbitmq
-        
-    3.2. Running the server
-    
-        rabbitmq-server
-
-4. Memcache
-
-    4.1. Installation
-
-        brew install memcached
-
-    4.2. Running the daemon
-        
-        memcached
-
 
 <br/>
 
-
-###Mocked services
-
-A Spring profile is used to inject mocks instead of the actual services for development. Beans defined in **/WEB-INF/config/mocks.xml** file
-have the 'primary' attribute set to 'true'. This will make Spring choose the beans here over any other beans of the same interface. Spring profile used for mocks is **ora.profiles.mock**.
-Refer to section 5.1. on how to enable the behavior. Additionally, you can add **src/mocks/java** path to your Source Folders under Module Settings.
 
 
 <br/>
