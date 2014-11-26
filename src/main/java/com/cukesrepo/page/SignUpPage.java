@@ -1,24 +1,25 @@
 package com.cukesrepo.page;
 
+import java.io.IOException;
+
 import com.cukesrepo.service.login.LoginService;
-import com.cukesrepo.service.project.ProjectService;
 import org.apache.commons.lang.Validate;
 import org.rendersnake.HtmlCanvas;
 import org.rendersnake.Renderable;
 
-import java.io.IOException;
-
 import static org.rendersnake.HtmlAttributesFactory.*;
-import static org.rendersnake.HtmlAttributesFactory.type;
+
 
 /**
  * Created by maduraisamy on 2/3/14.
  */
-public class SignUpPage extends HeaderFooter implements Renderable {
+public class SignUpPage extends HeaderFooter implements Renderable
+{
 
     public LoginService _loginService;
 
-    public SignUpPage(LoginService loginService) {
+    public SignUpPage(LoginService loginService)
+    {
 
         Validate.notNull(loginService, "loginService cannot be null");
 
@@ -27,11 +28,12 @@ public class SignUpPage extends HeaderFooter implements Renderable {
     }
 
     @Override
-    public void renderOn(HtmlCanvas html) throws IOException {
+    public void renderOn(HtmlCanvas html) throws IOException
+    {
 
         addScriptsAndStyleSheets(html);
 
-        renderHeader(html);
+        renderHeader(html, "signUpPage");
 
         html.html()
                 .body();
@@ -50,7 +52,7 @@ public class SignUpPage extends HeaderFooter implements Renderable {
 
         html.a(href("#").id("sign-up-navigate"));
         html.input(type("button").class_("cukes-button-add-p").id("sign-up").style("float: left;")
-                .value("SignUp"))._a();
+                           .value("SignUp"))._a();
 
         html._h2();
         html._div();

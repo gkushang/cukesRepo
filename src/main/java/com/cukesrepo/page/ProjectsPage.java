@@ -33,7 +33,7 @@ public class ProjectsPage extends HeaderFooter implements Renderable
 
         addScriptsAndStyleSheets(html);
 
-        renderHeader(html);
+        renderHeader(html, "projectsPage");
 
         html.html()
                 .body(class_("background-color-cukes"));

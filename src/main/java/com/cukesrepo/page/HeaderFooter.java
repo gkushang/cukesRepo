@@ -48,7 +48,7 @@ public class HeaderFooter
                 ._head();
     }
 
-    protected void renderHeader(HtmlCanvas html) throws IOException
+    protected void renderHeader(HtmlCanvas html, String headerType) throws IOException
     {
 
         html.html()
@@ -62,13 +62,23 @@ public class HeaderFooter
                 ._div()
                 .div(class_("pageTitle"))
                 .a(class_("logo_image").src("/resources/images/logo.png").alt("logo"))
-                ._a()
-                .ul()
-                .li()
+                ._a();
+
+
+        html.nav(class_("site-navigation"));
+        html.ul(class_("menu"));
+
+        if (headerType.equalsIgnoreCase("featuresPage"))
+        {
+
+        }
+
+        html.li()
                 .a(href("/projects/").class_("full"))
                 .content("Home")
                 ._li()
                 ._ul()
+                ._nav()
                 ._div()
                 ._div()
                 .div()._div();
