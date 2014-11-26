@@ -51,7 +51,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
     {
 
         addScriptsAndStyleSheets(html);
-        renderHeader(html);
+        renderHeader(html, "featuresPage");
 
         int cumulativeScenarios = 0;
 

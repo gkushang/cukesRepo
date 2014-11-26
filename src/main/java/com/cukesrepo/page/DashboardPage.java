@@ -1,20 +1,23 @@
 package com.cukesrepo.page;
 
+import java.io.IOException;
+
 import org.rendersnake.HtmlCanvas;
 import org.rendersnake.Renderable;
 
-import java.io.IOException;
-
 import static org.rendersnake.HtmlAttributesFactory.id;
 
-public class DashboardPage extends HeaderFooter implements Renderable {
+
+public class DashboardPage extends HeaderFooter implements Renderable
+{
 
 
     @Override
-    public void renderOn(HtmlCanvas html) throws IOException {
+    public void renderOn(HtmlCanvas html) throws IOException
+    {
 
         addScriptsAndStyleSheets(html);
-        renderHeader(html);
+        renderHeader(html, "dashboardPage");
 
         html
                 .div(id("chartContainer1").style("height: 400px;width: 400px;display: inline-block;position:absolute;left:320px").class_("shadow"))

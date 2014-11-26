@@ -47,7 +47,7 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
 
             addScriptsAndStyleSheets(html);
 
-            renderHeader(html);
+            renderHeader(html, "updateProjectPage");
 
             html.html()
                     .body();
@@ -68,14 +68,29 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
             html.span(id("update-elements-name")).content("Git Repository");
             html.input(type("text").class_("add-project repository-path").value(project.getRepositoryPath()).add("placeholder", "Github SSH Clone URL")).br();
 
-            html.span(id("update-elements-name")).content("Path To Features");
-            html.input(type("text").class_("add-project git-branch").value(project.getFeaturesPath()).add("placeholder", "Path to Features folder (path/to/features)")).br();
+//            html.span(id("update-elements-name")).content("Path To Features");
+//            html.input(type("text").class_("add-project git-branch").value("").add("placeholder", "Path to Features folder (path/to/features)")).br();
 
             html.span(id("update-elements-name")).content("Collaborators");
             html.input(type("text").class_("add-project collaborators").value(project.getCollaborators()).add("placeholder", "Add Collaborators")).br();
 
             html.span(id("update-elements-name")).content("PO");
             html.input(type("text").class_("add-project project-owners").value(project.getEmailPo()).add("placeholder", "PO email address")).br().br();
+
+            html.br();
+            html.div(class_("fusion-test-job-div"));
+            html.div(class_("fusion-test-job-title")).span(id("test-job-title")).content("Fusion Test Jobs")._div().br();
+
+            html.span(id("update-elements-name")).content("P1 Test");
+            html.input(type("text").class_("add-project p1-test-job").value(project.getP1TestJob()).add("placeholder", "P1 Fusion Test Job Url")).br();
+
+            html.span(id("update-elements-name")).content("Acceptance Test");
+            html.input(type("text").class_("add-project acceptance-test-job").value(project.getAcceptance()).add("placeholder", "Acceptance Fusion Test Job Url")).br();
+
+            html.span(id("update-elements-name")).content("End to End Test");
+            html.input(type("text").class_("add-project e2e-test-job").value(project.getE2e()).add("placeholder", "End to End Fusion Test Job Url")).br();
+
+            html._div();
 
             html.a(href("#").id("add-project-navigate"));
             html
@@ -96,7 +111,6 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
 
             html._h2();
             html._div();
-
 
             html._body()
                     ._html();

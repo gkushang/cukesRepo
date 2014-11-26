@@ -56,10 +56,9 @@ public class ProjectRepositoryImpl implements ProjectRepository
         Project project = new Project();
         project.setName(parameterMap.get("displayprojectname")[0]);
         project.setRepositoryPath(parameterMap.get("repositorypath")[0]);
-        project.setFeaturesPath(parameterMap.get("featurespath")[0]);
         project.setEmailPo(parameterMap.get("emailofpo")[0]);
         project.setCollaborators(parameterMap.get("collaborators")[0]);
-        project.setId((parameterMap.get("projectname")[0]).toLowerCase());
+        project.setId((parameterMap.get("projectname")[0]));
 
         LOG.info("Adding project '{}'", project.getName());
 
@@ -112,13 +111,15 @@ public class ProjectRepositoryImpl implements ProjectRepository
 
         String projectName = parameterMap.get("projectname")[0];
         String repositoryPath = parameterMap.get("repositorypath")[0];
-        String featuresPath = parameterMap.get("featurespath")[0];
         String emailTo = parameterMap.get("emailofpo")[0];
         String collaborators = parameterMap.get("collaborators")[0];
 
+        String p1 = parameterMap.get("p1")[0];
+        String acceptance = parameterMap.get("acceptance")[0];
+        String e2e = parameterMap.get("e2e")[0];
+
         Validate.notEmpty(projectName, "Enter Project Name");
         Validate.notEmpty(repositoryPath, "Enter Github SSH Clone URL");
-        Validate.notEmpty(featuresPath, "Enter Path to Features folder");
         Validate.notEmpty(emailTo, "Enter PO email address");
         Validate.notEmpty(collaborators, "Enter collaborators email address");
 
@@ -127,9 +128,11 @@ public class ProjectRepositoryImpl implements ProjectRepository
         Project project = new Project();
         project.setName(projectName);
         project.setRepositoryPath(repositoryPath);
-        project.setFeaturesPath(featuresPath);
         project.setEmailPo(emailTo);
         project.setCollaborators(collaborators);
+        project.setP1TestJob(p1);
+        project.setAcceptanceTestJob(acceptance);
+        project.setE2eTestJob(e2e);
 
 
         project.setId(projectId);

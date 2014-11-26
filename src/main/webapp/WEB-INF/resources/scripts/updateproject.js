@@ -8,10 +8,13 @@ jQuery(document).ready(function() {
         var project_id = $("#project-id").val();
         var project_name = $(".display-name").val();
         var repository_url = $(".repository-path").val();
-        var path_to_features = $(".git-branch").val();
         var email_of_po = $(".project-owners").val();
         var display_project_name = $(".display-name").val();
         var collaborators_email = $(".collaborators").val();
+
+        var p1_test_job = $(".p1-test-job").val();
+        var acceptance_test_job = $(".acceptance-test-job").val();
+        var e2e_test_job = $(".e2e-test-job").val();
 
              $.ajax({
 
@@ -20,9 +23,11 @@ jQuery(document).ready(function() {
                     projectname: project_name,
                     displayprojectname: display_project_name,
                     repositorypath: repository_url,
-                    featurespath: path_to_features,
                     emailofpo: email_of_po,
-                    collaborators: collaborators_email},
+                    collaborators: collaborators_email,
+                    p1: p1_test_job,
+                    acceptance:acceptance_test_job,
+                    e2e:e2e_test_job},
 
                    error: function(jqXHR, tx, er){
 
