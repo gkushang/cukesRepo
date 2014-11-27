@@ -106,7 +106,7 @@ public class HeaderFooter
     {
         if (StringUtils.isNotBlank(testReportUrl))
         {
-            html.li(class_("sub-menu")).a(class_("s-menu test-link").href(testReportUrl)).content(testReportTitle)._li();
+            html.li(class_("sub-menu")).a(class_("s-menu test-link").href(testReportUrl).target("_blank")).content(testReportTitle)._li();
         }
     }
 

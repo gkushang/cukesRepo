@@ -79,16 +79,16 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
 
             html.br();
             html.div(class_("fusion-test-job-div"));
-            html.div(class_("fusion-test-job-title")).span(id("test-job-title")).content("Fusion Test Reports")._div().br();
+            html.div(class_("fusion-test-job-title")).span(id("test-job-title")).content("Test Reports")._div().br();
 
             html.span(id("update-elements-name")).content("P1 Test");
-            html.input(type("text").class_("add-project p1-test-job").value(project.getP1TestJob()).add("placeholder", "path to Fusion P1 Test report")).br();
+            html.input(type("text").class_("add-project p1-test-job").value(project.getP1TestJob()).add("placeholder", "path to P1 Test report")).br();
 
             html.span(id("update-elements-name")).content("Acceptance Test");
-            html.input(type("text").class_("add-project acceptance-test-job").value(project.getAcceptance()).add("placeholder", "path to Fusion Acceptance Test report")).br();
+            html.input(type("text").class_("add-project acceptance-test-job").value(project.getAcceptance()).add("placeholder", "path to Acceptance Test report")).br();
 
             html.span(id("update-elements-name")).content("End to End Test");
-            html.input(type("text").class_("add-project e2e-test-job").value(project.getE2e()).add("placeholder", "path to Fusion E2E Test report")).br();
+            html.input(type("text").class_("add-project e2e-test-job").value(project.getE2e()).add("placeholder", "path to E2E Test report")).br();
 
             html._div();
 
