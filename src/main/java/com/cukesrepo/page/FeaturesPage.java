@@ -42,6 +42,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
         _featureService = featureService;
         _project = project;
         _scenarioService = scenarioService;
+        super.setProject(project);
 
     }
 

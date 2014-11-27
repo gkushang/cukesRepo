@@ -14,6 +14,7 @@ import static org.rendersnake.HtmlAttributesFactory.*;
 public class HeaderFooter
 {
 
+    private Project _project;
 
     protected void addScriptsAndStyleSheets(HtmlCanvas html) throws IOException
     {
@@ -70,9 +71,9 @@ public class HeaderFooter
             html.li(class_("sub-menu-l")).
                     a(class_("s-menu report-link").href("#")).content("Test Reports").
                     ul().
-                    li(class_("sub-menu")).a(class_("s-menu test-link").href("#")).content("P1")._li().
-                    li(class_("sub-menu")).a(class_("s-menu test-link").href("#")).content("Acceptance")._li().
-                    li(class_("sub-menu")).a(class_("s-menu test-link").href("#")).content("E2E")._li().
+                    li(class_("sub-menu")).a(class_("s-menu test-link").href(_project.getP1TestJob())).content("P1")._li().
+                    li(class_("sub-menu")).a(class_("s-menu test-link").href(_project.getAcceptance())).content("Acceptance")._li().
+                    li(class_("sub-menu")).a(class_("s-menu test-link").href(_project.getE2e())).content("E2E")._li().
                     _ul().
                     _li();
         }
@@ -119,7 +120,7 @@ public class HeaderFooter
                 ._div()
                 ._div()
                 .div()._div();
-        ;
+
 
         html._body()
                 .html();
@@ -207,6 +208,11 @@ public class HeaderFooter
         html._div();
         html.div(id("main-low"));
         html.br();
+    }
+
+    public void setProject(Project project)
+    {
+        _project = project;
     }
 
 
