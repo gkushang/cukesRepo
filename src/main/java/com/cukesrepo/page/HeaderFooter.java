@@ -68,11 +68,11 @@ public class HeaderFooter
         if (headerType.equalsIgnoreCase("featuresPage"))
         {
             html.li(class_("sub-menu-l")).
-                    a(class_("s-menu").href("#")).content("Test Reports").
+                    a(class_("s-menu report-link").href("#")).content("Test Reports").
                     ul().
-                    li(class_("sub-menu")).a(class_("s-menu").href("#")).content("P1")._li().
-                    li(class_("sub-menu")).a(class_("s-menu").href("#")).content("Acceptance")._li().
-                    li(class_("sub-menu")).a(class_("s-menu").href("#")).content("E2E")._li().
+                    li(class_("sub-menu")).a(class_("s-menu test-link").href("#")).content("P1")._li().
+                    li(class_("sub-menu")).a(class_("s-menu test-link").href("#")).content("Acceptance")._li().
+                    li(class_("sub-menu")).a(class_("s-menu test-link").href("#")).content("E2E")._li().
                     _ul().
                     _li();
         }
