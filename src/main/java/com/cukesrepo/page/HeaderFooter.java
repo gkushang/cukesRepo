@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.Project;
+import org.apache.commons.lang3.StringUtils;
 import org.rendersnake.HtmlCanvas;
 
 import static org.rendersnake.HtmlAttributesFactory.*;
@@ -70,12 +71,21 @@ public class HeaderFooter
         {
             html.li(class_("sub-menu-l")).
                     a(class_("s-menu report-link").href("#")).content("Test Reports").
-                    ul().
-                    li(class_("sub-menu")).a(class_("s-menu test-link").href(_project.getP1TestJob())).content("P1")._li().
-                    li(class_("sub-menu")).a(class_("s-menu test-link").href(_project.getAcceptance())).content("Acceptance")._li().
-                    li(class_("sub-menu")).a(class_("s-menu test-link").href(_project.getE2e())).content("E2E")._li().
-                    _ul().
-                    _li();
+                    ul();
+
+            _addTestReport(html, _project.getP1TestJob(), "P1");
+            _addTestReport(html, _project.getAcceptance(), "Acceptance");
+            _addTestReport(html, _project.getE2e(), "E2E");
+
+            if (StringUtils.isBlank(_project.getP1TestJob()) &&
+                    StringUtils.isBlank(_project.getAcceptance()) &&
+                    StringUtils.isBlank(_project.getE2e()))
+            {
+                html.li(class_("sub-menu")).a(class_("s-menu test-link").href("/projects/" + _project.getId() + "/settings"))
+                        .content("Add Reports (+)")._li();
+            }
+            html._ul();
+            html._li();
         }
 
         html.
@@ -90,6 +100,14 @@ public class HeaderFooter
                 .html();
 
 
+    }
+
+    private void _addTestReport(HtmlCanvas html, String testReportUrl, String testReportTitle) throws IOException
+    {
+        if (StringUtils.isNotBlank(testReportUrl))
+        {
+            html.li(class_("sub-menu")).a(class_("s-menu test-link").href(testReportUrl)).content(testReportTitle)._li();
+        }
     }
 
     protected void renderScenarioHeader(HtmlCanvas html, Project project) throws IOException
