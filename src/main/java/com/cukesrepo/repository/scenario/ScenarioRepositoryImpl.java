@@ -118,11 +118,16 @@ public class ScenarioRepositoryImpl implements ScenarioRepository
     public List<Scenario> fetchScenarios(Project project, String featureId) throws ProjectNotFoundException, ScenariosNotFoundException
     {
 
-        LOG.info("Fetch scenarios for project '{}' feture '{}'", project.getName(), featureId);
+        LOG.info("Fetch scenarios for project '{}' feature '{}'", project.getName(), featureId);
 
         List<Scenario> gitScenarios = _gitComponent.fetchScenarios(project, featureId);
 
+        LOG.info("fetchScenarios No. of Scenarios found from feature files are '{}' for project '{}' and featureId '{}'", gitScenarios.size(),
+                 project.getId(), featureId);
+
         insertScenarios(project.getId(), featureId, gitScenarios);
+
+        LOG.info("Scenario inserted !");
 
         return _mongoTemplate.find(_queryToFindAllScenarios(project.getId(), featureId), Scenario.class);
 

@@ -1,7 +1,7 @@
 .cukes-logo
 {
     text-align:center;
-    /*font-size:50px;*/
+
     padding:20px;
     color: #87e89a;
     font-weight:bold;
@@ -19,14 +19,7 @@
     margin-top:-12px;
 }
 
-.pageTitle
-{
-    float:right;
-    height: auto;
-    width: auto;
-    margin-top:-12px;
 
-}
 
 .titlePart
 {
@@ -46,7 +39,6 @@
     text-align:left;
     font-size:19px;
     color: white;
-/*    color: #AAAAAE;*/
     font-family: "Lucida Sans Unicode";
     font-weight:bold;
     float:left;
@@ -56,7 +48,6 @@
 .navigation-pane
 {
     width:100%;
-    /*background-color:#A7C942;*/
     background-color:#47dc89;
 }
 
@@ -80,10 +71,7 @@ a.full:hover
 
 a.full
 {
-    /*width:100%;
-    background-color:#47dc89;*/
     font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
-    /*display:inline-block;*/
 
     font-weight:bold;
     font-size:0.80em;
@@ -97,6 +85,10 @@ a.full
     list-style-type:none;
     float:right;
     margin-left:40px;
+
+    display: inline-block;
+    white-space:nowrap;
+
 }
 
 /*4f5752*/
@@ -144,3 +136,88 @@ margin-left:0;
   left: 100%;
 }
 
+.pageTitle
+{
+    float:right;
+    height: auto;
+    width:auto;
+    margin-top:-12px;
+    margin-right: 0px;
+}
+
+ /*===============================================*/
+
+ul
+{
+    padding: 0;
+    list-style: none;
+}
+
+ul li.sub-menu
+{
+    width: 100%;
+    height:10px;
+    line-height: 4px;
+    padding: 10px 10px 10px 3px;
+
+    margin-right:1px;
+    font-size:14;
+    text-align:left;
+    background: #86d090;
+    position: relative;
+  	z-index:310;
+
+overflow-x: auto;
+overflow-y: auto;
+}
+
+ul li.sub-menu-l
+{
+    display: inline-block;
+    float: left;
+    width: 100px;
+    text-align: center;
+    line-height: 21px;
+    padding: 0px 0px 0px 40px;
+    overflow:hidden;
+    margin-top:-2.6px;
+    margin-right:19.5px;
+}
+
+ul li a.s-menu
+{
+
+    padding: 5px 10px;
+    text-decoration: none;
+    display: inline-block;
+    white-space:nowrap;
+
+    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+
+    font-weight:bold;
+    font-size:0.80em;
+    color:white;
+
+    text-decoration:none;
+    text-transform:uppercase;
+    text-align:left;
+
+    margin-left:-6px;
+
+ }
+
+ul li a:hover
+{
+
+}
+
+ul li ul
+{
+    display: none;
+}
+
+ul li:hover ul
+{
+    display: block;
+
+}

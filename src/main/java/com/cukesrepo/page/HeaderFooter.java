@@ -61,24 +61,26 @@ public class HeaderFooter
                 .content("")
                 ._div()
                 .div(class_("pageTitle"))
-                .a(class_("logo_image").src("/resources/images/logo.png").alt("logo"))
-                ._a();
+                .a(class_("logo_image").src("/resources/images/logo.png").alt("logo"))._a();
 
-
-        html.nav(class_("site-navigation"));
-        html.ul(class_("menu"));
+        html.ul();
 
         if (headerType.equalsIgnoreCase("featuresPage"))
         {
-
+            html.li(class_("sub-menu-l")).
+                    a(class_("s-menu").href("#")).content("Test Reports").
+                    ul().
+                    li(class_("sub-menu")).a(class_("s-menu").href("#")).content("P1")._li().
+                    li(class_("sub-menu")).a(class_("s-menu").href("#")).content("Acceptance")._li().
+                    li(class_("sub-menu")).a(class_("s-menu").href("#")).content("E2E")._li().
+                    _ul().
+                    _li();
         }
 
-        html.li()
-                .a(href("/projects/").class_("full"))
-                .content("Home")
-                ._li()
-                ._ul()
-                ._nav()
+        html.
+                li().a(href("/projects/").class_("full")).content("Home").
+                _li().
+                _ul()
                 ._div()
                 ._div()
                 .div()._div();
