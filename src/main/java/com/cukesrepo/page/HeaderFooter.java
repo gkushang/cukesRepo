@@ -37,8 +37,10 @@ public class HeaderFooter
                 .macros().stylesheet("/../../resources/css/headerfooter.css")
                 .macros().stylesheet("/../../resources/css/cukes.css")
                 .macros().stylesheet("/../../resources/css/discussion.css")
+                .macros().stylesheet("/../../resources/css/feedback.css")
                 .macros().javascript("/../../resources/scripts/save_discussion.js")
                 .macros().javascript("/../../resources/scripts/cancel_discussion.js")
+                .macros().javascript("/../../resources/scripts/sendfeedback.js")
 
                 .macros().stylesheet("/../../resources/css/project.css")
                 .macros().stylesheet("/../../resources/css/common.css")
@@ -99,6 +101,15 @@ public class HeaderFooter
         html._body()
                 .html();
 
+
+    }
+
+    public void renderFooter(HtmlCanvas html) throws IOException
+    {
+        html.footer().div(class_("footer"))
+                .a(href("/feedback/").class_("feedback").id("no-decoration")).content("Feedback")
+                ._div()
+                ._footer();
 
     }
 
@@ -226,6 +237,7 @@ public class HeaderFooter
         html._div();
         html.div(id("main-low"));
         html.br();
+
     }
 
     public void setProject(Project project)

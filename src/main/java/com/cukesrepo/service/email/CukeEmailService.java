@@ -13,6 +13,8 @@ public interface CukeEmailService
     String sendReviewComment(Project project, Feature feature, String scenarioName, String comment) throws EmailException;
 
     String sendApproved(Project projectById, Feature feature, String scenario_name);
+
+    String sendFeedback(String comments);
 }
 
 

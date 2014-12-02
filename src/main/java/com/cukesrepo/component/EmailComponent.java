@@ -120,4 +120,31 @@ public class EmailComponent
         return email;
 
     }
+
+    public Email getFeedbackEmailTemplate(String comments)
+    {
+
+        Email email = new Email();
+
+        email.setSubject("Feedback");
+
+        String body = "<BODY style=font-size:10.5pt;font-family:Calibri>";
+
+        body += "<div style=color:#1a894b,padding=10px 10px><b>Feedback:</b></div><br>";
+
+
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>" + comments + "</div><br>";
+
+        body = _getEmailFooter(body);
+
+        body += "</BODY>";
+
+        email.setBody(body);
+        email.setTo("kugajjar@paypal.com");
+
+        LOG.info("getFeedbackEmailTemplate Subject '{}' and send email to '{}'", email.getSubject(), email.getTo());
+
+        return email;
+
+    }
 }

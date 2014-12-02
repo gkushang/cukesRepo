@@ -1,0 +1,107 @@
+div.feedback-outer
+{
+
+    width: 100%;
+    height: 100%;
+
+    border: 1px solid white;
+
+    position: relative;
+    text-align:center;
+
+    width:100%;
+    height:100%;
+    display:block;
+    margin-top:60px;
+}
+
+div.feedback-send
+{
+ text-align:right;
+ margin-top:1px;
+}
+
+div.feedback-inner
+{
+
+    width: 50%;
+    height: 80%;
+
+    text-align:left;
+    position: relative;
+
+    margin: 0 auto;
+    position: relative;
+
+}
+
+.feedback-box-div
+{
+}
+
+.feedback_comment-text-area
+{
+
+     width:100%;
+
+     background: #fffffe;
+     border: 1px solid #e0e9db;
+
+     outline: none;
+     overflow: auto;
+
+     line-height: 1.7;
+
+     height:25em;
+
+     display: block;
+
+     max-width: 100%;
+     max-height: 60%;
+
+     padding: 10px 0px 0px 10px;
+
+     position: relative;
+}
+
+.urfdbk
+{
+     margin-top:15px;
+}
+.feedback-elements
+{
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+     text-align:left;
+     font-weight:normal;
+
+         font-size:11px;
+         color:#525252;
+
+         margin:0px;
+         padding-top:-10px;
+         font-weight:bold;
+         font-family:Helvetica Neue;
+
+}
+
+#feedback-add-title
+{
+
+   font-family: "Helvetica Neue";
+   font-size: 18px;
+   text-align: left;
+   font-color:green;
+}
+
+div.feedback-margin
+{
+ padding: 10px 10px 10px;
+}
+
+.feedback-title-div
+{
+ background-color:#e4f0e6;
+
+}

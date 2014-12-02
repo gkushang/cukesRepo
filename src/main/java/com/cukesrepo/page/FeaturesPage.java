@@ -161,6 +161,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
         html.br();
         html.br();
         html.br();
+        renderFooter(html);
         html._body();
 
     }

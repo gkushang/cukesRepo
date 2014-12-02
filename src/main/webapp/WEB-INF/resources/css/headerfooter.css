@@ -227,3 +227,39 @@ ul li:hover ul
     display: block;
     margin-top:3.5px;
 }
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px; /* bottom = footer height */
+    padding: 25px;
+}
+
+.footer {
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 25px;
+    width: 100%;
+    overflow:hidden;
+    border-top: 1px solid #d4e7d7;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, white), color-stop(1, white) );
+
+   display: block;
+   text-align:right;
+
+}
+
+.feedback
+{
+   font-size:11px;
+   font-weight:400;
+   font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
+
+   padding:30em;
+}

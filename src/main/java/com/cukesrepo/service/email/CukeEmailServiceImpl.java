@@ -15,6 +15,7 @@ import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.Project;
 import com.cukesrepo.exceptions.EmailException;
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,15 @@ public class CukeEmailServiceImpl implements CukeEmailService
 
     }
 
+    @Override
+    public String sendFeedback(String comments)
+    {
+        Email email = _emailComponent.getFeedbackEmailTemplate(comments);
+
+        return _send(email);
+//        return "";
+    }
+
     private String _send(Email email) throws EmailException
     {
 
@@ -81,8 +91,11 @@ public class CukeEmailServiceImpl implements CukeEmailService
             message.setRecipients(Message.RecipientType.TO,
                                   InternetAddress.parse(email.getTo()));
 
-            message.setRecipients(Message.RecipientType.CC,
-                                  InternetAddress.parse(email.getCc()));
+            if (StringUtils.isNotBlank(email.getCc()))
+            {
+                message.setRecipients(Message.RecipientType.CC,
+                                      InternetAddress.parse(email.getCc()));
+            }
 
             message.setRecipients(Message.RecipientType.BCC,
                                   InternetAddress.parse("kugajjar@paypal.com"));

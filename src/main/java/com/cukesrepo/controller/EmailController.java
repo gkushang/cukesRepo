@@ -145,4 +145,22 @@ public class EmailController
         }
 
     }
+
+    @RequestMapping(value = {"/send-feedback"}, method = RequestMethod.POST)
+    @ResponseBody
+    public void sendReviewFeedback
+            (
+                    HttpServletRequest request
+            ) throws IOException
+
+    {
+        String comments = request.getParameter("comments");
+
+        if (StringUtils.isNotEmpty(comments))
+        {
+            _emailService.sendFeedback(comments);
+        }
+    }
+
+
 }

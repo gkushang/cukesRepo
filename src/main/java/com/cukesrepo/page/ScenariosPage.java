@@ -255,7 +255,6 @@ public class ScenariosPage extends HeaderFooter implements Renderable
         html.br();
         html.br();
         html._div();
-
         html.html();
     }
 
