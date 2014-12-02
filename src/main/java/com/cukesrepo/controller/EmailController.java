@@ -155,10 +155,11 @@ public class EmailController
 
     {
         String comments = request.getParameter("comments");
+        String feedbackType = request.getParameter("radioVal");
 
         if (StringUtils.isNotEmpty(comments))
         {
-            _emailService.sendFeedback(comments);
+            _emailService.sendFeedback(comments, feedbackType);
         }
     }
 

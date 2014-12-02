@@ -107,7 +107,7 @@ public class HeaderFooter
     public void renderFooter(HtmlCanvas html) throws IOException
     {
         html.footer().div(class_("footer"))
-                .a(href("/feedback/").class_("feedback").id("no-decoration")).content("Feedback")
+                .div(class_("feedback-div")).a(href("/feedback/").class_("feedback").id("no-decoration")).content("Feedback")._div()
                 ._div()
                 ._footer();
 

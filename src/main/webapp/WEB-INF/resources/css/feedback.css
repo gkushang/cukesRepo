@@ -68,6 +68,21 @@ div.feedback-inner
 {
      margin-top:15px;
 }
+
+.feedback-elements-radio
+{
+      display: inline;
+
+      font-weight:normal;
+
+      font-size:11px;
+      color:#3b4137;
+
+      margin-left:5px;
+      padding-top:-10px;
+      font-family:Helvetica Neue;
+}
+
 .feedback-elements
 {
      display: block;
@@ -79,7 +94,7 @@ div.feedback-inner
          font-size:11px;
          color:#525252;
 
-         margin:0px;
+
          padding-top:-10px;
          font-weight:bold;
          font-family:Helvetica Neue;
@@ -104,4 +119,48 @@ div.feedback-margin
 {
  background-color:#e4f0e6;
 
+}
+
+.email-sent
+{
+  margin-top:-10px;
+  font-size:16px;
+  font-family: "Helvetica Neue";
+  color:#749a5e;
+  padding:10px 10px 10px 100px;
+}
+
+
+.check-mark
+{
+    margin-right: 0.5em;
+    margin-bottom: -0.3em;
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    visibility: visible;
+    content:url("/resources/images/saved.png");
+    background-repeat: no-repeat;
+
+    width: 20px;
+        height: auto;
+}
+
+fieldset { overflow:hidden }
+
+.some-class
+{
+    margin-top:20px;
+    margin-bottom:0px;
+
+}
+
+
+#feedback-error
+{
+    font-size:12px;
+    font-weight:bold;
+    color:red;
+    padding:11px 10px;
+    margin:0em 0.3em;
+    font-family: "Helvetica Neue";
 }

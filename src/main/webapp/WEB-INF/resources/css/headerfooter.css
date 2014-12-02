@@ -244,7 +244,7 @@ body {
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 25px;
+    height: 30px;
     width: 100%;
     overflow:hidden;
     border-top: 1px solid #d4e7d7;
@@ -253,13 +253,18 @@ body {
    display: block;
    text-align:right;
 
+
+}
+
+.feedback-div
+{
+   margin-top:3px;
 }
 
 .feedback
 {
-   font-size:11px;
+   height:10px;
+   font-size:12px;
    font-weight:400;
    font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
-
-   padding:30em;
 }

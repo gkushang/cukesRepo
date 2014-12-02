@@ -14,7 +14,7 @@ public interface CukeEmailService
 
     String sendApproved(Project projectById, Feature feature, String scenario_name);
 
-    String sendFeedback(String comments);
+    String sendFeedback(String comments, String feedbackType);
 }
 
 

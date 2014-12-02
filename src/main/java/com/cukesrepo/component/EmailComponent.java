@@ -121,7 +121,7 @@ public class EmailComponent
 
     }
 
-    public Email getFeedbackEmailTemplate(String comments)
+    public Email getFeedbackEmailTemplate(String comments, String feedbackType)
     {
 
         Email email = new Email();
@@ -130,7 +130,7 @@ public class EmailComponent
 
         String body = "<BODY style=font-size:10.5pt;font-family:Calibri>";
 
-        body += "<div style=color:#1a894b,padding=10px 10px><b>Feedback:</b></div><br>";
+        body += "<div style=color:#1a894b,padding=10px 10px><b>" + feedbackType + ":</b></div><br>";
 
 
         body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>" + comments + "</div><br>";

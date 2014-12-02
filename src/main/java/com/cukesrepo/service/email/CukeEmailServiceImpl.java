@@ -69,9 +69,9 @@ public class CukeEmailServiceImpl implements CukeEmailService
     }
 
     @Override
-    public String sendFeedback(String comments)
+    public String sendFeedback(String comments, String feedbackType)
     {
-        Email email = _emailComponent.getFeedbackEmailTemplate(comments);
+        Email email = _emailComponent.getFeedbackEmailTemplate(comments, feedbackType);
 
         return _send(email);
 //        return "";
