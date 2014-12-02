@@ -138,7 +138,7 @@ div.feedback-margin
     border: 1px solid #FFFFFF;
     background-color: #FFFFFF;
     visibility: visible;
-    content:url("/resources/images/saved.png");
+    content:url("/resources/images/sent.png");
     background-repeat: no-repeat;
 
     width: 20px;
