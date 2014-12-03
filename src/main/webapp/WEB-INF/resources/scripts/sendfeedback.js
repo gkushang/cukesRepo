@@ -11,13 +11,13 @@ jQuery(document).ready(function() {
 
         var me = $(this);
 
-        var feedback_comment=$('.feedback_comment-text-area').val();
+        var feedback_comment=$('.feedback_comment-text-area').val().trim();
 
        $("#feedback-error").html('');
 
         var radioValue = $("input:radio[name=group1]:checked").val();
 
-        if((feedback_comment.length > 0))  {
+        if(feedback_comment.length > 0)  {
         me.val('...');
         }
 
@@ -30,12 +30,12 @@ jQuery(document).ready(function() {
                     radioVal: radioValue},
                     success: function(data) {
 
-                                                    if((feedback_comment.length == 0))  {
+                                                    if(feedback_comment.length == 0)  {
                                                      $("#feedback-error").html("Feedback can't be blank");
 
                                }
 
-                                if((feedback_comment.length > 0))  {
+                                if(feedback_comment.length > 0)  {
                                $('#send-feedback').hide();
                                $('#send-feedback').replaceWith( "<span class=\"email-sent\"><img class=\"check-mark\"/>Feedback Sent</span>" );
                                }
