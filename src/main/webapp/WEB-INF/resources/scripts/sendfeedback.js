@@ -31,7 +31,7 @@ jQuery(document).ready(function() {
                     success: function(data) {
 
                                                     if(feedback_comment.length == 0)  {
-                                                     $("#feedback-error").html("Feedback can't be blank");
+                                                     $("#feedback-error").html("feedback can't be blank");
 
                                }
 
