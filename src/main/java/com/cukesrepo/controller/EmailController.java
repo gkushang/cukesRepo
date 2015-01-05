@@ -193,7 +193,7 @@ public class EmailController
     @ResponseBody
     protected void persistProject(HttpServletRequest request) throws IOException
     {
-//        _projectService.addProject(request.getParameterMap());
+        _projectService.addProject(request.getParameterMap());
         _emailService.sendProjectAddedEmail(request.getParameterMap());
 
     }
