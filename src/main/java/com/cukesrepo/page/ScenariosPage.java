@@ -318,17 +318,23 @@ public class ScenariosPage extends HeaderFooter implements Renderable
             int totalScenarios = scenario.getTotalScenariosFromExampleTable();
 
             if (totalScenarios > 1)
+            {
 
                 html.input(type("button").class_("cukes-button").id("approve").content(Integer.toString(scenario.getNumber()))
                                    .value("Approve " + totalScenarios + " scenarios"))
                         .input(type("hidden").id("projectId").value(_projectId))
-                        .input(type("hidden").id("featureId").value(_feature.getId()));
+                        .input(type("hidden").id("featureId").value(_feature.getId()))
+                        .input(type("hidden").id("scenario-name-" + Integer.toString(scenario.getNumber())).value(scenario.getName()));
+            }
             else
+            {
 
                 html.input(type("button").class_("cukes-button").id("approve").content(Integer.toString(scenario.getNumber()))
                                    .value("Approve scenario"))
                         .input(type("hidden").id("projectId").value(_projectId))
-                        .input(type("hidden").id("featureId").value(_feature.getId()));
+                        .input(type("hidden").id("featureId").value(_feature.getId()))
+                        .input(type("hidden").id("scenario-name-" + Integer.toString(scenario.getNumber())).value(scenario.getName()));
+            }
 
         }
 
