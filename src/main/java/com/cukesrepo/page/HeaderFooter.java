@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.Project;
+import org.apache.commons.lang3.StringUtils;
 import org.rendersnake.HtmlCanvas;
 
 import static org.rendersnake.HtmlAttributesFactory.*;
@@ -14,6 +15,7 @@ import static org.rendersnake.HtmlAttributesFactory.*;
 public class HeaderFooter
 {
 
+    private Project _project;
 
     protected void addScriptsAndStyleSheets(HtmlCanvas html) throws IOException
     {
@@ -61,24 +63,35 @@ public class HeaderFooter
                 .content("")
                 ._div()
                 .div(class_("pageTitle"))
-                .a(class_("logo_image").src("/resources/images/logo.png").alt("logo"))
-                ._a();
+                .a(class_("logo_image").src("/resources/images/logo.png").alt("logo"))._a();
 
-
-        html.nav(class_("site-navigation"));
-        html.ul(class_("menu"));
+        html.ul();
 
         if (headerType.equalsIgnoreCase("featuresPage"))
         {
+            html.li(class_("sub-menu-l")).
+                    a(class_("s-menu report-link").href("#")).content("Test Reports").
+                    ul();
 
+            _addTestReport(html, _project.getP1TestJob(), "P1");
+            _addTestReport(html, _project.getAcceptance(), "Acceptance");
+            _addTestReport(html, _project.getE2e(), "E2E");
+
+            if (StringUtils.isBlank(_project.getP1TestJob()) &&
+                    StringUtils.isBlank(_project.getAcceptance()) &&
+                    StringUtils.isBlank(_project.getE2e()))
+            {
+                html.li(class_("sub-menu")).a(class_("s-menu test-link").href("/projects/" + _project.getId() + "/settings"))
+                        .content("Add Reports (+)")._li();
+            }
+            html._ul();
+            html._li();
         }
 
-        html.li()
-                .a(href("/projects/").class_("full"))
-                .content("Home")
-                ._li()
-                ._ul()
-                ._nav()
+        html.
+                li().a(href("/projects/").class_("full")).content("Home").
+                _li().
+                _ul()
                 ._div()
                 ._div()
                 .div()._div();
@@ -87,6 +100,14 @@ public class HeaderFooter
                 .html();
 
 
+    }
+
+    private void _addTestReport(HtmlCanvas html, String testReportUrl, String testReportTitle) throws IOException
+    {
+        if (StringUtils.isNotBlank(testReportUrl))
+        {
+            html.li(class_("sub-menu")).a(class_("s-menu test-link").href(testReportUrl).target("_blank")).content(testReportTitle)._li();
+        }
     }
 
     protected void renderScenarioHeader(HtmlCanvas html, Project project) throws IOException
@@ -117,7 +138,7 @@ public class HeaderFooter
                 ._div()
                 ._div()
                 .div()._div();
-        ;
+
 
         html._body()
                 .html();
@@ -205,6 +226,11 @@ public class HeaderFooter
         html._div();
         html.div(id("main-low"));
         html.br();
+    }
+
+    public void setProject(Project project)
+    {
+        _project = project;
     }
 
 

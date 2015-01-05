@@ -21,6 +21,8 @@ import com.google.common.base.Joiner;
 import org.apache.commons.lang.Validate;
 import org.rendersnake.HtmlCanvas;
 import org.rendersnake.Renderable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static org.rendersnake.HtmlAttributesFactory.*;
 
@@ -361,6 +363,8 @@ public class ScenariosPage extends HeaderFooter implements Renderable
                     scenario.getName());
     }
 
+    private static final Logger LOG = LoggerFactory.getLogger(ScenariosPage.class);
+
     @Override
     public void renderOn(HtmlCanvas html)
     {
@@ -372,6 +376,8 @@ public class ScenariosPage extends HeaderFooter implements Renderable
             _features = _featureService.fetchFeatures(_project);
             _feature = _featureService.getFeatureId(_projectId, _featureId).get();
             _scenarios = _scenarioService.fetchScenarios(_project, _featureId);
+
+            LOG.info("Rendering Scenarios '{}'", _scenarios.size());
 
             addScriptsAndStyleSheets(html);
 
