@@ -3,7 +3,7 @@ package com.cukesrepo.controller;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cukesrepo.page.AddProjectPage;
+import com.cukesrepo.page.AddRequestProjectPage;
 import com.cukesrepo.page.ProjectsPage;
 import com.cukesrepo.page.UpdateProjectPage;
 import com.cukesrepo.service.project.ProjectService;
@@ -57,12 +57,22 @@ public class ProjectsPageController
 
     }
 
-    @RequestMapping(value = {"/user/add-project"})
+    @RequestMapping(value = {"/submit/add-project-request"})
+    @ResponseBody
+    public void renderRequestProjectsPage(HtmlCanvas html) throws IOException
+    {
+
+        html.render(new AddRequestProjectPage(_projectService, true));
+
+    }
+
+
+    @RequestMapping(value = {"/user/kushpassword/add-project"})
     @ResponseBody
     public void renderAddProjectsPage(HtmlCanvas html) throws IOException
     {
 
-        html.render(new AddProjectPage(_projectService));
+        html.render(new AddRequestProjectPage(_projectService, false));
 
     }
 

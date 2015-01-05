@@ -1,6 +1,7 @@
 package com.cukesrepo.service.email;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Map;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -74,7 +75,13 @@ public class CukeEmailServiceImpl implements CukeEmailService
         Email email = _emailComponent.getFeedbackEmailTemplate(comments, feedbackType);
 
         return _send(email);
-//        return "";
+    }
+
+    @Override
+    public void sendAddProjectRequest(Map<String, String[]> parameterMap)
+    {
+        Email email = _emailComponent.getAddProjectRequestTemplate(parameterMap);
+        _send(email);
     }
 
     private String _send(Email email) throws EmailException

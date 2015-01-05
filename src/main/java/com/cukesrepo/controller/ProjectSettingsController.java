@@ -53,7 +53,6 @@ public class ProjectSettingsController
 
     }
 
-
     @RequestMapping(value = {"/projects/{projectId}/update"})
     @ResponseBody
     protected void updateProject

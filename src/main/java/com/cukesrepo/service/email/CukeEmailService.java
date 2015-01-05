@@ -1,5 +1,7 @@
 package com.cukesrepo.service.email;
 
+import java.util.Map;
+
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.Project;
 import com.cukesrepo.exceptions.EmailException;
@@ -15,6 +17,8 @@ public interface CukeEmailService
     String sendApproved(Project projectById, Feature feature, String scenario_name);
 
     String sendFeedback(String comments, String feedbackType);
+
+    void sendAddProjectRequest(Map<String, String[]> parameterMap);
 }
 
 

@@ -1,10 +1,16 @@
 package com.cukesrepo.component;
 
 
+import java.util.Map;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
 import com.cukesrepo.domain.Email;
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.Project;
+import com.cukesrepo.exceptions.EmailException;
 import com.cukesrepo.utils.Utils;
+import org.apache.commons.lang.Validate;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -147,4 +153,70 @@ public class EmailComponent
         return email;
 
     }
+
+    public Email getAddProjectRequestTemplate(Map<String, String[]> parameterMap)
+    {
+
+        LOG.info("Add project Request '{}'", parameterMap);
+
+        String projectName = parameterMap.get("projectname")[0];
+        String repositoryPath = parameterMap.get("repositorypath")[0];
+        String poEmail = parameterMap.get("emailofpo")[0];
+        String collaborators = parameterMap.get("collaborators")[0];
+
+        Validate.notEmpty(projectName, "Enter Project Name");
+        Validate.notEmpty(repositoryPath, "Enter Github SSH Clone URL");
+        Validate.notEmpty(poEmail, "Enter PO email address");
+        Validate.notEmpty(collaborators, "Enter collaborators email address");
+
+        _validateEmail(poEmail);
+
+        LOG.info("send request to add project '{}'", projectName);
+
+        Email email = new Email();
+
+        email.setSubject("Add Project");
+
+        String body = "<BODY style=font-size:10.5pt;font-family:Calibri>";
+
+
+        body += "<div style=color:#1a894b,padding=10px 10px>" + "We would like to thank you for adding your project to Cukes Repo. Your request " +
+                "is under progress. You will be notified by email when your project is added." + "</div><br><br>";
+
+        body += "<div style=color:#1a894b,padding=10px 10px><b>" + "Add Project:" + "</b></div><br>";
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>Project: " + projectName + "</div><br>";
+
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>Git Repository: " + repositoryPath + "</div><br>";
+
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>Collaborators: " + collaborators + "</div><br>";
+
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>PO: " + poEmail + "</div><br>";
+
+        body = _getEmailFooter(body);
+
+        body += "</BODY>";
+
+        email.setBody(body);
+        email.setTo("kugajjar@paypal.com");
+
+        LOG.info("getFeedbackEmailTemplate Subject '{}' and send email to '{}'", email.getSubject(), email.getTo());
+
+        return email;
+
+
+    }
+
+    private void _validateEmail(String email)
+    {
+        try
+        {
+            InternetAddress internetAddress = new InternetAddress(email);
+            internetAddress.validate();
+        }
+        catch (AddressException e)
+        {
+            throw new EmailException(e.getMessage(), e);
+        }
+    }
+
 }

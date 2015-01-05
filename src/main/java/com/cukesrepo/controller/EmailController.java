@@ -3,6 +3,7 @@ package com.cukesrepo.controller;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.cukesrepo.exceptions.EmailException;
 import com.cukesrepo.exceptions.FeatureNotFoundException;
@@ -161,6 +162,31 @@ public class EmailController
         {
             _emailService.sendFeedback(comments, feedbackType);
         }
+    }
+
+
+    @RequestMapping(value = {"/user/request-project/email"})
+    @ResponseBody
+    protected void emailRequestProject(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+
+        try
+        {
+            _emailService.sendAddProjectRequest(request.getParameterMap());
+        }
+        catch (IllegalArgumentException e)
+        {
+            response.reset();
+            response.setContentType("text/plain");
+            response.getWriter().write(e.getMessage());
+        }
+        catch (EmailException e)
+        {
+            response.reset();
+            response.setContentType("text/plain");
+            response.getWriter().write("Email address is invalid");
+        }
+
     }
 
 

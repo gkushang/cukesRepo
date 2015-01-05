@@ -117,6 +117,8 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
                 if (feature.getStatus().equalsIgnoreCase(FeatureStatus.APPROVED.get()))
                     html.td()
+//                            .img(class_("check-mark"))
+//                $('#send-feedback').replaceWith( "<span class=\"email-sent\"><img class=\"check-mark\"/>Feedback Sent</span>" );
                             ._td();
 
                 else if (feature.getStatus().equalsIgnoreCase(FeatureStatus.UNDER_REVIEW.get()))
