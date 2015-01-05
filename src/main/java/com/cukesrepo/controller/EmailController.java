@@ -189,5 +189,14 @@ public class EmailController
 
     }
 
+    @RequestMapping(value = {"/user/add-project/persist"})
+    @ResponseBody
+    protected void persistProject(HttpServletRequest request) throws IOException
+    {
+//        _projectService.addProject(request.getParameterMap());
+        _emailService.sendProjectAddedEmail(request.getParameterMap());
+
+    }
+
 
 }

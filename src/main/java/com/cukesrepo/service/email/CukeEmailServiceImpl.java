@@ -84,6 +84,13 @@ public class CukeEmailServiceImpl implements CukeEmailService
         _send(email);
     }
 
+    @Override
+    public void sendProjectAddedEmail(Map<String, String[]> parameterMap)
+    {
+        Email email = _emailComponent.getProjectAddedTemplate(parameterMap);
+        _send(email);
+    }
+
     private String _send(Email email) throws EmailException
     {
 

@@ -44,15 +44,6 @@ public class ProjectSettingsController
     }
 
 
-    @RequestMapping(value = {"/user/add-project/persist"})
-    @ResponseBody
-    protected void persistProject(HttpServletRequest request) throws IOException
-    {
-
-        _projectService.addProject(request.getParameterMap());
-
-    }
-
     @RequestMapping(value = {"/projects/{projectId}/update"})
     @ResponseBody
     protected void updateProject

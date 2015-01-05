@@ -51,7 +51,7 @@ public class AddRequestProjectPage extends HeaderFooter implements Renderable
         html.input(type("text").class_("add-project repository-path").add("placeholder", "GitHub SSH Clone URL")).br();
 
         html.span(id("update-elements-name")).content("Collaborators");
-        html.input(type("text").class_("add-project collaborators").add("placeholder", "Add Collaborators email addresses")).br();
+        html.input(type("text").class_("add-project collaborators").add("placeholder", "Add Collaborators email addresses separated by commas")).br();
 
         html.span(id("update-elements-name")).content("PO");
         html.input(type("text").class_("add-project project-owners").add("placeholder", "PO email address")).br().br();

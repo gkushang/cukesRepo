@@ -180,17 +180,18 @@ public class EmailComponent
         String body = "<BODY style=font-size:10.5pt;font-family:Calibri>";
 
 
-        body += "<div style=color:#1a894b,padding=10px 10px>" + "We would like to thank you for adding your project to Cukes Repo. Your request " +
+        body += "<div style=color:#00008b; padding=10px 10px>" + "We would like to thank you for adding your project to Cukes Repo. Your request " +
                 "is under progress. You will be notified by email when your project is added." + "</div><br><br>";
 
-        body += "<div style=color:#1a894b,padding=10px 10px><b>" + "Add Project:" + "</b></div><br>";
-        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>Project: " + projectName + "</div><br>";
 
-        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>Git Repository: " + repositoryPath + "</div><br>";
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri><b>---</b></div>";
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>" + projectName + "</div>";
 
-        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>Collaborators: " + collaborators + "</div><br>";
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>" + repositoryPath + "</div>";
 
-        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>PO: " + poEmail + "</div><br>";
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>" + collaborators + "</div>";
+
+        body += "<div style=color:#00008b;font-size:10.5pt;font-family:Calibri>" + poEmail + "</div><br>";
 
         body = _getEmailFooter(body);
 
@@ -219,4 +220,43 @@ public class EmailComponent
         }
     }
 
+    public Email getProjectAddedTemplate(Map<String, String[]> parameterMap)
+    {
+        LOG.info("Add project Request '{}'", parameterMap);
+
+        String projectName = parameterMap.get("projectname")[0];
+        String repositoryPath = parameterMap.get("repositorypath")[0];
+        String poEmail = parameterMap.get("emailofpo")[0];
+        String collaborators = parameterMap.get("collaborators")[0];
+
+        Validate.notEmpty(projectName, "Enter Project Name");
+        Validate.notEmpty(repositoryPath, "Enter Github SSH Clone URL");
+        Validate.notEmpty(poEmail, "Enter PO email address");
+        Validate.notEmpty(collaborators, "Enter collaborators email address");
+
+        _validateEmail(poEmail);
+
+        LOG.info("send request to add project '{}'", projectName);
+
+        Email email = new Email();
+
+        email.setSubject(projectName + " is added to cukesRepo");
+
+        String body = "<BODY style=font-size:10.5pt;font-family:Calibri>";
+
+        body += "<div style=color:#00008b; padding=9px 10px><a href=\"http://go/cukes\">" + projectName + "</a> is added to cukesRepo. You can visit <a href=\"http://cukes-3793.lvs01.dev.ebayc3.com/" + projectName + "/\" style=font-size:10pt>go/cukes</a> to view your project's features and scenarios." + "</div><br>";
+
+        body += "<div style=color:#00008b; font-size:10.5pt;font-family:Calibri>We would like to thank you for using cukesRepo! Please let us know if you face any issues by visiting <a href=\"http://cukes-3793.lvs01.dev.ebayc3.com/feedback/\">feedback</a> or send an email to kugajjar@paypal.com.</div><br>";
+
+        body = _getEmailFooter(body);
+
+        body += "</BODY>";
+
+        email.setBody(body);
+        email.setTo("kugajjar@paypal.com");
+
+        LOG.info("getFeedbackEmailTemplate Subject '{}' and send email to '{}'", email.getSubject(), email.getTo());
+
+        return email;
+    }
 }

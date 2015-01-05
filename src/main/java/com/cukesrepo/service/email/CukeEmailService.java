@@ -19,6 +19,8 @@ public interface CukeEmailService
     String sendFeedback(String comments, String feedbackType);
 
     void sendAddProjectRequest(Map<String, String[]> parameterMap);
+
+    void sendProjectAddedEmail(Map<String, String[]> parameterMap);
 }
 
 
