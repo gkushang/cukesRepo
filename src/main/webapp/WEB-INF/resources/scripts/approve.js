@@ -4,7 +4,6 @@ jQuery(document).ready(function() {
 
         var me = $(this);
 
-
         var scenario_number=me.attr('content');
 
         var project_id=$('#project-id').val();

@@ -37,7 +37,7 @@ jQuery(document).ready(function() {
         $("input[id^='request-project']").on('click',function() {
 
   var me = $(this);
-  me.val('...');
+
         var update_error = $("#update-error");
         var project_id = $(".project-name").val();
         var repository_url = $(".repository-path").val();
@@ -60,7 +60,7 @@ jQuery(document).ready(function() {
                    }
                     }).done(function(data) {
 
-
+                        me.val('...');
                        if(data === '') {
                            $('#request-project').hide();
                            $(".check-mark").show();
@@ -73,6 +73,7 @@ jQuery(document).ready(function() {
                         }
                         else{
                         $("#update-error").html(data);
+                        me.val('Add');
                         }
 
                    }).error(function(err){
