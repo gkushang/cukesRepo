@@ -22,17 +22,20 @@ public class ProjectsPageController
 
     private final ProjectService _projectService;
     private final String _isAddProjectEnabled;
+    private final String _isDeleteProjectEnabled;
 
     @Autowired
     public ProjectsPageController
             (
                     ProjectService projectService,
-                    @Value("${add.project.enable}") String isAddProjectEnabled
+                    @Value("${add.project.enable}") String isAddProjectEnabled,
+                    @Value("${delete.project.enable}") String isDeleteProjectEnabled
             )
     {
 
         _projectService = projectService;
         _isAddProjectEnabled = isAddProjectEnabled;
+        _isDeleteProjectEnabled = isDeleteProjectEnabled;
     }
 
     @RequestMapping(value = {"/"})
@@ -86,7 +89,7 @@ public class ProjectsPageController
             ) throws IOException
     {
 
-        html.render(new UpdateProjectPage(_projectService, projectId, _isAddProjectEnabled));
+        html.render(new UpdateProjectPage(_projectService, projectId, _isDeleteProjectEnabled));
 
     }
 }
