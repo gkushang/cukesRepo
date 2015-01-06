@@ -226,7 +226,7 @@ public class GitComponent
     private void search(File file, List<File> files)
     {
 
-        if (file.isDirectory())
+        if (file.isDirectory() && !file.getAbsolutePath().contains("target/"))
         {
             LOG.info("Searching feature files in directory '{}'", file.getAbsolutePath());
 

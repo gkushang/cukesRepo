@@ -93,6 +93,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
             List<Feature> allFeatures = _featureService.fetchFeatures(_project);
 
             List<Feature> approvedFeatures = new ArrayList<Feature>();
+            List<Feature> needReview = new ArrayList<Feature>();
             List<Feature> nonApprovedFeatures = new ArrayList<Feature>();
 
             for (Feature feature : allFeatures)
@@ -100,6 +101,10 @@ public class FeaturesPage extends HeaderFooter implements Renderable
                 if (feature.getStatus().equals(FeatureStatus.APPROVED.get()))
                 {
                     approvedFeatures.add(feature);
+                }
+                else if (feature.getStatus().equals(FeatureStatus.UNDER_REVIEW.get()))
+                {
+                    needReview.add(feature);
                 }
                 else
                 {
@@ -109,6 +114,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
             List<Feature> features = new ArrayList<Feature>();
             features.addAll(approvedFeatures);
+            features.addAll(needReview);
             features.addAll(nonApprovedFeatures);
 
 
