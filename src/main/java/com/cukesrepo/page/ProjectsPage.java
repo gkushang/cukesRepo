@@ -45,7 +45,7 @@ public class ProjectsPage extends HeaderFooter implements Renderable
         html.h3().span(id("project-title")).content("projects");
 
 
-        html.a(href("/user/add-project"));
+        html.a(href("/submit/add-project-request"));
         if (_isAddProjectEnabled.equals("true"))
         {
             html.input(type("button").class_("cukes-button").id("add-new-project")
@@ -67,6 +67,9 @@ public class ProjectsPage extends HeaderFooter implements Renderable
         }
 
         html._div();
+
+        renderFooter(html);
+
         html._body()
                 ._html();
     }

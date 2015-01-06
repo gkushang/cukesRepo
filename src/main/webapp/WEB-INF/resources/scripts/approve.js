@@ -4,14 +4,13 @@ jQuery(document).ready(function() {
 
         var me = $(this);
 
-
         var scenario_number=me.attr('content');
 
         var project_id=$('#project-id').val();
 
         var feature_id=$('#feature-id').val();
 
-        var scenario_name = $('#scenario-name').val();
+        var scenario_name = $('#scenario-name-'+scenario_number).val();
 
              $.ajax({
                 type: "POST",

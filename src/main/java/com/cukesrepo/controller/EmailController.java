@@ -3,6 +3,7 @@ package com.cukesrepo.controller;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.cukesrepo.exceptions.EmailException;
 import com.cukesrepo.exceptions.FeatureNotFoundException;
@@ -145,4 +146,57 @@ public class EmailController
         }
 
     }
+
+    @RequestMapping(value = {"/send-feedback"}, method = RequestMethod.POST)
+    @ResponseBody
+    public void sendReviewFeedback
+            (
+                    HttpServletRequest request
+            ) throws IOException
+
+    {
+        String comments = request.getParameter("comments");
+        String feedbackType = request.getParameter("radioVal");
+
+        if (StringUtils.isNotEmpty(comments))
+        {
+            _emailService.sendFeedback(comments, feedbackType);
+        }
+    }
+
+
+    @RequestMapping(value = {"/user/request-project/email"})
+    @ResponseBody
+    protected void emailRequestProject(HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
+
+        try
+        {
+            _emailService.sendAddProjectRequest(request.getParameterMap());
+        }
+        catch (IllegalArgumentException e)
+        {
+            response.reset();
+            response.setContentType("text/plain");
+            response.getWriter().write(e.getMessage());
+        }
+        catch (EmailException e)
+        {
+            response.reset();
+            response.setContentType("text/plain");
+            response.getWriter().write("Email address is invalid");
+        }
+
+    }
+
+    @RequestMapping(value = {"/user/add-project/persist"})
+    @ResponseBody
+    protected void persistProject(HttpServletRequest request) throws IOException
+    {
+        _projectService.addProject(request.getParameterMap());
+        _emailService.sendProjectAddedEmail(request.getParameterMap());
+
+    }
+
+
 }

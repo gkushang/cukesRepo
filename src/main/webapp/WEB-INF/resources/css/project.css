@@ -190,7 +190,7 @@ input.add-project
     font-size:11px;
     color:red;
     padding:11px 10px;
-    margin:0em -0.8em;
+    margin:0em -0.9em;
     font-family:Arial, sans-serif;;
 }
 
@@ -204,3 +204,27 @@ input.add-project
     font-weight:bold;
     font-family:Helvetica Neue;
 }
+
+.confirmation
+{
+  margin-top:-10px;
+  font-size:13px;
+  font-family: "Helvetica Neue";
+  color:#749a5e;
+  padding:10px 10px 10px 0px;
+  float:right;
+}
+
+
+#confirmation
+{
+  margin-top:-10px;
+  font-size:12px;
+  font-weight:normal;
+  font-family: "Helvetica Neue";
+  color:#384a2e;
+  padding:10px 10px 10px 0px;
+  float:center;
+}
+
+

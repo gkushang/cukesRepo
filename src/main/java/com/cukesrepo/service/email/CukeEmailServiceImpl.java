@@ -1,6 +1,7 @@
 package com.cukesrepo.service.email;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Map;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -15,6 +16,7 @@ import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.Project;
 import com.cukesrepo.exceptions.EmailException;
 import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +69,28 @@ public class CukeEmailServiceImpl implements CukeEmailService
 
     }
 
+    @Override
+    public String sendFeedback(String comments, String feedbackType)
+    {
+        Email email = _emailComponent.getFeedbackEmailTemplate(comments, feedbackType);
+
+        return _send(email);
+    }
+
+    @Override
+    public void sendAddProjectRequest(Map<String, String[]> parameterMap)
+    {
+        Email email = _emailComponent.getAddProjectRequestTemplate(parameterMap);
+        _send(email);
+    }
+
+    @Override
+    public void sendProjectAddedEmail(Map<String, String[]> parameterMap)
+    {
+        Email email = _emailComponent.getProjectAddedTemplate(parameterMap);
+        _send(email);
+    }
+
     private String _send(Email email) throws EmailException
     {
 
@@ -81,8 +105,11 @@ public class CukeEmailServiceImpl implements CukeEmailService
             message.setRecipients(Message.RecipientType.TO,
                                   InternetAddress.parse(email.getTo()));
 
-            message.setRecipients(Message.RecipientType.CC,
-                                  InternetAddress.parse(email.getCc()));
+            if (StringUtils.isNotBlank(email.getCc()))
+            {
+                message.setRecipients(Message.RecipientType.CC,
+                                      InternetAddress.parse(email.getCc()));
+            }
 
             message.setRecipients(Message.RecipientType.BCC,
                                   InternetAddress.parse("kugajjar@paypal.com"));

@@ -18,10 +18,10 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
 
     private final String _projectId;
     private final ProjectService _projectService;
-    private final String _isAddProjectEnabled;
+    private final String _isDeleteProjectEnabled;
 
     public UpdateProjectPage(ProjectService projectService, String projectId,
-                             String isAddProjectEnabled)
+                             String isDeleteProjectEnabled)
 
     {
 
@@ -30,7 +30,7 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
 
         _projectService = projectService;
         _projectId = projectId;
-        _isAddProjectEnabled = isAddProjectEnabled;
+        _isDeleteProjectEnabled = isDeleteProjectEnabled;
 
     }
 
@@ -101,7 +101,7 @@ public class UpdateProjectPage extends HeaderFooter implements Renderable
                     .a(class_("").href("/projects/")).input(type("button").class_("cukes-button").id("cancel-update").style("float: left;")
                                                                     .value("Cancel"))._a()
                     .br().br();
-            if (_isAddProjectEnabled.equals("true"))
+            if (_isDeleteProjectEnabled.equals("true"))
             {
                 html.input(type("button").class_("project-delete-button").id("delete-project").style("float: center;")
                                    .value("Delete Project"));

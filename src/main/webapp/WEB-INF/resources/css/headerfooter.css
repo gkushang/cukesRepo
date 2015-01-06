@@ -178,7 +178,7 @@ ul li.sub-menu-l
     padding: 0px 0px 0px 40px;
     overflow:hidden;
     margin-top:-2.6px;
-    margin-right:19.5px;
+    margin-right:34px;
 }
 
 ul li a.s-menu
@@ -226,4 +226,45 @@ ul li:hover ul
 {
     display: block;
     margin-top:3.5px;
+}
+
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px; /* bottom = footer height */
+    padding: 25px;
+}
+
+.footer {
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 30px;
+    width: 100%;
+    overflow:hidden;
+    border-top: 1px solid #d4e7d7;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, white), color-stop(1, white) );
+
+   display: block;
+   text-align:right;
+
+
+}
+
+.feedback-div
+{
+   margin-top:3px;
+}
+
+.feedback
+{
+   height:10px;
+   font-size:12px;
+   font-weight:400;
+   font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;
 }

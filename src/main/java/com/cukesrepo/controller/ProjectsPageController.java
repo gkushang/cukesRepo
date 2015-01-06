@@ -3,7 +3,7 @@ package com.cukesrepo.controller;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cukesrepo.page.AddProjectPage;
+import com.cukesrepo.page.AddRequestProjectPage;
 import com.cukesrepo.page.ProjectsPage;
 import com.cukesrepo.page.UpdateProjectPage;
 import com.cukesrepo.service.project.ProjectService;
@@ -22,17 +22,20 @@ public class ProjectsPageController
 
     private final ProjectService _projectService;
     private final String _isAddProjectEnabled;
+    private final String _isDeleteProjectEnabled;
 
     @Autowired
     public ProjectsPageController
             (
                     ProjectService projectService,
-                    @Value("${add.project.enable}") String isAddProjectEnabled
+                    @Value("${add.project.enable}") String isAddProjectEnabled,
+                    @Value("${delete.project.enable}") String isDeleteProjectEnabled
             )
     {
 
         _projectService = projectService;
         _isAddProjectEnabled = isAddProjectEnabled;
+        _isDeleteProjectEnabled = isDeleteProjectEnabled;
     }
 
     @RequestMapping(value = {"/"})
@@ -57,12 +60,22 @@ public class ProjectsPageController
 
     }
 
-    @RequestMapping(value = {"/user/add-project"})
+    @RequestMapping(value = {"/submit/add-project-request"})
+    @ResponseBody
+    public void renderRequestProjectsPage(HtmlCanvas html) throws IOException
+    {
+
+        html.render(new AddRequestProjectPage(_projectService, true));
+
+    }
+
+
+    @RequestMapping(value = {"/user/kushpassword/add-project"})
     @ResponseBody
     public void renderAddProjectsPage(HtmlCanvas html) throws IOException
     {
 
-        html.render(new AddProjectPage(_projectService));
+        html.render(new AddRequestProjectPage(_projectService, false));
 
     }
 
@@ -76,7 +89,7 @@ public class ProjectsPageController
             ) throws IOException
     {
 
-        html.render(new UpdateProjectPage(_projectService, projectId, _isAddProjectEnabled));
+        html.render(new UpdateProjectPage(_projectService, projectId, _isDeleteProjectEnabled));
 
     }
 }

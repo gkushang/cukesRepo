@@ -1,0 +1,166 @@
+div.feedback-outer
+{
+
+    width: 100%;
+    height: 100%;
+
+    border: 1px solid white;
+
+    position: relative;
+    text-align:center;
+
+    width:100%;
+    height:100%;
+    display:block;
+    margin-top:60px;
+}
+
+div.feedback-send
+{
+ text-align:right;
+ margin-top:1px;
+}
+
+div.feedback-inner
+{
+
+    width: 50%;
+    height: 80%;
+
+    text-align:left;
+    position: relative;
+
+    margin: 0 auto;
+    position: relative;
+
+}
+
+.feedback-box-div
+{
+}
+
+.feedback_comment-text-area
+{
+
+     width:100%;
+
+     background: #fffffe;
+     border: 1px solid #e0e9db;
+
+     outline: none;
+     overflow: auto;
+
+     line-height: 1.7;
+
+     height:25em;
+
+     display: block;
+
+     max-width: 100%;
+     max-height: 60%;
+
+     padding: 10px 0px 0px 10px;
+
+     position: relative;
+}
+
+.urfdbk
+{
+     margin-top:15px;
+}
+
+.feedback-elements-radio
+{
+      display: inline;
+
+      font-weight:normal;
+
+      font-size:11px;
+      color:#3b4137;
+
+      margin-left:5px;
+      padding-top:-10px;
+      font-family:Helvetica Neue;
+}
+
+.feedback-elements
+{
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+     text-align:left;
+     font-weight:normal;
+
+         font-size:11px;
+         color:#525252;
+
+
+         padding-top:-10px;
+         font-weight:bold;
+         font-family:Helvetica Neue;
+
+}
+
+#feedback-add-title
+{
+
+   font-family: "Helvetica Neue";
+   font-size: 18px;
+   text-align: left;
+   font-color:green;
+}
+
+div.feedback-margin
+{
+ padding: 10px 10px 10px;
+}
+
+.feedback-title-div
+{
+ background-color:#e4f0e6;
+
+}
+
+.email-sent
+{
+  margin-top:-10px;
+  font-size:16px;
+  font-family: "Helvetica Neue";
+  color:#749a5e;
+  padding:10px 10px 10px 100px;
+}
+
+
+.check-mark
+{
+    margin-right: 0.5em;
+    margin-bottom: -0.3em;
+    border: 1px solid #FFFFFF;
+    background-color: #FFFFFF;
+    visibility: visible;
+    content:url("/resources/images/sent.png");
+    background-repeat: no-repeat;
+
+    width: 20px;
+        height: auto;
+}
+
+fieldset { overflow:hidden }
+
+.some-class
+{
+    margin-top:20px;
+    margin-bottom:0px;
+
+}
+
+
+#feedback-error
+{
+    font-size:12px;
+    font-weight:bold;
+    color:red;
+    padding:11px 10px;
+    margin:0em 0.3em;
+    font-family: "Helvetica Neue";
+}
