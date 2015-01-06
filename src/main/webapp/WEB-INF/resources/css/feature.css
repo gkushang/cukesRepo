@@ -5,6 +5,17 @@
  padding: 45px 0px;
 }
 
+.approved-feature
+{
+    text-align:center;
+    font-size:12px;
+    color: #a8a8a8;
+    font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+    display: inline-block;
+    float:left;
+    margin:0px 0px 0 0;
+}
+
 #last-updated-time
 {
     text-align:center;

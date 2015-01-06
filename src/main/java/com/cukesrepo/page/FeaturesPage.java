@@ -1,6 +1,8 @@
 package com.cukesrepo.page;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cukesrepo.domain.Feature;
 import com.cukesrepo.domain.FeatureStatus;
@@ -88,9 +90,29 @@ public class FeaturesPage extends HeaderFooter implements Renderable
 
         try
         {
+            List<Feature> allFeatures = _featureService.fetchFeatures(_project);
+
+            List<Feature> approvedFeatures = new ArrayList<Feature>();
+            List<Feature> nonApprovedFeatures = new ArrayList<Feature>();
+
+            for (Feature feature : allFeatures)
+            {
+                if (feature.getStatus().equals(FeatureStatus.APPROVED.get()))
+                {
+                    approvedFeatures.add(feature);
+                }
+                else
+                {
+                    nonApprovedFeatures.add(feature);
+                }
+            }
+
+            List<Feature> features = new ArrayList<Feature>();
+            features.addAll(approvedFeatures);
+            features.addAll(nonApprovedFeatures);
 
 
-            for (Feature feature : _featureService.fetchFeatures(_project))
+            for (Feature feature : features)
             {
 
                 int totalScenarios = feature.getTotalScenarios();
@@ -118,7 +140,7 @@ public class FeaturesPage extends HeaderFooter implements Renderable
                 if (feature.getStatus().equalsIgnoreCase(FeatureStatus.APPROVED.get()))
                     html.td()
 //                            .img(class_("check-mark"))
-//                $('#send-feedback').replaceWith( "<span class=\"email-sent\"><img class=\"check-mark\"/>Feedback Sent</span>" );
+                            .span(class_("approved-feature")).content("")
                             ._td();
 
                 else if (feature.getStatus().equalsIgnoreCase(FeatureStatus.UNDER_REVIEW.get()))
@@ -134,8 +156,6 @@ public class FeaturesPage extends HeaderFooter implements Renderable
                 html._tr();
 
                 alternate++;
-
-
             }
         }
         catch (FeatureNotFoundException e)
