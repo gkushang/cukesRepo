@@ -144,7 +144,7 @@ public class CukeEmailServiceImpl implements CukeEmailService
         Properties props = new Properties();
 
         props.put("mail.debug", "true");
-        props.put("mail.smtp.host", "atom.corp.ebay.com");
+        props.put("mail.smtp.host", "atom.paypalcorp.com");
         props.put("mail.transport.protocol", "smtp");
 
         return Session.getInstance(props,
