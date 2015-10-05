@@ -244,9 +244,9 @@ public class EmailComponent
 
         String body = "<BODY style=font-size:10.5pt;font-family:Calibri>";
 
-        body += "<div style=color:#00008b; padding=9px 10px><a href=\"http://go/cukes\">" + projectName + "</a> is added to cukesRepo. You can visit <a href=\"http://cukes-3793.lvs01.dev.ebayc3.com/" + projectName + "/\" style=font-size:10pt>go/cukes</a> to view your project's features and scenarios." + "</div><br>";
+        body += "<div style=color:#00008b; padding=9px 10px><a href=\"http://go/cukes\">" + projectName + "</a> is added to cukesRepo. You can visit <a href=\"http://" + Utils.getHostName() + "/" + projectName + "/\" style=font-size:10pt>go/cukes</a> to view your project's features and scenarios." + "</div><br>";
 
-        body += "<div style=color:#00008b; font-size:10.5pt;font-family:Calibri>We would like to thank you for using cukesRepo! Let us know what you think by visiting <a href=\"http://cukes-3793.lvs01.dev.ebayc3.com/feedback/\">feedback</a></div><br>";
+        body += "<div style=color:#00008b; font-size:10.5pt;font-family:Calibri>We would like to thank you for using cukesRepo! Let us know what you think by visiting <a href=\"http://" + Utils.getHostName() + "/feedback/\">feedback</a></div><br>";
 
         body = _getEmailFooter(body);
 

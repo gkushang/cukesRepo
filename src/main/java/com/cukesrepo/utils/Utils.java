@@ -19,6 +19,6 @@ public class Utils
         {
             throw new RuntimeException("Unknown Host ", e);
         }
-        return address.getCanonicalHostName();
+        return address.getCanonicalHostName() + ":8080";
     }
 }
