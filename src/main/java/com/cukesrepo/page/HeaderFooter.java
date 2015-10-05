@@ -47,7 +47,7 @@ public class HeaderFooter
                 .macros().stylesheet("/../../resources/css/feature.css")
                 .macros().stylesheet("/../../resources/css/scenario.css")
 
-                .head().title().content("Cukes Repo")._head()
+                .head().title().content("Cukes")._head()
 //                .link(rel("icon").type("image/png").href("/resources/images/favicon.png"))
                 ._head();
     }
@@ -59,13 +59,13 @@ public class HeaderFooter
                 .body(class_("background-color-cukes"))
                 .div(class_("cukes-logo bgColorA"))
                 .div(class_("cukesTitle"))
-                .span(class_("title"))
-                .content("")
+//                .span(class_("title"))
+//                .content("Cukes")
                 .span(class_("titlePart"))
-                .content("")
+                .content("Living Documentation")
                 ._div()
-                .div(class_("pageTitle"))
-                .a(class_("logo_image").src("/resources/images/logo.png").alt("logo"))._a();
+                .div(class_("pageTitle"));
+//                .a(class_("logo_image").src("/resources/images/logo.png").alt("logo"))._a();
 
         html.ul();
 
