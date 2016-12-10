@@ -4,6 +4,29 @@ cukesRepo
 <br/>
 
 
+### Snapshots
+
+## Projects
+
+![Alt text](/src/main/resources/snapshots/projects.png)
+
+## Features
+
+![Alt text](/src/main/resources/snapshots/features.png)
+
+## Comment On Scenarios
+
+![Alt text](/src/main/resources/snapshots/commentScenario.png)
+
+## Approved Scenarios
+
+![Alt text](/src/main/resources/snapshots/approvedScenario.png)
+
+## Project Setting
+
+![Alt text](/src/main/resources/snapshots/projectSettings.png)
+
+
 ### Important
 
 The prefered IDE is IntelliJ IDEA 13. Dependency and project setup sections are written for IDEA.
